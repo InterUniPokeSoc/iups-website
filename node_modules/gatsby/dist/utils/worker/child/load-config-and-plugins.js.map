@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../../src/utils/worker/child/load-config-and-plugins.ts"],"names":[],"mappings":";;;;;AAAA","sourcesContent":["export { loadConfigAndPlugins } from \"../../../bootstrap/load-config-and-plugins\"\n"],"file":"load-config-and-plugins.js"}
