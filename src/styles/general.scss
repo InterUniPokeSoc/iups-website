@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat:ital,wght@0,400;0,700;1,400&family=Work+Sans:ital,wght@0,400;0,700;1,400&display=swap');
+
+$primary-color: rgb(15, 45, 109);
+
+* {
+    font-family: 'Work Sans';
+}
+
+body {
+    margin: 0;
+}
+
+.primary-color {
+    color: $primary-color;
+}
+
+.title {
+    font-family: 'Abril Fatface';
+}

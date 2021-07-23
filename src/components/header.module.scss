@@ -1,0 +1,164 @@
+$headerHeight: 10vh;
+
+.header, .open-header {
+    margin: 0;
+    min-height: $headerHeight;
+    width: 100vw;
+    background-color: rgba(15, 45, 109, 0.7);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+#main-logo, #main-logo-open-nav {
+    padding: 0;
+    width: 170px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    transition: filter 0.2s;
+}
+
+#main-logo:hover, #main-logo-open-nav:hover {
+    filter: brightness(80%);
+}
+
+.title {
+    color: white;
+    font-size: 1em;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.nav-list {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+}
+
+.nav-item {
+    padding: 10px;
+    color: white;
+    font-size: .9rem;
+    margin-right: 1.3rem;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background-color 0.2s;
+}
+
+.nav-icon {
+    display: none;
+    cursor: pointer;
+}
+
+.nav-item:hover {
+    color: black;
+    background-color: white;
+}
+
+.active-nav-item {
+    color: black;
+    background-color: white;
+}
+
+@media only screen and (max-width: 950px) {
+    .open-header {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+
+        margin: 0;
+        min-height: 10vh;
+        width: 100vw;
+        background-color: rgba(15, 45, 109, 0.7);
+        backdrop-filter: blur(10px);
+        display: block;
+        align-items: center;
+        justify-content: space-around;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+    }
+
+    #main-logo {
+        // position: absolute;
+        // margin-left: -25px;
+        // left: 50%;
+        display: block;
+        margin: auto;
+        text-align: center;
+        position: static;
+    }
+
+    #main-logo-wrapper {
+        padding: 10px;
+    }
+
+    #main-logo-open-nav {
+        margin: 1.8vh auto;
+        position: relative;
+        display: block;
+    }
+
+    .nav-list {
+        margin: auto;
+        width: auto;
+        display: block;
+        list-style-type: none;
+        text-align: center;
+        overflow: auto;
+        max-width: 170px;
+    }
+
+    .nav-item {
+        margin: 10px;
+        display: block;
+        width: auto;
+        max-width: 200px;
+    }
+
+    .open-nav {
+        padding: 20px;
+        display: block;
+        width: auto;
+        overflow: auto;
+    }
+
+    .closed-nav {
+        display: none;
+    }
+
+    .nav-icon {
+        margin: 0;
+        display: flex;
+        position: absolute;
+        align-content: center;
+        right: 15px;
+        top: 2.8vh;
+        width: 25px;
+        cursor: pointer;
+    }
+
+    .close-icon {
+        margin: 0;
+        display: flex;
+        position: absolute;
+        align-content: center;
+        right: 15px;
+        top: 2.6vh;
+        width: 25px;
+        cursor: pointer;
+    }
+
+    .hidden-nav-icon {
+        display: none;
+    }
+}
