@@ -7,6 +7,8 @@
     justify-content: center;
     // background-color: rgb(255, 244, 233);
 
+    animation: fadeUpIn 3s;
+
     @media only screen and (max-width: 768px) {
         flex-direction: column-reverse;
     }
@@ -51,4 +53,18 @@
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+
+// Animations
+
+@keyframes fadeUpIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
 }
