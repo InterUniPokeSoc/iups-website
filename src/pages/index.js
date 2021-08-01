@@ -1,27 +1,15 @@
 import React from 'react';
 import {Link} from 'gatsby';
 import Layout from '../components/layout';
+import roundButton from '../components/roundButton';
 import '../styles/general.scss';
 import '../styles/index.scss';
+import RoundButton from '../components/roundButton';
 
 
 function IndexPage() {
   return (
     <Layout>
-
-      {/* <div className="welcome-area">
-        <img src={'/images/background.jpg'} className="background" alt="Background."></img>
-        <div className="welcome-info">
-          <img src={'/images/full-logo-white.svg'} className="background-logo" alt="Main Logo (Non-link)" />
-          <p className="welcome-desc">Hello There.</p>
-          <div className="social-icons">
-            <a href="https://twitter.com/"><img src={'/images/twitter-round-icon.svg'} alt="Twitter social link." className="social-icon" /></a>
-            <a href="https://github.com/"><img src={'/images/github-round-icon.png'} alt="Github social link." className="social-icon" /></a>
-            <a href="https://linkedin.com/in/"><img src={'/images/linkedin-icon.png'} alt="LinkedIn social link." className="social-icon" /></a>
-          </div>
-        </div>
-      </div> */}
-
       <main className="main-area-flex">
         <div className="info">
           <h1 className="index-title title primary-color">A Nationwide Group of Pokémon Societies</h1>
@@ -39,7 +27,10 @@ function IndexPage() {
 
       <section className="map-link-section">
         <img className="map-link-background" src="/images/sheffield.jpg" alt="City scape of Sheffield during sunset with central focus on the Arts Tower." />
-        <p className="title map-link-title">Our Societies</p>
+        <div className="map-link-info">
+          <p className="title map-link-title">Our Societies</p>
+          <RoundButton className="map-link-button" link="./our-societies" text="Show Me" />
+        </div>
       </section>
 
     </Layout>

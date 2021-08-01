@@ -8,6 +8,10 @@ $primary-color: rgb(15, 45, 109);
 
 body {
     margin: 0;
+
+    background-image: url("/images/doggobwtile.jpg");
+    background-repeat: space;
+    background-size: 60px;
 }
 
 .primary-color {

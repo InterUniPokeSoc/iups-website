@@ -44,17 +44,30 @@
     filter: brightness(70%);
 }
 
+.map-link-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
 .map-link-title {
+    margin: auto;
+    padding: 20px;
     z-index: 2;
     color: white;
     font-size: 2.2em;
     text-align: center;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
+.map-link-button {
+    z-index: 2;
+    text-align: center;
+    margin: auto;
+    display: block;
+    max-width: 110px;
+}
 
 // Animations
 
