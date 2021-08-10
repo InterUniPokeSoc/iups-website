@@ -12,3 +12,5 @@ function RoundButton(props) {
 }
 
 export default RoundButton;
+
+//target=”_blank” rel=”noopener noreferrer”
