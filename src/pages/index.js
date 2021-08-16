@@ -35,7 +35,7 @@ function IndexPage() {
           </div>
           
           <div id="insta-section">
-            <img id="insta-logo" src="./images/Instagram_Glyph_Gradient_RGB.png"/>
+            <img id="insta-logo" src="./images/instagram-logo-black.png"/>
             <p id="insta-desc">Our many photos of Pokémon related things.</p>
             <RoundButton text="View our Instagram" link="https://www.instagram.com/inter.uni.pokemon/" dark={true} className="insta-button"/>
           </div>

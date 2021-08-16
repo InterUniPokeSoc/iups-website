@@ -1,0 +1,28 @@
+.top-image {
+  background-image: url('/images/londongang.png');
+  width: 100vw;
+  max-width: 1600px;
+  height: 360px;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 0;
+}
+
+.top-image-title {
+  color: white;
+  font-size: 6.0em;
+  padding: 0;
+  margin: 0;
+  line-height: 70px;
+
+  @media only screen and (max-width: 750px) {
+    font-size: 5.0em;
+    line-height: 55px;
+  }
+}
+
+.page-section {
+  margin: 20px;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/header';
-// import Footer from '../components/footer';
+import Footer from '../components/footer';
 // import '../styles/reset.scss';
 // import '../styles/general.scss';
 // import '../styles/images.scss';
@@ -13,6 +13,7 @@ function Layout(props) {
             <div className={layoutStyles.content}>
                 {props.children}
             </div>
+            <Footer />
         </div>
     );
 }

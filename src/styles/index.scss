@@ -136,6 +136,7 @@
     margin: 0;
     padding: 40px;
     background-color: rgb(231, 231, 231);
+    background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
     flex: 1;
 
     @media only screen and (max-width: 768px) {
@@ -157,6 +158,7 @@
     margin: auto;
     padding: 20px;
     display: block;
+    filter: invert(1);
 }
 
 #discord-desc {
@@ -168,7 +170,7 @@
 
 #insta-desc {
     padding: 20px;
-    color: black;
+    color: white;
     text-align: center;
     font-weight: bold;
 }
