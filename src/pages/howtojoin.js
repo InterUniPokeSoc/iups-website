@@ -1,10 +1,9 @@
 import React from 'react';
 import {Link} from 'gatsby';
 import Layout from '../components/layout';
+import TitleBanner from '../components/titleBanner';
 import '../styles/general.scss';
 import '../styles/howtojoin.scss';
-// import '../styles/oursocieties.scss';
-// import RoundButton from '../components/roundButton';
 
 
 function HowToJoinPage() {
@@ -13,9 +12,7 @@ function HowToJoinPage() {
     <Layout>
 
       <main className="page-content">
-        <div className="top-image">
-            <h1 className="title top-image-title">How to Join</h1>
-        </div>
+        <TitleBanner imageSource="/images/londongang.png" title="How to Join" />
 
         <section className="page-section">
           <h2 className="title">Society Requirements</h2>

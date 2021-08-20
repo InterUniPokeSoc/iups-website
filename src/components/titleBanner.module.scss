@@ -1,0 +1,35 @@
+.title-banner-wrapper {
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  background-color: black;
+}
+
+.top-image {
+  width: 100vw;
+  max-width: 1600px;
+  height: 360px;
+  object-fit: cover;
+  object-position: center;
+  padding: 0;
+}
+
+.top-image-title {
+  color: white;
+  font-size: 6.0em;
+  padding: 0;
+  margin: 0;
+  line-height: 70px;
+  position: absolute;
+  bottom: 0;
+  display: block;
+
+  @media only screen and (max-width: 750px) {
+      font-size: 5.0em;
+      line-height: 55px;
+  }
+}
