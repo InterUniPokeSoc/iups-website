@@ -4,3 +4,22 @@
   bottom: 0;
   width: 100%;
 }
+
+.page-content {
+
+}
+
+.map-sidebar-wrapper {
+  display: flex;
+}
+
+.page-map {
+  height: 100vh;
+  flex-basis: 70%;
+}
+
+.sidebar {
+  height: 100vh;
+  flex-basis: 30%;
+  background-color: rgb(30,30,30);
+}

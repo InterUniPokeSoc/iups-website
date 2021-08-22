@@ -1,0 +1,19 @@
+.video-banner-wrapper {
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  background-color: black;
+}
+
+.top-video {
+  width: 100vw;
+  max-width: 1600px;
+  height: 360px;
+  object-fit: cover;
+  object-position: center;
+  padding: 0;
+}

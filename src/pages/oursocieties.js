@@ -4,29 +4,33 @@ import Layout from '../components/layout';
 import '../styles/general.scss';
 import '../styles/oursocieties.scss';
 import {Helmet} from "react-helmet";
-// import mapboxgl from "mapbox-gl";
-// import 'mapbox-gl/dist/mapbox-gl.css';
-//import Microsoft from 'https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key={process.env.BING_API_KEY}';
-// import RoundButton from '../components/roundButton';
 import Map from '../components/map';
 
 function OurSocietiesPage() {
 
   return (
+    <>
+    <Helmet>
+      <title>Inter-Uni PokéSoc - Our Societies</title>
+    </Helmet>
+
     <Layout>
-      <Helmet>
-      </Helmet>
-
       <main className="page-content">
-        <Map />
-        <section className="page-section">
-          <h1 className="title">What is the I-UPS?</h1>
-          <p>Test</p>
-        </section>
+        <div className="map-sidebar-wrapper">
+          <div className="page-map">
+            <Map />
+          </div>
 
+          <section className="sidebar">
+            <div className="society-wrapper">
+              <h2 className="society-name">Test</h2>
+            </div>
+          </section>
+        </div>
       </main>
 
     </Layout>
+    </>
   );
 }
 

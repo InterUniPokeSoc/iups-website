@@ -9,9 +9,9 @@ class Map extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lng: -73.824200,
-      lat: 45.429166,
-      zoom: 17
+      lng: -3.638,
+      lat: 53.927,
+      zoom: 5.2
     };
   }
 
@@ -20,13 +20,15 @@ class Map extends React.Component {
       container: this.mapContainer,
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [this.state.lng, this.state.lat],
-      zoom: this.state.zoom
+      zoom: this.state.zoom,
     });
 
     const marker1 = new mapboxgl.Marker()
       .setLngLat([-1.4875136, 53.3811227])
       .setPopup(new mapboxgl.Popup().setHTML("<h1>Hello World!</h1>"))
       .addTo(map);
+
+    // map.
 
   }
 

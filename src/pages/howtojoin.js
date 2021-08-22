@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'gatsby';
+import {Helmet} from "react-helmet";
 import Layout from '../components/layout';
 import TitleBanner from '../components/titleBanner';
 import '../styles/general.scss';
@@ -9,6 +10,11 @@ import '../styles/howtojoin.scss';
 function HowToJoinPage() {
 
   return (
+    <>
+    <Helmet>
+      <title>Inter-Uni PokéSoc - How to Join</title>
+    </Helmet>
+
     <Layout>
 
       <main className="page-content">
@@ -48,6 +54,7 @@ function HowToJoinPage() {
       </main>
 
     </Layout>
+    </>
   );
 }
 
