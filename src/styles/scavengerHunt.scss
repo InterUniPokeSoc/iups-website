@@ -1,0 +1,13 @@
+.hint-wrapper {
+  transition: height 2s;
+}
+
+.hide {
+  height: 0;
+  display: none;
+}
+
+.show {
+  height: 100%;
+  display: block;
+}

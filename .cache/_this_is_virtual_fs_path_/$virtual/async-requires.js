@@ -7,6 +7,7 @@ exports.components = {
   "component---src-pages-about-js": () => import("./../../../src/pages/about.js" /* webpackChunkName: "component---src-pages-about-js" */),
   "component---src-pages-howtojoin-js": () => import("./../../../src/pages/howtojoin.js" /* webpackChunkName: "component---src-pages-howtojoin-js" */),
   "component---src-pages-index-js": () => import("./../../../src/pages/index.js" /* webpackChunkName: "component---src-pages-index-js" */),
-  "component---src-pages-oursocieties-js": () => import("./../../../src/pages/oursocieties.js" /* webpackChunkName: "component---src-pages-oursocieties-js" */)
+  "component---src-pages-oursocieties-js": () => import("./../../../src/pages/oursocieties.js" /* webpackChunkName: "component---src-pages-oursocieties-js" */),
+  "component---src-pages-scavengerhunt-js": () => import("./../../../src/pages/scavengerhunt.js" /* webpackChunkName: "component---src-pages-scavengerhunt-js" */)
 }
 
