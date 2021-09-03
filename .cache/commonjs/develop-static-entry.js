@@ -11,8 +11,9 @@ var _server = require("react-dom/server");
 
 var _lodash = require("lodash");
 
-var _apiRunnerSsr = _interopRequireDefault(require("./api-runner-ssr"));
+var _apiRunnerSsr = require("./api-runner-ssr");
 
+/* global BROWSER_ESM_ONLY */
 // import testRequireError from "./test-require-error"
 // For some extremely mysterious reason, webpack adds the above module *after*
 // this module so that when this code runs, testRequireError is undefined.
@@ -95,7 +96,7 @@ var _default = ({
     postBodyComponents = components;
   };
 
-  (0, _apiRunnerSsr.default)(`onRenderBody`, {
+  (0, _apiRunnerSsr.apiRunner)(`onRenderBody`, {
     setHeadComponents,
     setHtmlAttributes,
     setBodyAttributes,
@@ -104,7 +105,7 @@ var _default = ({
     setBodyProps,
     pathname: pagePath
   });
-  (0, _apiRunnerSsr.default)(`onPreRenderHTML`, {
+  (0, _apiRunnerSsr.apiRunner)(`onPreRenderHTML`, {
     getHeadComponents,
     replaceHeadComponents,
     getPreBodyComponents,
@@ -127,7 +128,7 @@ var _default = ({
     htmlAttributes,
     bodyAttributes,
     preBodyComponents,
-    postBodyComponents: postBodyComponents.concat([/*#__PURE__*/_react.default.createElement("script", {
+    postBodyComponents: postBodyComponents.concat([!BROWSER_ESM_ONLY && /*#__PURE__*/_react.default.createElement("script", {
       key: `polyfill`,
       src: "/polyfill.js",
       noModule: true
@@ -137,7 +138,7 @@ var _default = ({
     }), /*#__PURE__*/_react.default.createElement("script", {
       key: `commons`,
       src: "/commons.js"
-    })])
+    })].filter(Boolean))
   });
 
   htmlStr = (0, _server.renderToStaticMarkup)(htmlElement);

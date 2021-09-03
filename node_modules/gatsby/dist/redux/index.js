@@ -4,7 +4,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 
 exports.__esModule = true;
 exports.replaceReducer = replaceReducer;
-exports.loadStateInWorker = exports.saveStateForWorkers = exports.saveState = exports.store = exports.configureStore = exports.readState = exports.emitter = void 0;
+exports.loadPartialStateFromDisk = exports.savePartialStateToDisk = exports.saveState = exports.store = exports.configureStore = exports.readState = exports.emitter = void 0;
 
 var _redux = require("redux");
 
@@ -88,10 +88,7 @@ exports.readState = readState;
  */
 const multi = ({
   dispatch
-}) => next => action => Array.isArray(action) ? action.filter(Boolean).map(dispatch) : next(action); // We're using the inferred type here because manually typing it would be very complicated
-// and error-prone. Instead we'll make use of the createStore return value, and export that type.
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-
+}) => next => action => Array.isArray(action) ? action.filter(Boolean).map(dispatch) : next(action);
 
 const configureStore = initialState => (0, _redux.createStore)((0, _redux.combineReducers)({ ...reducers
 }), initialState, (0, _redux.applyMiddleware)(_reduxThunk.default, multi));
@@ -138,26 +135,27 @@ const saveState = () => {
 
 exports.saveState = saveState;
 
-const saveStateForWorkers = slices => {
+const savePartialStateToDisk = (slices, optionalPrefix, transformState) => {
   const state = store.getState();
 
   const contents = _lodash.default.pick(state, slices);
 
-  return (0, _persist.writeToCache)(contents, slices);
+  const savedContents = transformState ? transformState(contents) : contents;
+  return (0, _persist.writeToCache)(savedContents, slices, optionalPrefix);
 };
 
-exports.saveStateForWorkers = saveStateForWorkers;
+exports.savePartialStateToDisk = savePartialStateToDisk;
 
-const loadStateInWorker = slices => {
+const loadPartialStateFromDisk = (slices, optionalPrefix) => {
   try {
-    return (0, _persist.readFromCache)(slices);
+    return (0, _persist.readFromCache)(slices, optionalPrefix);
   } catch (e) {// ignore errors.
   }
 
   return {};
 };
 
-exports.loadStateInWorker = loadStateInWorker;
+exports.loadPartialStateFromDisk = loadPartialStateFromDisk;
 store.subscribe(() => {
   const lastAction = store.getState().lastAction;
   emitter.emit(lastAction.type, lastAction);

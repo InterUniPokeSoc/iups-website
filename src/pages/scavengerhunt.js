@@ -6,7 +6,21 @@ import TitleBanner from '../components/titleBanner';
 import '../styles/general.scss';
 import '../styles/scavengerHunt.scss';
 
+import {getHints} from "../utils/hints";
+
+class Hint {
+  constructor (answer, hint) {
+    this.answer = answer;
+    this.hint = hint;
+  }
+}
+
 function ScavengerHuntPage() {
+
+  var hintsList = getHints;
+  console.log(hintsList);
+
+  // console.log(hintsList);
 
   let hints = [
     "What is the best Pokémon?",

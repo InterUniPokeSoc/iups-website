@@ -53,11 +53,16 @@ async function loadConfigAndPlugins({
       const {
         enabledConfigFlags,
         unknownFlagMessage,
+        unfitFlagMessage,
         message
       } = (0, _handleFlags.default)(_flags.default, config.flags);
 
       if (unknownFlagMessage !== ``) {
         _reporter.default.warn(unknownFlagMessage);
+      }
+
+      if (unfitFlagMessage !== ``) {
+        _reporter.default.warn(unfitFlagMessage);
       } //  set process.env for each flag
 
 

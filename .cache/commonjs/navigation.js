@@ -37,9 +37,13 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 
 function maybeRedirect(pathname) {
   const redirect = (0, _redirectUtils.maybeGetBrowserRedirect)(pathname);
+  const {
+    hash,
+    search
+  } = window.location;
 
   if (redirect != null) {
-    window.___replace(redirect.toPath);
+    window.___replace(redirect.toPath + search + hash);
 
     return true;
   } else {
@@ -82,21 +86,22 @@ const navigate = (to, options = {}) => {
     return;
   }
 
-  let {
-    pathname
+  const {
+    pathname,
+    search,
+    hash
   } = (0, _gatsbyLink.parsePath)(to);
   const redirect = (0, _redirectUtils.maybeGetBrowserRedirect)(pathname); // If we're redirecting, just replace the passed in pathname
   // to the one we want to redirect to.
 
   if (redirect) {
-    to = redirect.toPath;
-    pathname = (0, _gatsbyLink.parsePath)(to).pathname;
+    to = redirect.toPath + search + hash;
   } // If we had a service worker update, no matter the path, reload window and
   // reset the pathname whitelist
 
 
   if (window.___swUpdated) {
-    window.location = pathname;
+    window.location = pathname + search + hash;
     return;
   } // Start a timer to wait for a second before transitioning and showing a
   // loader in case resources aren't around yet.
@@ -129,6 +134,10 @@ const navigate = (to, options = {}) => {
 
 
     if (process.env.NODE_ENV === `production` && pageResources) {
+      // window.___webpackCompilationHash gets set in production-app.js after navigationInit() is called
+      // So on a direct visit of a page with a browser redirect this check is truthy and thus the codepath is hit
+      // While the resource actually exists, but only too late
+      // TODO: This should probably be fixed by setting ___webpackCompilationHash before navigationInit() is called
       if (pageResources.page.webpackCompilationHash !== window.___webpackCompilationHash) {
         // Purge plugin-offline cache
         if (`serviceWorker` in navigator && navigator.serviceWorker.controller !== null && navigator.serviceWorker.controller.state === `activated`) {
@@ -137,7 +146,7 @@ const navigate = (to, options = {}) => {
           });
         }
 
-        window.location = pathname;
+        window.location = pathname + search + hash;
       }
     }
 

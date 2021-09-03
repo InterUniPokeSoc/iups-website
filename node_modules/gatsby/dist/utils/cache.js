@@ -21,6 +21,9 @@ const MAX_CACHE_SIZE = 250;
 const TTL = Number.MAX_SAFE_INTEGER;
 
 class GatsbyCache {
+  // TODO: remove `.cache` in v4. This is compat mode - cache-manager cache implementation
+  // expose internal cache that gives access to `.del` function that wasn't available in public
+  // cache interface (gatsby-plugin-sharp use it to clear no longer needed data)
   // @ts-ignore - set & get types are missing from fsStore?
   constructor({
     name = `db`,
@@ -75,6 +78,14 @@ class GatsbyCache {
         resolve(err ? undefined : value);
       });
     });
+  }
+
+  async del(key) {
+    if (!this.cache) {
+      throw new Error(`GatsbyCache wasn't initialised yet, please run the init method first`);
+    }
+
+    return this.cache.del(key);
   }
 
 }
