@@ -2,10 +2,17 @@
   padding: 7px;
   border: 2px solid black;
   border-radius: 7px;
+
+  &.error
+  {
+    animation: shake 0.2s ease-in-out 0s 2;
+    box-shadow: 0 0 0.5em red;
+  }
 }
 
 .hint-input:focus {
   border: 2px solid rgb(44, 134, 150);
+  box-shadow: 0 0 0.5em rgb(44, 134, 150);
   outline: none;
 }
 
@@ -31,4 +38,11 @@
 
 .hint-text {
   font-size: 1.2em;
+}
+
+@keyframes shake {
+  0% { margin-left: 0rem; }
+  25% { margin-left: 0.5rem; }
+  75% { margin-left: -0.5rem; }
+  100% { margin-left: 0rem; }
 }

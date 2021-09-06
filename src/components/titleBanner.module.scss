@@ -16,6 +16,10 @@
   object-fit: cover;
   object-position: center;
   padding: 0;
+
+  @media only screen and (max-width: 750px) {
+    height: 250px;
+}
 }
 
 .top-image-title {
@@ -29,7 +33,12 @@
   display: block;
 
   @media only screen and (max-width: 750px) {
-      font-size: 5.0em;
-      line-height: 55px;
+      font-size: 3.6em;
+      line-height: 43px;
+  }
+
+  @media only screen and (max-width: 450px) {
+    font-size: 2.8em;
+    line-height: 33px;
   }
 }

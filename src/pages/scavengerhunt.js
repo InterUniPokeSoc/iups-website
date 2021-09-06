@@ -52,6 +52,7 @@ function ScavengerHuntPage() {
     var hintInput = document.createElement('input');
     hintInput.classList = ["hint-input"];
     hintInput.id = "hint-input-"+currentHintNo;
+    hintInput.onchange = (() => { hintInput.classList.remove("error"); });
 
     hintDiv.appendChild(hintTitle);
     hintDiv.appendChild(hintText);
@@ -62,6 +63,7 @@ function ScavengerHuntPage() {
 
 
   let questionResponse = () => {
+    var userInputBox = document.getElementById("hint-input-"+currentHintNo);
     var userAnswer = document.getElementById("hint-input-"+currentHintNo).value;
     var updateMessageBox = document.getElementById("update-message");
 
@@ -85,6 +87,8 @@ function ScavengerHuntPage() {
       }
 
     } else {
+      userInputBox.classList.add("error");
+
       console.log("Answer is Incorrect!");
       updateMessageBox.innerHTML = "Try again!";
     }
@@ -98,7 +102,7 @@ function ScavengerHuntPage() {
 
     <Layout>
       <main className="page-content">
-        <TitleBanner imageSource="" title="Scavenger Hunt" />
+        <TitleBanner imageSource="images/pelipperbg.jpg" title="Scavenger Hunt" />
 
         <section className="page-section" id="hints-page">
         </section>
