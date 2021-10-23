@@ -2,6 +2,7 @@ import React from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import * as mapStyles from './map.module.scss';
+import { getSocieties } from "../utils/societies";
 
 mapboxgl.accessToken = process.env.GATSBY_MAPBOX_KEY;
 
@@ -23,12 +24,30 @@ class Map extends React.Component {
       zoom: this.state.zoom,
     });
 
-    const marker1 = new mapboxgl.Marker()
-      .setLngLat([-1.4875136, 53.3811227])
-      .setPopup(new mapboxgl.Popup().setHTML("<h1>Hello World!</h1>"))
-      .addTo(map);
+    // const marker1 = new mapboxgl.Marker()
+    //   .setLngLat([-1.4875136, 53.3811227])
+    //   .setPopup(new mapboxgl.Popup().setHTML("<h1>Hello World!</h1>"))
+    //   .addTo(map);
 
-    // map.
+    var societies = [];
+
+    getSocieties().then((dbList) => {
+      console.log(dbList);
+      Object.values(dbList).map((society) => {
+  
+        societies.push([
+          society.name,
+          society.longitude,
+          society.latitude
+        ]);
+
+        const marker1 = new mapboxgl.Marker()
+          .setLngLat([society.longitude, society.latitude])
+          .setPopup(new mapboxgl.Popup().setHTML("<h1>"+society.name+"</h1>"))
+          .addTo(map);
+      });
+  
+    }).catch((e) => {});
 
   }
 

@@ -6,7 +6,7 @@ import TitleBanner from '../components/titleBanner';
 import '../styles/general.scss';
 import '../styles/scavengerHunt.scss';
 
-import {getHints} from "../utils/hints";
+import {getHints, getWinners} from "../utils/hints";
 
 function ScavengerHuntPage() {
 
@@ -22,15 +22,24 @@ function ScavengerHuntPage() {
     // "Sus",
   ];
 
-  var list = getHints().then((dbList) => {
-    console.log(dbList[0].hint1.hint);
+  getHints().then((dbList) => {
+    // console.log(dbList[0].hint1.hint);
 
-    Object.values(dbList[0]).map((hint) => {
+    Object.values(dbList).map((hint) => {
       hints.push(hint.hint);
       answers.push(hint.answer);
     });
 
+    document.getElementById("update-message").innerHTML = "";
+    document.getElementById("hint-button").classList.remove("hide");
+
     generateHint();
+  }).catch((e) => {
+    document.getElementById("update-message").style.fontSize = "1.4em";
+    document.getElementById("update-message").style.fontWeight = "bold";
+    document.getElementById("update-message").style.color = "red";
+    document.getElementById("update-message").innerHTML = "An error occurred while retrieving the scavenger hunt data. Please contact a member of Comté.";
+    console.log(e);
   });
 
   var currentHintNo = 0;
@@ -52,7 +61,10 @@ function ScavengerHuntPage() {
     var hintInput = document.createElement('input');
     hintInput.classList = ["hint-input"];
     hintInput.id = "hint-input-"+currentHintNo;
-    hintInput.onchange = (() => { hintInput.classList.remove("error"); });
+    hintInput.onchange = (() => { 
+      hintInput.classList.remove("error"); 
+      document.getElementById("update-message").innerHTML = "";
+    });
 
     hintDiv.appendChild(hintTitle);
     hintDiv.appendChild(hintText);
@@ -108,8 +120,8 @@ function ScavengerHuntPage() {
         </section>
 
         <section className="page-section" id="info-section">
-          <a id={"hint-button"} onClick={questionResponse}>Check Answer</a>
-          <p id="update-message"></p>
+          <a id={"hint-button"} className="hide" onClick={questionResponse}>Check Answer</a>
+          <p id="update-message">Loading...</p>
         </section>
 
       </main>
