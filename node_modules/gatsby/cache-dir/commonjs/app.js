@@ -42,7 +42,11 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 // Enable fast-refresh for virtual sync-requires, gatsby-browser & navigation
 // To ensure that our <Root /> component can hot reload in case anything below doesn't
 // satisfy fast-refresh constraints
-module.hot.accept([`$virtual/async-requires`, `./api-runner-browser`, `./navigation`]);
+module.hot.accept([`$virtual/async-requires`, `./api-runner-browser`, `./navigation`], () => {
+  // asyncRequires should be automatically updated here (due to ESM import and webpack HMR spec),
+  // but loader doesn't know that and needs to be manually nudged
+  loader.updateAsyncRequires(_asyncRequires.default);
+});
 window.___emitter = _emitter.default;
 const loader = new _devLoader.default(_asyncRequires.default, _matchPaths.default);
 (0, _loader.setLoader)(loader);
@@ -117,8 +121,8 @@ function notCalledFunction() {
   let defaultRenderer = _reactDom.default.render;
 
   if (focusEl && focusEl.children.length) {
-    if (_reactDom.default.createRoot) {
-      defaultRenderer = _reactDom.default.createRoot;
+    if (_reactDom.default.hydrateRoot) {
+      defaultRenderer = _reactDom.default.hydrateRoot;
     } else {
       defaultRenderer = _reactDom.default.hydrate;
     }
@@ -158,8 +162,8 @@ function notCalledFunction() {
         indicatorMountElement.setAttribute(`id`, `query-on-demand-indicator-element`);
         document.body.append(indicatorMountElement);
 
-        if (renderer === _reactDom.default.createRoot) {
-          renderer(indicatorMountElement).render( /*#__PURE__*/_react.default.createElement(_loadingIndicator.LoadingIndicatorEventHandler, null));
+        if (renderer === _reactDom.default.hydrateRoot) {
+          _reactDom.default.createRoot(indicatorMountElement).render( /*#__PURE__*/_react.default.createElement(_loadingIndicator.LoadingIndicatorEventHandler, null));
         } else {
           _reactDom.default.render( /*#__PURE__*/_react.default.createElement(_loadingIndicator.LoadingIndicatorEventHandler, null), indicatorMountElement);
         }
@@ -184,10 +188,8 @@ function notCalledFunction() {
         dismissLoadingIndicator();
       }
 
-      if (renderer === _reactDom.default.createRoot) {
-        renderer(rootElement, {
-          hydrate: true
-        }).render( /*#__PURE__*/_react.default.createElement(App, null));
+      if (renderer === _reactDom.default.hydrateRoot) {
+        renderer(rootElement, /*#__PURE__*/_react.default.createElement(App, null));
       } else {
         renderer( /*#__PURE__*/_react.default.createElement(App, null), rootElement);
       }

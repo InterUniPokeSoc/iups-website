@@ -99,7 +99,8 @@ const buildInferenceMetadata = ({
 
 const build = async ({
   parentSpan,
-  fullMetadataBuild = true
+  fullMetadataBuild = true,
+  freeze = false
 }) => {
   const spanArgs = parentSpan ? {
     childOf: parentSpan
@@ -148,6 +149,7 @@ const build = async ({
     printConfig,
     typeConflictReporter,
     inferenceMetadata,
+    freeze,
     parentSpan
   });
   typeConflictReporter.printConflicts();

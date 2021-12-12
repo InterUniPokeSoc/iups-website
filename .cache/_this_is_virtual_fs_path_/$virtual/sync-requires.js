@@ -9,6 +9,7 @@ exports.components = {
   "component---src-pages-about-js": preferDefault(require("/Volumes/Matt-SSD-Store/Projects/iups-website/src/pages/about.js")),
   "component---src-pages-howtojoin-js": preferDefault(require("/Volumes/Matt-SSD-Store/Projects/iups-website/src/pages/howtojoin.js")),
   "component---src-pages-index-js": preferDefault(require("/Volumes/Matt-SSD-Store/Projects/iups-website/src/pages/index.js")),
-  "component---src-pages-oursocieties-js": preferDefault(require("/Volumes/Matt-SSD-Store/Projects/iups-website/src/pages/oursocieties.js"))
+  "component---src-pages-oursocieties-js": preferDefault(require("/Volumes/Matt-SSD-Store/Projects/iups-website/src/pages/oursocieties.js")),
+  "component---src-pages-scavengerhunt-js": preferDefault(require("/Volumes/Matt-SSD-Store/Projects/iups-website/src/pages/scavengerhunt.js"))
 }
 

@@ -5,9 +5,9 @@ exports.setState = setState;
 
 var _redux = require("../../../redux");
 
-// Calls loadStateInWorker(slices) and mutates the redux store with the results
+// Calls loadPartialStateFromDisk(slices) and mutates the redux store with the results
 function setState(slices) {
-  const res = (0, _redux.loadStateInWorker)(slices);
+  const res = (0, _redux.loadPartialStateFromDisk)(slices);
   Object.entries(res).forEach(([key, val]) => {
     _redux.store.getState()[key] = val;
   });

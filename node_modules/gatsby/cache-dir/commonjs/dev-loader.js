@@ -32,15 +32,16 @@ function mergePageEntry(cachedPage, newPageData) {
 class DevLoader extends _loader.BaseLoader {
   constructor(asyncRequires, matchPaths) {
     const loadComponent = chunkName => {
-      if (!asyncRequires.components[chunkName]) {
+      if (!this.asyncRequires.components[chunkName]) {
         throw new Error(`We couldn't find the correct component chunk with the name "${chunkName}"`);
       }
 
-      return asyncRequires.components[chunkName]().then(preferDefault) // loader will handle the case when component is error
+      return this.asyncRequires.components[chunkName]().then(preferDefault) // loader will handle the case when component is error
       .catch(err => err);
     };
 
     super(loadComponent, matchPaths);
+    this.asyncRequires = asyncRequires;
     const socket = (0, _socketIo.default)();
     this.notFoundPagePathsInCaches = new Set();
 
@@ -57,6 +58,10 @@ class DevLoader extends _loader.BaseLoader {
     } else if (process.env.NODE_ENV !== `test`) {
       console.warn(`Could not get web socket`);
     }
+  }
+
+  updateAsyncRequires(asyncRequires) {
+    this.asyncRequires = asyncRequires;
   }
 
   loadPage(pagePath) {

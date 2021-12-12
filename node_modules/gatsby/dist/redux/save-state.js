@@ -4,6 +4,10 @@ const _ = require(`lodash`);
 
 const report = require(`gatsby-cli/lib/reporter`);
 
+const {
+  captureEvent
+} = require(`gatsby-telemetry`);
+
 const redux = require(`./`);
 
 let saveInProgress = false;
@@ -11,11 +15,22 @@ let saveInProgress = false;
 async function saveState() {
   if (saveInProgress) return;
   saveInProgress = true;
+  const startTime = Date.now();
 
   try {
     await redux.saveState();
   } catch (err) {
     report.warn(`Error persisting state: ${err && err.message || err}`);
+  }
+
+  try {
+    const duration = (Date.now() - startTime) / 1000;
+    captureEvent(`INTERNAL_STATE_PERSISTENCE_DURATION`, {
+      name: `Save Internal State`,
+      duration: Math.round(duration)
+    });
+  } catch (err) {
+    console.error(err);
   }
 
   saveInProgress = false;

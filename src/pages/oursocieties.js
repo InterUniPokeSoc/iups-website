@@ -4,29 +4,63 @@ import Layout from '../components/layout';
 import '../styles/general.scss';
 import '../styles/oursocieties.scss';
 import {Helmet} from "react-helmet";
-// import mapboxgl from "mapbox-gl";
-// import 'mapbox-gl/dist/mapbox-gl.css';
-//import Microsoft from 'https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key={process.env.BING_API_KEY}';
-// import RoundButton from '../components/roundButton';
 import Map from '../components/map';
+
+import { getSocieties } from "../utils/societies";
 
 function OurSocietiesPage() {
 
+  var societies = [];
+
+  getSocieties().then((dbList) => {
+    // console.log(dbList[0].hint1.hint);
+    console.log(dbList);
+    Object.values(dbList).map((society) => {
+
+      societies.push([
+        society.name,
+        society.longitude,
+        society.latitude
+      ]);
+    });
+
+  }).catch((e) => {
+
+  });
+
   return (
+    <>
+    <Helmet>
+      <title>Inter-Uni PokéSoc - Our Societies</title>
+    </Helmet>
+
     <Layout>
-      <Helmet>
-      </Helmet>
-
       <main className="page-content">
-        <Map />
-        <section className="page-section">
-          <h1 className="title">What is the I-UPS?</h1>
-          <p>Test</p>
-        </section>
+        <div className="map-sidebar-wrapper">
+          <div className="page-map">
+            <Map />
+          </div>
 
+          <section className="sidebar">
+
+            <input className="search-bar" placeholder="Search for a society..."></input>
+
+            <div className="society-wrapper">
+              {/* {societies.map(society => (
+                <div>
+                  <h2 className="society-name">{society.name}</h2>
+                  <p className="society-name">{society.longitude}</p>
+                  <p className="society-name">{society.latitude}</p>
+                </div>
+              ))} */}
+              <h2 className="society-name">Sheffield PokéSoc</h2>
+            </div>
+          </section>
+        </div>
       </main>
 
     </Layout>
+    </>
   );
 }
 

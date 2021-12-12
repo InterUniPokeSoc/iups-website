@@ -12,6 +12,8 @@ var _fsExtra = _interopRequireDefault(require("fs-extra"));
 
 var _gatsbyTelemetry = _interopRequireDefault(require("gatsby-telemetry"));
 
+var _gatsbyCoreUtils = require("gatsby-core-utils");
+
 var _buildHtml = require("./build-html");
 
 var _buildJavascript = require("./build-javascript");
@@ -48,9 +50,9 @@ var _services = require("../services");
 
 var _webpackStatus = require("../utils/webpack-status");
 
-var _gatsbyCoreUtils = require("gatsby-core-utils");
-
 var _showExperimentNotice = require("../utils/show-experiment-notice");
+
+var _pool = require("../utils/worker/pool");
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -108,18 +110,30 @@ module.exports = async function build(program) {
   } = await (0, _services.calculateDirtyQueries)({
     store: _redux.store
   });
-  await (0, _services.runStaticQueries)({
-    queryIds,
-    parentSpan: buildSpan,
-    store: _redux.store,
-    graphqlRunner
-  });
-  await (0, _services.runPageQueries)({
-    queryIds,
-    graphqlRunner,
-    parentSpan: buildSpan,
-    store: _redux.store
-  });
+  let waitForWorkerPoolRestart = Promise.resolve();
+
+  if (process.env.GATSBY_EXPERIMENTAL_PARALLEL_QUERY_RUNNING) {
+    await (0, _pool.runQueriesInWorkersQueue)(workerPool, queryIds); // Jobs still might be running even though query running finished
+
+    await (0, _waitUntilJobsComplete.waitUntilAllJobsComplete)(); // Restart worker pool before merging state to lower memory pressure while merging state
+
+    waitForWorkerPoolRestart = workerPool.restart();
+    await (0, _pool.mergeWorkerState)(workerPool);
+  } else {
+    await (0, _services.runStaticQueries)({
+      queryIds,
+      parentSpan: buildSpan,
+      store: _redux.store,
+      graphqlRunner
+    });
+    await (0, _services.runPageQueries)({
+      queryIds,
+      graphqlRunner,
+      parentSpan: buildSpan,
+      store: _redux.store
+    });
+  }
+
   await (0, _services.writeOutRequires)({
     store: _redux.store,
     parentSpan: buildSpan
@@ -216,6 +230,7 @@ module.exports = async function build(program) {
     buildSSRBundleActivityProgress.end();
   }
 
+  await waitForWorkerPoolRestart;
   const {
     toRegenerate,
     toDelete
@@ -225,6 +240,7 @@ module.exports = async function build(program) {
     workerPool,
     buildSpan
   });
+  const waitWorkerPoolEnd = Promise.all(workerPool.end());
 
   _gatsbyTelemetry.default.addSiteMeasurement(`BUILD_END`, {
     pagesCount: toRegenerate.length,
@@ -245,7 +261,14 @@ module.exports = async function build(program) {
   postBuildActivityTimer.end(); // Wait for any jobs that were started in onPostBuild
   // This could occur due to queries being run which invoke sharp for instance
 
-  await (0, _waitUntilJobsComplete.waitUntilAllJobsComplete)(); // Make sure we saved the latest state so we have all jobs cached
+  await (0, _waitUntilJobsComplete.waitUntilAllJobsComplete)();
+
+  try {
+    await waitWorkerPoolEnd;
+  } catch (e) {
+    _reporter.default.warn(`Error when closing WorkerPool: ${e.message}`);
+  } // Make sure we saved the latest state so we have all jobs cached
+
 
   await db.saveState();
   await Promise.all([waitForCompilerClose, waitForCompilerCloseBuildHtml]);
@@ -254,7 +277,6 @@ module.exports = async function build(program) {
 
   buildSpan.finish();
   await (0, _tracer.stopTracer)();
-  workerPool.end();
   buildActivity.end();
 
   if (program.logPages) {

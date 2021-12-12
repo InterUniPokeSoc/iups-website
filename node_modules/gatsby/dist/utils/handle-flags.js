@@ -24,6 +24,7 @@ const handleFlags = (flags, configFlags = {}, executingCommand = process.env.gat
   }); // Find unknown flags someone has in their config to warn them about.
 
   const unknownConfigFlags = [];
+  const unfitConfigFlags = [];
 
   for (const flagName in configFlags) {
     if (availableFlags.has(flagName)) {
@@ -96,7 +97,22 @@ const handleFlags = (flags, configFlags = {}, executingCommand = process.env.gat
     if (fitness === true || fitness === `OPT_IN`) {
       applicableFlags.set(flag.name, flag);
     }
-  }); // Filter enabledConfigFlags against various tests
+
+    if (fitness === false && enabledConfigFlags.includes(flag)) {
+      var _flag$requires;
+
+      unfitConfigFlags.push({
+        flag: flag.name,
+        requires: (_flag$requires = flag.requires) !== null && _flag$requires !== void 0 ? _flag$requires : ``
+      });
+    }
+  });
+  let unfitFlagMessage = ``;
+
+  if (unfitConfigFlags.length > 0) {
+    unfitFlagMessage = `The following flag(s) found in your gatsby-config.js are not supported in your environment and will have no effect:\n` + unfitConfigFlags.map(flag => `- ${flag.flag}${flag.requires ? `: ${flag.requires}` : ``}`).join(`\n`);
+  } // Filter enabledConfigFlags against various tests
+
 
   enabledConfigFlags = enabledConfigFlags.filter(flag => {
     if (flag.command !== `all` && flag.command !== executingCommand) {
@@ -223,7 +239,8 @@ The following flags were automatically enabled on your site:`;
   return {
     enabledConfigFlags,
     message,
-    unknownFlagMessage
+    unknownFlagMessage,
+    unfitFlagMessage
   };
 };
 

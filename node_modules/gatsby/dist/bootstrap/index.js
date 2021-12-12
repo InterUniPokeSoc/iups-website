@@ -5,13 +5,15 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 exports.__esModule = true;
 exports.bootstrap = bootstrap;
 
+var _reporter = _interopRequireDefault(require("gatsby-cli/lib/reporter"));
+
+var _gatsbyCoreUtils = require("gatsby-core-utils");
+
 var _redirectsWriter = require("./redirects-writer");
 
 var _services = require("../services");
 
 var _createGraphqlRunner = require("./create-graphql-runner");
-
-var _reporter = _interopRequireDefault(require("gatsby-cli/lib/reporter"));
 
 var _opentracing = require("opentracing");
 
@@ -33,6 +35,15 @@ async function bootstrap(initialContext) {
   const context = { ...bootstrapContext,
     ...(await (0, _services.initialize)(bootstrapContext))
   };
+  const workerPool = context.workerPool;
+
+  if (process.env.GATSBY_EXPERIMENTAL_PARALLEL_QUERY_RUNNING) {
+    const directory = (0, _gatsbyCoreUtils.slash)(context.store.getState().program.directory);
+    workerPool.all.loadConfigAndPlugins({
+      siteDirectory: directory
+    });
+  }
+
   await (0, _services.customizeSchema)(context);
   await (0, _services.sourceNodes)(context);
   await (0, _services.buildSchema)(context);
@@ -42,13 +53,14 @@ async function bootstrap(initialContext) {
   await (0, _services.rebuildSchemaWithSitePage)(context);
 
   if (process.env.GATSBY_EXPERIMENTAL_PARALLEL_QUERY_RUNNING) {
-    (0, _redux.saveStateForWorkers)([`inferenceMetadata`]);
+    (0, _redux.savePartialStateToDisk)([`inferenceMetadata`]);
+    workerPool.all.buildSchema();
   }
 
   await (0, _services.extractQueries)(context);
 
   if (process.env.GATSBY_EXPERIMENTAL_PARALLEL_QUERY_RUNNING) {
-    (0, _redux.saveStateForWorkers)([`components`, `staticQueryComponents`]);
+    (0, _redux.savePartialStateToDisk)([`components`, `staticQueryComponents`]);
   }
 
   await (0, _services.writeOutRedirects)(context);
@@ -57,7 +69,7 @@ async function bootstrap(initialContext) {
   parentSpan.finish();
   return {
     gatsbyNodeGraphQLFunction: context.gatsbyNodeGraphQLFunction,
-    workerPool: context.workerPool
+    workerPool
   };
 }
 //# sourceMappingURL=index.js.map

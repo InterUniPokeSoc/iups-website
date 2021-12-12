@@ -3,7 +3,8 @@
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
-exports.default = exports.sanitizeComponents = void 0;
+exports.default = staticPage;
+exports.sanitizeComponents = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
 
@@ -13,7 +14,8 @@ const path = require(`path`);
 
 const {
   renderToString,
-  renderToStaticMarkup
+  renderToStaticMarkup,
+  pipeToNodeWritable
 } = require(`react-dom/server`);
 
 const {
@@ -38,7 +40,10 @@ const {
   RouteAnnouncerProps
 } = require(`./route-announcer-props`);
 
-const apiRunner = require(`./api-runner-ssr`);
+const {
+  apiRunner,
+  apiRunnerAsync
+} = require(`./api-runner-ssr`);
 
 const syncRequires = require(`$virtual/sync-requires`);
 
@@ -125,7 +130,7 @@ const ensureArray = components => {
   }
 };
 
-var _default = ({
+async function staticPage({
   pagePath,
   pageData,
   staticQueryContext,
@@ -133,7 +138,7 @@ var _default = ({
   scripts,
   reversedStyles,
   reversedScripts
-}) => {
+}) {
   // for this to work we need this function to be sync or at least ensure there is single execution of it at a time
   global.unsafeBuiltinUsage = [];
 
@@ -276,7 +281,7 @@ var _default = ({
       };
     }).pop()); // Let the site or plugin render the page component.
 
-    apiRunner(`replaceRenderer`, {
+    await apiRunnerAsync(`replaceRenderer`, {
       bodyComponent,
       replaceBodyHTMLString,
       setHeadComponents,
@@ -291,7 +296,27 @@ var _default = ({
 
     if (!bodyHtml) {
       try {
-        bodyHtml = renderToString(bodyComponent);
+        // react 18 enabled
+        if (pipeToNodeWritable) {
+          const {
+            WritableAsPromise
+          } = require(`./server-utils/writable-as-promise`);
+
+          const writableStream = new WritableAsPromise();
+          const {
+            startWriting
+          } = pipeToNodeWritable(bodyComponent, writableStream, {
+            onCompleteAll() {
+              startWriting();
+            },
+
+            onError() {}
+
+          });
+          bodyHtml = await writableStream;
+        } else {
+          bodyHtml = renderToString(bodyComponent);
+        }
       } catch (e) {
         // ignore @reach/router redirect errors
         if (!isRedirect(e)) throw e;
@@ -440,6 +465,4 @@ var _default = ({
     e.unsafeBuiltinsUsage = global.unsafeBuiltinUsage;
     throw e;
   }
-};
-
-exports.default = _default;
+}

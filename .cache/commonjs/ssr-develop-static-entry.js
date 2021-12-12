@@ -3,7 +3,7 @@
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 exports.__esModule = true;
-exports.default = void 0;
+exports.default = staticPage;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -15,7 +15,7 @@ var _lodash = require("lodash");
 
 var _path = _interopRequireDefault(require("path"));
 
-var _apiRunnerSsr = _interopRequireDefault(require("./api-runner-ssr"));
+var _apiRunnerSsr = require("./api-runner-ssr");
 
 var _findPath = require("./find-path");
 
@@ -25,6 +25,7 @@ var _routeAnnouncerProps = require("./route-announcer-props");
 
 var _router = require("@reach/router");
 
+/* global BROWSER_ESM_ONLY */
 // import testRequireError from "./test-require-error"
 // For some extremely mysterious reason, webpack adds the above module *after*
 // this module so that when this code runs, testRequireError is undefined.
@@ -61,7 +62,7 @@ try {
 
 Html = Html && Html.__esModule ? Html.default : Html;
 
-var _default = (pagePath, isClientOnlyPage, publicDir, error, callback) => {
+async function staticPage(pagePath, isClientOnlyPage, publicDir, error, callback) {
   let bodyHtml = ``;
   let headComponents = [/*#__PURE__*/_react.default.createElement("meta", {
     key: "environment",
@@ -85,7 +86,7 @@ var _default = (pagePath, isClientOnlyPage, publicDir, error, callback) => {
     }, /*#__PURE__*/_react.default.createElement("h1", null, "Failed to Server Render (SSR)"), /*#__PURE__*/_react.default.createElement("h2", null, "Error message:"), /*#__PURE__*/_react.default.createElement("p", null, error.sourceMessage), /*#__PURE__*/_react.default.createElement("h2", null, "File:"), /*#__PURE__*/_react.default.createElement("p", null, error.source, ":", error.line, ":", error.column), /*#__PURE__*/_react.default.createElement("h2", null, "Stack:"), /*#__PURE__*/_react.default.createElement("pre", null, /*#__PURE__*/_react.default.createElement("code", null, error.stack)))]);
   }
 
-  const generateBodyHTML = () => {
+  const generateBodyHTML = async () => {
     const setHeadComponents = components => {
       headComponents = headComponents.concat(components);
     };
@@ -153,8 +154,7 @@ var _default = (pagePath, isClientOnlyPage, publicDir, error, callback) => {
 
     const pageData = getPageData(pagePath);
     const {
-      componentChunkName,
-      staticQueryHashes = []
+      componentChunkName
     } = pageData;
     let scriptsAndStyles = (0, _lodash.flatten)([`commons`].map(chunkKey => {
       const fetchKey = `assetsByChunkName[${chunkKey}]`;
@@ -194,7 +194,7 @@ var _default = (pagePath, isClientOnlyPage, publicDir, error, callback) => {
       }
 
       return chunks;
-    })).filter(s => (0, _lodash.isObject)(s)).sort((s1, s2) => s1.rel == `preload` ? -1 : 1); // given priority to preload
+    })).filter(s => (0, _lodash.isObject)(s)).sort((s1, _s2) => s1.rel == `preload` ? -1 : 1); // given priority to preload
 
     scriptsAndStyles = (0, _lodash.uniqBy)(scriptsAndStyles, item => item.name);
     const styles = scriptsAndStyles.filter(style => style.name && style.name.endsWith(`.css`));
@@ -229,7 +229,7 @@ var _default = (pagePath, isClientOnlyPage, publicDir, error, callback) => {
           pageElement = () => null;
         }
 
-        const wrappedPage = (0, _apiRunnerSsr.default)(`wrapPageElement`, {
+        const wrappedPage = (0, _apiRunnerSsr.apiRunner)(`wrapPageElement`, {
           element: pageElement,
           props
         }, pageElement, ({
@@ -254,7 +254,7 @@ var _default = (pagePath, isClientOnlyPage, publicDir, error, callback) => {
       path: "/*"
     })), /*#__PURE__*/_react.default.createElement("div", _routeAnnouncerProps.RouteAnnouncerProps));
 
-    const bodyComponent = (0, _apiRunnerSsr.default)(`wrapRootElement`, {
+    const bodyComponent = (0, _apiRunnerSsr.apiRunner)(`wrapRootElement`, {
       element: routerElement,
       pathname: pagePath
     }, routerElement, ({
@@ -266,7 +266,7 @@ var _default = (pagePath, isClientOnlyPage, publicDir, error, callback) => {
       };
     }).pop(); // Let the site or plugin render the page component.
 
-    (0, _apiRunnerSsr.default)(`replaceRenderer`, {
+    await (0, _apiRunnerSsr.apiRunnerAsync)(`replaceRenderer`, {
       bodyComponent,
       replaceBodyHTMLString,
       setHeadComponents,
@@ -288,7 +288,7 @@ var _default = (pagePath, isClientOnlyPage, publicDir, error, callback) => {
       }
     }
 
-    (0, _apiRunnerSsr.default)(`onRenderBody`, {
+    (0, _apiRunnerSsr.apiRunner)(`onRenderBody`, {
       setHeadComponents,
       setHtmlAttributes,
       setBodyAttributes,
@@ -297,7 +297,7 @@ var _default = (pagePath, isClientOnlyPage, publicDir, error, callback) => {
       setBodyProps,
       pathname: pagePath
     });
-    (0, _apiRunnerSsr.default)(`onPreRenderHTML`, {
+    (0, _apiRunnerSsr.apiRunner)(`onPreRenderHTML`, {
       getHeadComponents,
       replaceHeadComponents,
       getPreBodyComponents,
@@ -309,7 +309,7 @@ var _default = (pagePath, isClientOnlyPage, publicDir, error, callback) => {
     return bodyHtml;
   };
 
-  const bodyStr = generateBodyHTML();
+  const bodyStr = await generateBodyHTML();
 
   const htmlElement = /*#__PURE__*/_react.default.createElement(Html, { ...bodyProps,
     body: bodyStr,
@@ -320,7 +320,7 @@ var _default = (pagePath, isClientOnlyPage, publicDir, error, callback) => {
     htmlAttributes,
     bodyAttributes,
     preBodyComponents,
-    postBodyComponents: postBodyComponents.concat([/*#__PURE__*/_react.default.createElement("script", {
+    postBodyComponents: postBodyComponents.concat([!BROWSER_ESM_ONLY && /*#__PURE__*/_react.default.createElement("script", {
       key: `polyfill`,
       src: "/polyfill.js",
       noModule: true
@@ -330,12 +330,10 @@ var _default = (pagePath, isClientOnlyPage, publicDir, error, callback) => {
     }), /*#__PURE__*/_react.default.createElement("script", {
       key: `commons`,
       src: "/commons.js"
-    })])
+    })].filter(Boolean))
   });
 
   let htmlStr = (0, _server.renderToStaticMarkup)(htmlElement);
   htmlStr = `<!DOCTYPE html>${htmlStr}`;
   callback(null, htmlStr);
-};
-
-exports.default = _default;
+}

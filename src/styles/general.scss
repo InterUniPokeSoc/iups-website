@@ -1,6 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat:ital,wght@0,400;0,700;1,400&family=Work+Sans:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat:ital,wght@0,400;0,700;1,400&family=Work+Sans:ital,wght@0,400;0,700;1,400&family=Baskervvill&family=Encode+Sans+SC:wght@300;400;500;700&display=swap');
 
 $primary-color: rgb(15, 45, 109);
+$display-font: 'Abril Fatface';
 
 * {
     font-family: 'Work Sans';
@@ -19,11 +20,11 @@ body {
 }
 
 .title {
-    font-family: 'Abril Fatface';
+    font-family: $display-font;
 }
 
 .huge-title {
-    font-family: 'Abril Fatface';
+    font-family: $display-font;
     font-size: 4.0em;
 }
 

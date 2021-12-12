@@ -162,7 +162,11 @@ window.___loader = _loader.publicLoader;
       _react.default.useEffect(() => {
         if (!onClientEntryRanRef.current) {
           onClientEntryRanRef.current = true;
-          performance.mark(`onInitialClientRender`);
+
+          if (performance.mark) {
+            performance.mark(`onInitialClientRender`);
+          }
+
           (0, _apiRunnerBrowser.apiRunner)(`onInitialClientRender`);
         }
       }, []);
@@ -170,15 +174,13 @@ window.___loader = _loader.publicLoader;
       return /*#__PURE__*/_react.default.createElement(GatsbyRoot, null, SiteRoot);
     };
 
-    const renderer = (0, _apiRunnerBrowser.apiRunner)(`replaceHydrateFunction`, undefined, _reactDom.default.createRoot ? _reactDom.default.createRoot : _reactDom.default.hydrate)[0];
+    const renderer = (0, _apiRunnerBrowser.apiRunner)(`replaceHydrateFunction`, undefined, _reactDom.default.hydrateRoot ? _reactDom.default.hydrateRoot : _reactDom.default.hydrate)[0];
 
     function runRender() {
       const rootElement = typeof window !== `undefined` ? document.getElementById(`___gatsby`) : null;
 
-      if (renderer === _reactDom.default.createRoot) {
-        renderer(rootElement, {
-          hydrate: true
-        }).render( /*#__PURE__*/_react.default.createElement(App, null));
+      if (renderer === _reactDom.default.hydrateRoot) {
+        renderer(rootElement, /*#__PURE__*/_react.default.createElement(App, null));
       } else {
         renderer( /*#__PURE__*/_react.default.createElement(App, null), rootElement);
       }
