@@ -21,6 +21,7 @@
 .sidebar {
   height: 100vh;
   flex-basis: 30%;
+  
   background-color: rgb(30,30,30);
 }
 
@@ -37,13 +38,36 @@
 .society-wrapper {
   background-color: rgb(131, 48, 113);
   color: white;
-  margin: auto;
+  margin: 10px auto;
   padding: 10px;
   border-radius: 30px;
   display: block;
   width: 80%;
+  min-height: 150px;
   max-width: 400px;
   text-align: center;
+  transition: all 0.2s;
+}
+
+.social-icon-society-wrapper {
+  padding: 5px;
+  margin: 5px;
+  display: inline-block;
+}
+
+.social-icon-society {
+  width: 35px;
+  height: 35px;
+  padding: 5px;
+}
+
+.invert-icon {
+  filter: invert(1);
+}
+
+.society-wrapper:hover {
+  margin: 20px auto;
+  transform: scale(1.08);
 }
 
 .society-title {
