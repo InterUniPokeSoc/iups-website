@@ -13,7 +13,7 @@ var societies = [];
 function createSocietySidebarItem(id) {
   console.log("createSocietySidebarItem() called for "+id);
   console.log("Data: "+societies[id]);
-  var sideBar = document.getElementById('sidebar');
+  var sideBar = document.getElementById('society-list');
 
   var sideBarItem = document.createElement('div');
   sideBarItem.classList.add('society-wrapper');
@@ -24,14 +24,14 @@ function createSocietySidebarItem(id) {
   sideBarItem.appendChild(societyName);
 
   var color1 = societies[id].color1;
-  var color2 = societies[id].color1;
+  var color2 = societies[id].color2;
 
   if (color1 != null) {
     sideBarItem.style.backgroundColor = "#"+color1;
   }
 
   if (color1 != null && color2 != null) {
-    sideBarItem.style.backgroundColor = "linear-gradient(#"+color1+",#"+color2+")";
+    sideBarItem.style.background = `linear-gradient(45deg,#${color1},#${color2})`;
   }
 
 
@@ -84,15 +84,11 @@ function createSocietySidebarItem(id) {
 }
 
 function addSocietiesToSidebar() {
-  var sideBar = document.getElementById('sidebar');
+  var sideBar = document.getElementById('society-list');
 
   // Remove all society elements from sidebar in case page reload duplicates items.
   while (sideBar.lastChild) {
-    if (sideBar.firstChild === sideBar.lastChild) {
-      break;
-    } else {
       sideBar.lastChild.remove()
-    }
   }
 
   // Add each society as sidebar item
@@ -130,6 +126,7 @@ function OurSocietiesPage() {
 
           <section className="sidebar" id="sidebar">
             <input className="search-bar" placeholder="Search for a society..."></input>
+            <div id="society-list"></div>
           </section>
         </div>
       </main>

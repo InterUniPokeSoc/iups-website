@@ -10,29 +10,51 @@
 }
 
 .map-sidebar-wrapper {
-  display: flex;
+  display: block;
 }
 
 .page-map {
   height: 100vh;
-  flex-basis: 70%;
+  width: 100vw;
 }
 
 .sidebar {
-  height: 100vh;
-  flex-basis: 30%;
+  width: 30%;
+  max-width: 360px;
+  height: 80vh;
+  position: absolute;
+  left: 20px;
+  top: 12vh;
+  border-radius: 20px;
+
+  backdrop-filter: blur(7px);
   
-  background-color: rgb(30,30,30);
+  background-color: rgba(30,30,30, 0.7);
+
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
 }
 
 .search-bar {
-  margin: 20px auto;
-  margin-bottom: 30px;
+  position: sticky;
+  top: 20px;
+  // left: 15%;
+  float: left;
+  // transform: translateX(-17%);
   display: block;
   padding: 10px;
   width: 70%;
   max-width: 300px;
+  background-color: rgba(255,255,255,0.8);
+  backdrop-filter: blur(7px);
   border-radius: 10px;
+  border: white 1px solid;
+  z-index: 100;
+}
+
+.societies-list {
+  
 }
 
 .society-wrapper {
@@ -49,6 +71,20 @@
   transition: all 0.2s;
 }
 
+.society-wrapper:first-child {
+  margin-top: 80px;
+}
+
+.society-wrapper:hover {
+  margin: 20px auto;
+  transform: scale(1.08);
+}
+
+.society-wrapper:hover:first-child {
+  margin-top: 80px;
+  transform: scale(1.08);
+}
+
 .social-icon-society-wrapper {
   padding: 5px;
   margin: 5px;
@@ -63,11 +99,6 @@
 
 .invert-icon {
   filter: invert(1);
-}
-
-.society-wrapper:hover {
-  margin: 20px auto;
-  transform: scale(1.08);
 }
 
 .society-title {
