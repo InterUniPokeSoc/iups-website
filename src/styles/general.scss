@@ -10,9 +10,9 @@ $display-font: 'Abril Fatface';
 body {
     margin: 0;
 
-    background-image: url("/images/doggobwtile.jpg");
-    background-repeat: space;
-    background-size: 60px;
+    // background-image: url("/images/doggobwtile.jpg");
+    // background-repeat: space;
+    // background-size: 60px;
 }
 
 .primary-color {
@@ -31,3 +31,11 @@ body {
 .page-content {
     padding-top: 82px;
 }
+
+.page-section {
+    margin: auto;
+    margin-bottom: 40px;
+    padding: 30px;
+    max-width: 1000px;
+  }
+  

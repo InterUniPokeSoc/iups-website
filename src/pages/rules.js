@@ -21,14 +21,7 @@ function HowToJoinPage() {
         {/* <TitleBanner imageSource="/images/londongang.png" title="How to Join" /> */}
 
         <section className="page-section">
-          <h1 className="huge-title">How to Join</h1>
-
-          <h2 className="htj-title">Society Requirements</h2>
-          <ul>
-            <li>You must be a dedicated Pokémon society, not a general gaming society. 'Pokémon and Nintendo' hybrid societies are accepted.</li>
-            <li>You should ideally be associated with a Students' Union where possible.</li>
-            <li>Your members should primarily be students and/or alumni.</li>
-          </ul>
+          <h1 className="huge-title">Rules</h1>
 
           <h2 className="htj-title">Individual Member Requirements</h2>
           <ul>

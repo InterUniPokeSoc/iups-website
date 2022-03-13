@@ -1,7 +1,17 @@
+$primary-color: rgb(15, 45, 109);
+
 .top-image {
   background-image: url('/images/londongang.png');
 }
 
 .page-section {
-  margin: 20px;
+  margin: auto;
+  margin-bottom: 40px;
+  padding: 30px;
+  max-width: 1000px;
+}
+
+.htj-title {
+  font-size: 1.7em;
+  color: $primary-color;
 }

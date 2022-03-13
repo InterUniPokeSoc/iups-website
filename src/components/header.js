@@ -23,7 +23,7 @@ function Header() {
             <li><Link className={headerStyles.navItem} activeClassName={headerStyles.activeNavItem} to="/about">About</Link></li>
             <li><Link className={headerStyles.navItem} activeClassName={headerStyles.activeNavItem} to="/oursocieties">Our Societies</Link></li>
             <li><Link className={headerStyles.navItem} activeClassName={headerStyles.activeNavItem} to="/howtojoin">How to Join</Link></li>
-            <li><Link className={headerStyles.navItem} activeClassName={headerStyles.activeNavItem} to="/news">News</Link></li>
+            <li><Link className={headerStyles.navItem} activeClassName={headerStyles.activeNavItem} to="/rules">Rules</Link></li>
             <li><Link className={headerStyles.navItem} activeClassName={headerStyles.activeNavItem} to="/contact">Contact</Link></li>
         </ul>
       </nav>
