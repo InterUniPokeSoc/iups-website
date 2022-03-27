@@ -33,7 +33,7 @@ var _stripPrefix = _interopRequireDefault(require("./strip-prefix"));
 var _matchPaths = _interopRequireDefault(require("$virtual/match-paths.json"));
 
 // Generated during bootstrap
-const loader = new _loader.ProdLoader(_asyncRequires.default, _matchPaths.default);
+const loader = new _loader.ProdLoader(_asyncRequires.default, _matchPaths.default, window.pageData);
 (0, _loader.setLoader)(loader);
 loader.setApiRunner(_apiRunnerBrowser.apiRunner);
 window.asyncRequires = _asyncRequires.default;

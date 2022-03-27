@@ -49,10 +49,21 @@ function maybeRedirect(pathname) {
   } else {
     return false;
   }
-}
+} // Catch unhandled chunk loading errors and force a restart of the app.
+
+
+let nextRoute = ``;
+window.addEventListener(`unhandledrejection`, event => {
+  if (/loading chunk \d* failed./i.test(event.reason)) {
+    if (nextRoute) {
+      window.location.pathname = nextRoute;
+    }
+  }
+});
 
 const onPreRouteUpdate = (location, prevLocation) => {
   if (!maybeRedirect(location.pathname)) {
+    nextRoute = location.pathname;
     (0, _apiRunnerBrowser.apiRunner)(`onPreRouteUpdate`, {
       location,
       prevLocation
