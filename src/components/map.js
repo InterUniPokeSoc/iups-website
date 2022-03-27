@@ -24,11 +24,6 @@ class Map extends React.Component {
       zoom: this.state.zoom,
     });
 
-    // const marker1 = new mapboxgl.Marker()
-    //   .setLngLat([-1.4875136, 53.3811227])
-    //   .setPopup(new mapboxgl.Popup().setHTML("<h1>Hello World!</h1>"))
-    //   .addTo(map);
-
     var societies = [];
 
     getSocieties().then((dbList) => {
