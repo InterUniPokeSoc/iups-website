@@ -1,3 +1,4 @@
 .env.production
 .env.develop
 .env.*
+.cache
