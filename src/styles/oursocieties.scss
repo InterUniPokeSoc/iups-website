@@ -39,13 +39,10 @@
 .search-bar {
   position: sticky;
   top: 20px;
-  // left: 15%;
-  float: left;
-  // transform: translateX(-17%);
+  margin-left: 20px;
+  margin-right: 20px;
   display: block;
   padding: 10px;
-  width: 70%;
-  max-width: 300px;
   background-color: rgba(255,255,255,0.8);
   backdrop-filter: blur(7px);
   border-radius: 10px;
