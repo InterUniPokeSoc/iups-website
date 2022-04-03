@@ -7,6 +7,7 @@ import { getSocieties } from "../utils/societies";
 mapboxgl.accessToken = process.env.GATSBY_MAPBOX_KEY;
 
 class Map extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -14,6 +15,12 @@ class Map extends React.Component {
       lat: 53.927,
       zoom: 5.2
     };
+
+    this.selectedSociety = props.selectedSociety
+  }
+
+  componentDidUpdate() {
+    console.log("Selected Society: " + this.props.selectedSociety)
   }
 
   componentDidMount() {

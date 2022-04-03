@@ -9,14 +9,22 @@ import Map from '../components/map';
 import { getSocieties } from "../utils/societies";
 
 var societies = [];
+var selectedSociety = null;
+
+function selectSociety(id) {
+  selectedSociety = (id)
+}
 
 function createSocietySidebarItem(id) {
-  console.log("createSocietySidebarItem() called for "+id);
-  console.log("Data: "+societies[id]);
   var sideBar = document.getElementById('society-list');
 
-  var sideBarItem = document.createElement('div');
+  var sideBarItem = document.createElement('a');
   sideBarItem.classList.add('society-wrapper');
+
+  sideBarItem.addEventListener("click", function() {
+    console.log("Event Called")
+    selectSociety(id)
+  })
 
   var societyName = document.createElement('h2');
   societyName.classList.add('society-name');
@@ -27,11 +35,11 @@ function createSocietySidebarItem(id) {
   var color2 = societies[id].color2;
 
   if (color1 != null) {
-    sideBarItem.style.backgroundColor = "#"+color1;
-  }
-
-  if (color1 != null && color2 != null) {
-    sideBarItem.style.background = `linear-gradient(45deg,#${color1},#${color2})`;
+    if (color2 != null) {
+      sideBarItem.style.background = `linear-gradient(45deg,#${color1},#${color2})`;
+    } else {
+      sideBarItem.style.backgroundColor = "#"+color1;
+    }
   }
 
 
@@ -121,7 +129,8 @@ function OurSocietiesPage() {
       <main className="page-content">
         <div className="map-sidebar-wrapper">
           <div className="page-map">
-            <Map />
+            <Map selectedSociety={selectedSociety} />
+            {selectedSociety = 3}
           </div>
 
           <section className="sidebar" id="sidebar">
