@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import * as mapStyles from './map.module.scss';
@@ -6,29 +6,29 @@ import { getSocieties } from "../utils/societies";
 
 mapboxgl.accessToken = process.env.GATSBY_MAPBOX_KEY;
 
-class Map extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      lng: -3.638,
-      lat: 53.927,
-      zoom: 5.2
-    };
-
-    this.selectedSociety = props.selectedSociety
+export default function Map(props) {
+  const initialState = {
+    lng: -3.638,
+    lat: 53.927,
+    zoom: 5.2
   }
 
-  componentDidUpdate() {
-    console.log("Selected Society: " + this.props.selectedSociety)
-  }
+  const [mapParams, setMapParams] = useState(initialState);
 
-  componentDidMount() {
+  var mapContainer = useRef(null)
+
+  // handleChange = e => {
+  //   setMapParams({
+  //     lng: e.target.values
+  //   })
+  // }
+
+  useEffect(() => {
     const map = new mapboxgl.Map({
-      container: this.mapContainer,
+      container: mapContainer,
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [this.state.lng, this.state.lat],
-      zoom: this.state.zoom,
+      center: [mapParams.lng, mapParams.lat],
+      zoom: mapParams.zoom,
     });
 
     var societies = [];
@@ -50,16 +50,11 @@ class Map extends React.Component {
       });
   
     }).catch((e) => {});
+  }, [])
 
-  }
-
-  render() {
-    return (
-      <div>
-        <div ref={el => this.mapContainer = el} className={mapStyles.mapContainer} />
-      </div>
-    )
-  }
+  return (
+    <div>
+      <div ref={el => mapContainer = el} className={mapStyles.mapContainer} />
+    </div>
+  )
 }
-
-export default Map;
