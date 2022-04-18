@@ -15,15 +15,13 @@ export default function Map(props) {
 
   const [mapParams, setMapParams] = useState(initialState);
 
+  const [societyList, setSocietyList] = useState(props.societyList);
+
   var mapContainer = useRef(null)
 
-  // handleChange = e => {
-  //   setMapParams({
-  //     lng: e.target.values
-  //   })
-  // }
-
   useEffect(() => {
+    console.log("PROPS" + props.societyList)
+    
     const map = new mapboxgl.Map({
       container: mapContainer,
       style: 'mapbox://styles/mapbox/streets-v11',
@@ -31,26 +29,17 @@ export default function Map(props) {
       zoom: mapParams.zoom,
     });
 
-    var societies = [];
+    setSocietyList(props.societyList)
 
-    getSocieties().then((dbList) => {
-      console.log(dbList);
-      Object.values(dbList).map((society) => {
-  
-        societies.push([
-          society.name,
-          society.longitude,
-          society.latitude
-        ]);
+    console.log("societyList: "+societyList)
 
-        const marker1 = new mapboxgl.Marker()
-          .setLngLat([society.longitude, society.latitude])
-          .setPopup(new mapboxgl.Popup().setHTML("<h1>"+society.name+"</h1>"))
-          .addTo(map);
-      });
-  
-    }).catch((e) => {});
-  }, [])
+    Object.values(societyList).map((society) => {
+      const marker1 = new mapboxgl.Marker()
+        .setLngLat([society.longitude, society.latitude])
+        .setPopup(new mapboxgl.Popup().setHTML("<h1>"+society.name+"</h1>"))
+        .addTo(map);
+    });
+  }, [props])
 
   return (
     <div>

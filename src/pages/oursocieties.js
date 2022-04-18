@@ -1,5 +1,5 @@
-import React from 'react';
-import {Link, useState, useRef, useEffect} from 'gatsby';
+import React, {useState, useRef, useEffect} from 'react';
+import {Link} from 'gatsby';
 import Layout from '../components/layout';
 import '../styles/general.scss';
 import '../styles/oursocieties.scss';
@@ -8,7 +8,9 @@ import Map from '../components/map';
 
 import { getSocieties } from "../utils/societies";
 
-var societies = [];
+var societyList = [];
+var updateSocietyList;
+
 var selectedSociety = null;
 
 function selectSociety(id) {
@@ -31,7 +33,6 @@ function createSocialMediaIcon(link, item, imgLocation, inverted) {
 
   if (link != null) {
     wrapper.href = link;
-    console.log(link)
     wrapper.appendChild(icon);
     item.appendChild(wrapper);
   }
@@ -52,11 +53,11 @@ function createSocietySidebarItem(id) {
 
   var societyName = document.createElement('h2');
   societyName.classList.add('society-name');
-  societyName.innerHTML = societies[id].name;
+  societyName.innerHTML = societyList[id].name;
   sideBarItem.appendChild(societyName);
 
-  var color1 = societies[id].color1;
-  var color2 = societies[id].color2;
+  var color1 = societyList[id].color1;
+  var color2 = societyList[id].color2;
 
   if (color1 != null) {
     if (color2 != null) {
@@ -67,9 +68,9 @@ function createSocietySidebarItem(id) {
   }
 
   // Social Media Icons
-  createSocialMediaIcon(societies[id].facebook, sideBarItem, "/images/f_logo_RGB-White_250.png", false);
-  createSocialMediaIcon(societies[id].instagram, sideBarItem, "/images/instagram-logo-black.png", true);
-  createSocialMediaIcon(societies[id].discord, sideBarItem, "/images/icon_clyde_white_RGB.svg", false);
+  createSocialMediaIcon(societyList[id].facebook, sideBarItem, "/images/f_logo_RGB-White_250.png", false);
+  createSocialMediaIcon(societyList[id].instagram, sideBarItem, "/images/instagram-logo-black.png", true);
+  createSocialMediaIcon(societyList[id].discord, sideBarItem, "/images/icon_clyde_white_RGB.svg", false);
 
   // Add to Sidebar
   sideBar.appendChild(sideBarItem);
@@ -84,24 +85,32 @@ function addSocietiesToSidebar() {
   }
 
   // Add each society as sidebar item
-  societies.forEach(function (_, index) {
+  societyList.forEach(function (_, index) {
     createSocietySidebarItem(index)
   });
 }
 
+ 
+export default function OurSocietiesPage() {
 
-function OurSocietiesPage() {
+  const [societies, setSocieties] = useState([]);
 
   getSocieties().then((dbList) => {
     Object.values(dbList).map((society) => {
-      societies.push(society);
+      societyList.push(society);
     });
+
+    setSocieties(societyList)
 
     addSocietiesToSidebar()
 
   }).catch((e) => {
     console.log(e);
   });
+
+  useEffect(() => {
+    updateSocietyList = setSocieties
+  }, [])
 
   return (
     <>
@@ -113,8 +122,7 @@ function OurSocietiesPage() {
       <main className="page-content">
         <div className="map-sidebar-wrapper">
           <div className="page-map">
-            <Map selected={selectedSociety} />
-            {selectSociety(4)}
+            <Map societyList={societies} selected={selectedSociety} />
           </div>
 
           <section className="sidebar" id="sidebar">
@@ -128,5 +136,3 @@ function OurSocietiesPage() {
     </>
   );
 }
-
-export default OurSocietiesPage;
