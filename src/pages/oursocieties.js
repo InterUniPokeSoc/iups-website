@@ -12,7 +12,31 @@ var societies = [];
 var selectedSociety = null;
 
 function selectSociety(id) {
+  console.log("Before Pass In: "+id)
   selectedSociety = (id)
+
+  console.log("selectedSociety New Value: "+selectedSociety)
+}
+
+function createSocialMediaIcon(link, item, imgLocation, inverted) {
+  var wrapper = document.createElement('a');
+  wrapper.classList.add('social-icon-society-wrapper');
+
+  var icon = document.createElement('img');
+  icon.classList.add('social-icon-society');
+  icon.src = imgLocation;
+
+  if (inverted)
+    icon.classList.add('invert-icon');
+
+  if (link != null) {
+    wrapper.href = link;
+    console.log(link)
+    wrapper.appendChild(icon);
+    item.appendChild(wrapper);
+  }
+
+  return wrapper
 }
 
 function createSocietySidebarItem(id) {
@@ -42,50 +66,10 @@ function createSocietySidebarItem(id) {
     }
   }
 
-
   // Social Media Icons
-  var fbIconWrapper = document.createElement('a');
-  var instIconWrapper = document.createElement('a');
-  var discIconWrapper = document.createElement('a');
-
-  fbIconWrapper.classList.add('social-icon-society-wrapper');
-  instIconWrapper.classList.add('social-icon-society-wrapper');
-  discIconWrapper.classList.add('social-icon-society-wrapper');
-
-  var fbIcon = document.createElement('img');
-  var instIcon = document.createElement('img');
-  var discIcon = document.createElement('img');
-
-  fbIcon.classList.add('social-icon-society');
-  instIcon.classList.add('social-icon-society');
-  instIcon.classList.add('invert-icon');
-  discIcon.classList.add('social-icon-society');
-
-  fbIcon.src = "/images/f_logo_RGB-White_250.png";
-  instIcon.src = "/images/instagram-logo-black.png";
-  discIcon.src = "/images/icon_clyde_white_RGB.svg";
-
-  var fbLink = societies[id].facebook;
-  var instLink = societies[id].instagram;
-  var discLink = societies[id].discord;
-
-  if (fbLink != null) {
-    fbIconWrapper.href = fbLink;
-    fbIconWrapper.appendChild(fbIcon);
-    sideBarItem.appendChild(fbIconWrapper);
-  }
-
-  if (instLink != null) {
-    instIconWrapper.href = instLink;
-    instIconWrapper.appendChild(instIcon);
-    sideBarItem.appendChild(instIconWrapper);
-  }
-
-  if (discLink != null) {
-    discIconWrapper.href = discLink;
-    discIconWrapper.appendChild(discIcon);
-    sideBarItem.appendChild(discIconWrapper);
-  }
+  createSocialMediaIcon(societies[id].facebook, sideBarItem, "/images/f_logo_RGB-White_250.png", false);
+  createSocialMediaIcon(societies[id].instagram, sideBarItem, "/images/instagram-logo-black.png", true);
+  createSocialMediaIcon(societies[id].discord, sideBarItem, "/images/icon_clyde_white_RGB.svg", false);
 
   // Add to Sidebar
   sideBar.appendChild(sideBarItem);
@@ -129,8 +113,8 @@ function OurSocietiesPage() {
       <main className="page-content">
         <div className="map-sidebar-wrapper">
           <div className="page-map">
-            <Map selectedSociety={selectedSociety} />
-            {selectedSociety = 3}
+            <Map selected={selectedSociety} />
+            {selectSociety(4)}
           </div>
 
           <section className="sidebar" id="sidebar">
