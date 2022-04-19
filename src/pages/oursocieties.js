@@ -10,14 +10,12 @@ import { getSocieties } from "../utils/societies";
 
 var societyList = [];
 var updateSocietyList;
+var updateSelectedSociety;
 
-var selectedSociety = null;
 
 function selectSociety(id) {
-  console.log("Before Pass In: "+id)
-  selectedSociety = (id)
-
-  console.log("selectedSociety New Value: "+selectedSociety)
+  console.log("Selected Society: "+id)
+  updateSelectedSociety(id)
 }
 
 function createSocialMediaIcon(link, item, imgLocation, inverted) {
@@ -95,6 +93,8 @@ export default function OurSocietiesPage() {
 
   const [societies, setSocieties] = useState([]);
 
+  const [selectedSociety, setSelectedSociety] = useState(null);
+
   getSocieties().then((dbList) => {
     Object.values(dbList).map((society) => {
       societyList.push(society);
@@ -110,6 +110,7 @@ export default function OurSocietiesPage() {
 
   useEffect(() => {
     updateSocietyList = setSocieties
+    updateSelectedSociety = setSelectedSociety
   }, [])
 
   return (
