@@ -1,16 +1,24 @@
 import React, { useEffect, useState, useRef } from 'react'
-import mapboxgl from 'mapbox-gl'
-import 'mapbox-gl/dist/mapbox-gl.css'
+import OLMap from 'ol/Map'
+import View from 'ol/View'
+import TileLayer from 'ol/layer/Tile'
+import XYZ from 'ol/source/XYZ'
+import SourceVector from 'ol/source/Vector'
+import LayerVector from 'ol/layer/Vector'
+import Feature from 'ol/Feature'
+import Point from 'ol/geom/Point'
+import {transform} from 'ol/proj'
+import Style from 'ol/style/Style'
+import Icon from 'ol/style/Icon'
 import * as mapStyles from './map.module.scss'
 import { getSocieties } from "../utils/societies"
-
-mapboxgl.accessToken = process.env.GATSBY_MAPBOX_KEY
+import { map } from '@firebase/util'
 
 export default function Map(props) {
   const initialState = {
+    lat: 54.927,
     lng: -3.638,
-    lat: 53.927,
-    zoom: 5.2
+    zoom: 6.2
   }
 
   const [mapParams, setMapParams] = useState(initialState)
@@ -21,12 +29,22 @@ export default function Map(props) {
 
   var mapContainer = useRef(null)
 
+  var markerList = []
+
   useEffect(() => {
-    var map = new mapboxgl.Map({
-      container: mapContainer,
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [mapParams.lng, mapParams.lat],
-      zoom: mapParams.zoom,
+    var map = new OLMap({
+      target: 'map',
+      layers: [
+        new TileLayer({
+          source: new XYZ({
+            url: 'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+          })
+        })
+      ],
+      view: new View({
+        center: transform([mapParams.lng, mapParams.lat], 'EPSG:4326', 'EPSG:3857'),
+        zoom: mapParams.zoom
+      })
     });
 
     setMap(map)
@@ -36,10 +54,10 @@ export default function Map(props) {
     var society = props.societyList[props.selected]
 
     if (society != null && society.longitude != null && society.latitude != null) {
-      mapObject.flyTo({
-        center: [society.longitude, society.latitude],
-        zoom: 8
-      })
+      // mapObject.flyTo({
+      //   center: [society.longitude, society.latitude],
+      //   zoom: 8
+      // })
     }
   }, [props.selected])
 
@@ -47,18 +65,50 @@ export default function Map(props) {
     setSocietyList(props.societyList)
 
     if (mapObject != null && mapObject != undefined) {
+      
+      // markerList.forEach((marker) => {
+      //   marker.remove()
+      //   mapObject.removeLayer(marker)
+      // })
+
+      for (var i = 0; i < markerList.length; i++) {
+        markerList[i].remove()
+      }
+
+      markerList = [] // reset list
+
+      const markerIcon = new Icon({
+        src: 'https://github.com/openlayers/openlayers/blob/v3.20.1/examples/resources/logo-70x70.png'
+      })
+
       Object.values(props.societyList).map((society) => {
-        const marker1 = new mapboxgl.Marker()
-          .setLngLat([society.longitude, society.latitude])
-          .setPopup(new mapboxgl.Popup().setHTML("<h1>"+society.name+"</h1>"))
-          .addTo(mapObject);
-      });
+        const markerGeometry = new Point(transform([society.lng, society.lat], 'EPSG:4326', 'EPSG:3857'))
+
+        var markerFeature = new Feature({
+          geometry: markerGeometry,
+          style: new Style({ image: markerIcon })
+        })
+
+        var vectorSource = new SourceVector({
+          features: [markerFeature]
+        })
+
+        var markerLayer = new LayerVector({
+          title: society.name,
+          visible: true,
+          source: vectorSource
+        })
+
+        mapObject.addLayer(markerLayer)
+
+        // markerList.push(marker)
+      })
     }
   }, [props.societyList, mapObject])
 
   return (
     <div>
-      <div ref={el => mapContainer = el} className={mapStyles.mapContainer} />
+      <div id="map" className={mapStyles.mapContainer} />
     </div>
   )
 }
