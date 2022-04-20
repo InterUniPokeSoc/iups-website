@@ -19,16 +19,20 @@ function selectSociety(id) {
 }
 
 const filterSocietyList = (filter) => {
-  filteredSocietyList = []
+  filter = filter.toLowerCase()
 
+  filteredSocietyList = []
   if (filter == undefined || filter === "") {
     filteredSocietyList = societyList
   } else {
-    for (var society in societyList) {
-      if (society.name != undefined && society.name.contains(filter)) {
+    societyList.forEach((society) => {
+      var societyName = society.name.toLowerCase()
+
+      if (societyName != undefined && societyName.includes(filter)) {
         filteredSocietyList.push(society)
       }
-    }
+    }) 
+    
   }
 
   updateSocietyList(filteredSocietyList)
@@ -111,23 +115,23 @@ export default function OurSocietiesPage() {
 
   const [selectedSociety, setSelectedSociety] = useState(null);
 
-  // Make API call to Firebase to get society list.
-  getSocieties().then((dbList) => {
-    Object.values(dbList).map((society) => {
-      societyList.push(society);
+  useEffect(() => {
+    // Make API call to Firebase to get society list.
+    getSocieties().then((dbList) => {
+      Object.values(dbList).map((society) => {
+        societyList.push(society);
+      });
+
+      filteredSocietyList = societyList
+
+      setSocieties(societyList)
+
+      addSocietiesToSidebar()
+
+    }).catch((e) => {
+      console.log(e);
     });
 
-    filterSocietyList = societyList
-
-    setSocieties(societyList)
-
-    addSocietiesToSidebar()
-
-  }).catch((e) => {
-    console.log(e);
-  });
-
-  useEffect(() => {
     updateSocietyList = setSocieties
     updateSelectedSociety = setSelectedSociety
   }, [])
