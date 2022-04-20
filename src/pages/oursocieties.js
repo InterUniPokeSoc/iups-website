@@ -14,7 +14,6 @@ var updateSelectedSociety;
 
 
 function selectSociety(id) {
-  console.log("Selected Society: "+id)
   updateSelectedSociety(id)
 }
 

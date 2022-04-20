@@ -33,8 +33,6 @@ export default function Map(props) {
   }, [])
 
   useEffect(() => {
-    console.log("SELECTED SOCIETY: "+ props.selected)
-
     var society = props.societyList[props.selected]
 
     if (society != null && society.longitude != null && society.latitude != null) {
@@ -44,11 +42,9 @@ export default function Map(props) {
   }, [props.selected])
 
   useEffect(() => {
-    console.log("PROPS" + props.societyList)
-
     setSocietyList(props.societyList)
 
-    console.log("societyList: "+props.societyList)
+    // console.log("societyList: "+props.societyList)
 
     if (mapObject != null && mapObject != undefined) {
       Object.values(props.societyList).map((society) => {
