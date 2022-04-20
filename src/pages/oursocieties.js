@@ -9,12 +9,31 @@ import Map from '../components/map';
 import { getSocieties } from "../utils/societies";
 
 var societyList = [];
+var filteredSocietyList = [];
 var updateSocietyList;
 var updateSelectedSociety;
 
 
 function selectSociety(id) {
   updateSelectedSociety(id)
+}
+
+function filterSocietyList(event) {
+  var filter = event.target.value
+
+  filteredSocietyList = []
+
+  if (filter == undefined || filter == "") {
+    filteredSocietyList = societyList
+  } else {
+    for (society in societyList) {
+      if (society.name != undefined && society.name.contains(filter)) {
+        filteredSocietyList.push(society)
+      }
+    }
+  }
+
+  updateSocietyList(filteredSocietyList)
 }
 
 function createSocialMediaIcon(link, item, imgLocation, inverted) {
@@ -126,7 +145,7 @@ export default function OurSocietiesPage() {
           </div>
 
           <section className="sidebar" id="sidebar">
-            <input className="search-bar" placeholder="Search for a society..."></input>
+            <input className="search-bar" placeholder="Search for a society..." onChange={filterSocietyList}></input>
             <div id="society-list"></div>
           </section>
         </div>
