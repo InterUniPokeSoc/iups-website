@@ -18,15 +18,13 @@ function selectSociety(id) {
   updateSelectedSociety(id)
 }
 
-function filterSocietyList(event) {
-  var filter = event.target.value
-
+const filterSocietyList = (filter) => {
   filteredSocietyList = []
 
-  if (filter == undefined || filter == "") {
+  if (filter == undefined || filter === "") {
     filteredSocietyList = societyList
   } else {
-    for (society in societyList) {
+    for (var society in societyList) {
       if (society.name != undefined && society.name.contains(filter)) {
         filteredSocietyList.push(society)
       }
@@ -34,6 +32,7 @@ function filterSocietyList(event) {
   }
 
   updateSocietyList(filteredSocietyList)
+  addSocietiesToSidebar()
 }
 
 function createSocialMediaIcon(link, item, imgLocation, inverted) {
@@ -63,17 +62,16 @@ function createSocietySidebarItem(id) {
   sideBarItem.classList.add('society-wrapper');
 
   sideBarItem.addEventListener("click", function() {
-    console.log("Event Called")
     selectSociety(id)
   })
 
   var societyName = document.createElement('h2');
   societyName.classList.add('society-name');
-  societyName.innerHTML = societyList[id].name;
+  societyName.innerHTML = filteredSocietyList[id].name;
   sideBarItem.appendChild(societyName);
 
-  var color1 = societyList[id].color1;
-  var color2 = societyList[id].color2;
+  var color1 = filteredSocietyList[id].color1;
+  var color2 = filteredSocietyList[id].color2;
 
   if (color1 != null) {
     if (color2 != null) {
@@ -84,9 +82,9 @@ function createSocietySidebarItem(id) {
   }
 
   // Social Media Icons
-  createSocialMediaIcon(societyList[id].facebook, sideBarItem, "/images/f_logo_RGB-White_250.png", false);
-  createSocialMediaIcon(societyList[id].instagram, sideBarItem, "/images/instagram-logo-black.png", true);
-  createSocialMediaIcon(societyList[id].discord, sideBarItem, "/images/icon_clyde_white_RGB.svg", false);
+  createSocialMediaIcon(filteredSocietyList[id].facebook, sideBarItem, "/images/f_logo_RGB-White_250.png", false);
+  createSocialMediaIcon(filteredSocietyList[id].instagram, sideBarItem, "/images/instagram-logo-black.png", true);
+  createSocialMediaIcon(filteredSocietyList[id].discord, sideBarItem, "/images/icon_clyde_white_RGB.svg", false);
 
   // Add to Sidebar
   sideBar.appendChild(sideBarItem);
@@ -101,7 +99,7 @@ function addSocietiesToSidebar() {
   }
 
   // Add each society as sidebar item
-  societyList.forEach(function (_, index) {
+  filteredSocietyList.forEach(function (_, index) {
     createSocietySidebarItem(index)
   });
 }
@@ -113,10 +111,13 @@ export default function OurSocietiesPage() {
 
   const [selectedSociety, setSelectedSociety] = useState(null);
 
+  // Make API call to Firebase to get society list.
   getSocieties().then((dbList) => {
     Object.values(dbList).map((society) => {
       societyList.push(society);
     });
+
+    filterSocietyList = societyList
 
     setSocieties(societyList)
 
@@ -145,7 +146,7 @@ export default function OurSocietiesPage() {
           </div>
 
           <section className="sidebar" id="sidebar">
-            <input className="search-bar" placeholder="Search for a society..." onChange={filterSocietyList}></input>
+            <input className="search-bar" placeholder="Search for a society..." onChange={e => filterSocietyList(e.target.value)}></input>
             <div id="society-list"></div>
           </section>
         </div>
