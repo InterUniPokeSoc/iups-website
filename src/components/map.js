@@ -36,15 +36,15 @@ export default function Map(props) {
     var society = props.societyList[props.selected]
 
     if (society != null && society.longitude != null && society.latitude != null) {
-      mapObject.setCenter([society.longitude, society.latitude])
-      mapObject.zoom = 10
+      mapObject.flyTo({
+        center: [society.longitude, society.latitude],
+        zoom: 8
+      })
     }
   }, [props.selected])
 
   useEffect(() => {
     setSocietyList(props.societyList)
-
-    // console.log("societyList: "+props.societyList)
 
     if (mapObject != null && mapObject != undefined) {
       Object.values(props.societyList).map((society) => {
