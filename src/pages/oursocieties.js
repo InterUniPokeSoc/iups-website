@@ -116,6 +116,9 @@ export default function OurSocietiesPage() {
   const [selectedSociety, setSelectedSociety] = useState(null);
 
   useEffect(() => {
+    setSocieties([])
+    societyList = []
+
     // Make API call to Firebase to get society list.
     getSocieties().then((dbList) => {
       Object.values(dbList).map((society) => {
