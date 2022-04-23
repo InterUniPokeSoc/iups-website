@@ -66,6 +66,7 @@
   max-width: 400px;
   text-align: center;
   transition: all 0.2s;
+  cursor: pointer;
 }
 
 .society-wrapper:first-child {
@@ -92,6 +93,11 @@
   width: 35px;
   height: 35px;
   padding: 5px;
+  transition: filter 0.2s;
+}
+
+.social-icon-society:hover {
+  filter: brightness(85%)
 }
 
 .invert-icon {
