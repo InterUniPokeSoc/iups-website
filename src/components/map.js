@@ -7,12 +7,10 @@ import SourceVector from 'ol/source/Vector'
 import LayerVector from 'ol/layer/Vector'
 import Feature from 'ol/Feature'
 import Point from 'ol/geom/Point'
-import {transform} from 'ol/proj'
+import {transform, toLonLat, fromLonLat} from 'ol/proj'
 import Style from 'ol/style/Style'
 import Icon from 'ol/style/Icon'
 import * as mapStyles from './map.module.scss'
-import { getSocieties } from "../utils/societies"
-import { map } from '@firebase/util'
 
 export default function Map(props) {
   const initialState = {
@@ -23,13 +21,20 @@ export default function Map(props) {
 
   const [mapParams, setMapParams] = useState(initialState)
 
+  const [mapView, setMapView] = useState(
+    new View({
+      center: transform([mapParams.lng, mapParams.lat], 'EPSG:4326', 'EPSG:3857'),
+      zoom: mapParams.zoom
+    })
+  )
+
   const [societyList, setSocietyList] = useState(props.societyList)
 
   const [mapObject, setMap] = useState()
 
   var mapContainer = useRef(null)
 
-  var markerList = []
+  var markerFeatures = useRef([])
 
   useEffect(() => {
     var map = new OLMap({
@@ -39,25 +44,27 @@ export default function Map(props) {
           source: new XYZ({
             url: 'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png'
           })
-        })
+        }),
       ],
-      view: new View({
-        center: transform([mapParams.lng, mapParams.lat], 'EPSG:4326', 'EPSG:3857'),
-        zoom: mapParams.zoom
-      })
+      view: mapView
     });
 
     setMap(map)
-  }, [])
+  }, [mapView])
 
   useEffect(() => {
+    console.log("UNI SELECTED")
     var society = props.societyList[props.selected]
 
     if (society != null && society.longitude != null && society.latitude != null) {
-      // mapObject.flyTo({
-      //   center: [society.longitude, society.latitude],
-      //   zoom: 8
-      // })
+      const societyGeometry = fromLonLat([society.longitude, society.latitude])
+
+      mapView.animate({
+        center: societyGeometry,
+        duration: 2000
+      })
+
+      console.log("MOVED TO LOCATION")
     }
   }, [props.selected])
 
@@ -71,38 +78,49 @@ export default function Map(props) {
       //   mapObject.removeLayer(marker)
       // })
 
-      for (var i = 0; i < markerList.length; i++) {
-        markerList[i].remove()
+      for (var i = 0; i < markerFeatures.length; i++) {
+        // markerFeatures[i].remove()
       }
 
-      markerList = [] // reset list
+      markerFeatures = [] // reset list
 
-      const markerIcon = new Icon({
-        src: 'https://github.com/openlayers/openlayers/blob/v3.20.1/examples/resources/logo-70x70.png'
-      })
+      // const markerFeature = new Icon({
+      //   src: 'https://github.com/openlayers/openlayers/blob/v3.20.1/examples/resources/logo-70x70.png'
+      // })
 
       Object.values(props.societyList).map((society) => {
-        const markerGeometry = new Point(transform([society.lng, society.lat], 'EPSG:4326', 'EPSG:3857'))
+        const markerGeometry = new Point(transform([society.longitude, society.latitude], 'EPSG:4326', 'EPSG:3857'))
 
-        var markerFeature = new Feature({
-          geometry: markerGeometry,
-          style: new Style({ image: markerIcon })
-        })
-
-        var vectorSource = new SourceVector({
-          features: [markerFeature]
-        })
-
-        var markerLayer = new LayerVector({
-          title: society.name,
-          visible: true,
-          source: vectorSource
-        })
-
-        mapObject.addLayer(markerLayer)
-
-        // markerList.push(marker)
+        markerFeatures.push(
+          new Feature({
+            geometry: markerGeometry,
+            name: society.name
+          })
+        )
       })
+
+      var layer = new LayerVector({
+        source: new SourceVector({
+            features: markerFeatures,
+            style: new Style({
+              anchor: [0.5, 46],
+              anchorXUnits: 'fraction',
+              anchorYUnits: 'pixels',
+              src: 'https://openlayers.org/en/latest/examples/data/icon.png'
+            })
+        })
+      })
+
+      mapObject.addLayer(layer)
+
+      // var markerFeature = new Feature({
+      //   geometry: markerGeometry,
+      //   name: society.name
+      // })
+
+      // markerList.push(marker)
+
+      // markerSource.addFeature(markerFeature)
     }
   }, [props.societyList, mapObject])
 
