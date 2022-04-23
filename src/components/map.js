@@ -10,6 +10,8 @@ import Point from 'ol/geom/Point'
 import {transform, toLonLat, fromLonLat} from 'ol/proj'
 import Style from 'ol/style/Style'
 import Icon from 'ol/style/Icon'
+import OSM from 'ol/source/OSM'
+import {Circle, Fill, Stroke} from 'ol/style'
 import * as mapStyles from './map.module.scss'
 
 export default function Map(props) {
@@ -34,7 +36,7 @@ export default function Map(props) {
 
   var mapContainer = useRef(null)
 
-  var markerFeatures = useRef([])
+  // var markerFeatures = useRef([])
 
   useEffect(() => {
     var map = new OLMap({
@@ -61,7 +63,8 @@ export default function Map(props) {
 
       mapView.animate({
         center: societyGeometry,
-        duration: 2000
+        zoom: mapParams.zoom + 3,
+        duration: 2000,
       })
 
       console.log("MOVED TO LOCATION")
@@ -78,15 +81,11 @@ export default function Map(props) {
       //   mapObject.removeLayer(marker)
       // })
 
-      for (var i = 0; i < markerFeatures.length; i++) {
-        // markerFeatures[i].remove()
-      }
+      // for (var i = 0; i < markerFeatures.length; i++) {
+      //   // markerFeatures[i].remove()
+      // }
 
-      markerFeatures = [] // reset list
-
-      // const markerFeature = new Icon({
-      //   src: 'https://github.com/openlayers/openlayers/blob/v3.20.1/examples/resources/logo-70x70.png'
-      // })
+      var markerFeatures = [] // reset list
 
       Object.values(props.societyList).map((society) => {
         const markerGeometry = new Point(transform([society.longitude, society.latitude], 'EPSG:4326', 'EPSG:3857'))
@@ -94,7 +93,7 @@ export default function Map(props) {
         markerFeatures.push(
           new Feature({
             geometry: markerGeometry,
-            name: society.name
+            name: society.name,
           })
         )
       })
@@ -102,15 +101,17 @@ export default function Map(props) {
       var layer = new LayerVector({
         source: new SourceVector({
             features: markerFeatures,
-            style: new Style({
-              anchor: [0.5, 46],
-              anchorXUnits: 'fraction',
-              anchorYUnits: 'pixels',
-              src: 'https://openlayers.org/en/latest/examples/data/icon.png'
-            })
+        }),
+        style: new Style ({
+          image: new Icon({
+            anchor: [0.5, 46],
+            anchorXUnits: 'fraction',
+            anchorYUnits: 'pixels',
+            src: 'images/iups-marker.png',
+            scale: 0.9,
+          })
         })
       })
-
       mapObject.addLayer(layer)
 
       // var markerFeature = new Feature({
