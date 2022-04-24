@@ -5,13 +5,14 @@ import TileLayer from 'ol/layer/Tile'
 import XYZ from 'ol/source/XYZ'
 import SourceVector from 'ol/source/Vector'
 import LayerVector from 'ol/layer/Vector'
+import Overlay from 'ol/Overlay'
 import Feature from 'ol/Feature'
 import Point from 'ol/geom/Point'
 import {transform, toLonLat, fromLonLat} from 'ol/proj'
 import Style from 'ol/style/Style'
 import Icon from 'ol/style/Icon'
-import OSM from 'ol/source/OSM'
-import {Circle, Fill, Stroke} from 'ol/style'
+import {toStringHDMS} from 'ol/coordinate'
+import '../styles/olmaps.scss'
 import * as mapStyles from './map.module.scss'
 
 export default function Map(props) {
@@ -38,7 +39,29 @@ export default function Map(props) {
 
   // var markerFeatures = useRef([])
 
+  var overlay
+  var container
+  var content
+  var closer
+
+  /*
+   Generate Map
+  */
   useEffect(() => {
+    container = document.getElementById('popup')
+    content = document.getElementById('popup-content')
+    closer = document.getElementById('popup-closer')
+
+    overlay = new Overlay({
+      element: container,
+      width: 100,
+      autoPan: {
+        animation: {
+          duration: 250,
+        },
+      },
+    })
+
     var map = new OLMap({
       target: 'map',
       layers: [
@@ -48,14 +71,34 @@ export default function Map(props) {
           })
         }),
       ],
-      view: mapView
+      overlays: [overlay],
+      view: mapView,
     });
+
+    console.log(content)
+
+    map.on('singleclick', function (evt) {
+      console.log("CLICKED!!!")
+      const coordinate = evt.coordinate;
+      const hdms = toStringHDMS(toLonLat(coordinate));
+    
+      content.innerHTML = '<p>You clicked here:</p><code>' + hdms + '</code>';
+      overlay.setPosition(coordinate);
+    })
+
+    closer.onclick = function () {
+      overlay.setPosition(undefined);
+      closer.blur();
+      return false;
+    }
 
     setMap(map)
   }, [mapView])
-
+  
+  /*
+   Handle Society Selection from Sidebar
+  */
   useEffect(() => {
-    console.log("UNI SELECTED")
     var society = props.societyList[props.selected]
 
     if (society != null && society.longitude != null && society.latitude != null) {
@@ -66,11 +109,13 @@ export default function Map(props) {
         zoom: mapParams.zoom + 3,
         duration: 2000,
       })
-
-      console.log("MOVED TO LOCATION")
     }
   }, [props.selected])
 
+
+  /*
+   Add Markers to Map on update of the Society List
+  */
   useEffect(() => {
     setSocietyList(props.societyList)
 
@@ -114,20 +159,17 @@ export default function Map(props) {
       })
       mapObject.addLayer(layer)
 
-      // var markerFeature = new Feature({
-      //   geometry: markerGeometry,
-      //   name: society.name
-      // })
-
       // markerList.push(marker)
-
-      // markerSource.addFeature(markerFeature)
     }
   }, [props.societyList, mapObject])
 
   return (
     <div>
       <div id="map" className={mapStyles.mapContainer} />
+      <div id="popup" className="ol-popup">
+      <a href="#" id="popup-closer" className="ol-popup-closer"></a>
+      <div id="popup-content"></div>
+    </div>
     </div>
   )
 }
