@@ -14,4 +14,4 @@ This code, including all its content are protected by copyright. Any unauthorise
 2. Install modules: ```npm install```.
 3. Start the website by running: ```gatsby develop```.
 4. The site is now running at http://localhost:8000.
-5. Stop the site with cntrl/cmd + c.
+5. Stop the site with cntrl + c.
