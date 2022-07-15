@@ -1,3 +1,5 @@
+$borderRadius: 20px;
+
 #map {
   position: absolute;
   top: 0;
@@ -25,7 +27,8 @@
   position: absolute;
   left: 20px;
   top: 12vh;
-  border-radius: 20px;
+  bottom: auto;
+  border-radius: $borderRadius $borderRadius $borderRadius $borderRadius;
   z-index: 1000;
 
   backdrop-filter: blur(7px);
@@ -35,6 +38,19 @@
   display: flex;
   flex-direction: column;
   overflow: scroll;
+}
+
+@media only screen and (max-width: 950px) {
+  .sidebar {
+    max-width: 1000px;
+    width: 95%;
+    height: 40vh;
+    left: 50%;
+    transform: translate(-50%, 0);
+    top: auto;
+    bottom: 0vh;
+    border-radius: $borderRadius $borderRadius 0px 0px;
+  }
 }
 
 .search-bar {
