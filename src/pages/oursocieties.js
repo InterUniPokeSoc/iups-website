@@ -118,6 +118,9 @@ export default function OurSocietiesPage() {
 
   const [selectedSociety, setSelectedSociety] = useState(null);
 
+  // Sidebar view mode on mobile
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   useEffect(() => {
     setSocieties([])
     societyList = []
@@ -142,6 +145,12 @@ export default function OurSocietiesPage() {
     updateSelectedSociety = setSelectedSociety
   }, [])
 
+  useEffect(() => {
+    var sidebar = document.getElementById('sidebar')
+
+    sidebar.style.height = sidebarOpen ? "80vh" : "40vh"
+  }, [sidebarOpen])
+
   return (
     <>
     <Helmet>
@@ -156,6 +165,7 @@ export default function OurSocietiesPage() {
           </div>
 
           <section className="sidebar" id="sidebar">
+            <img id="sidebar-toggle-button" onClick={e => setSidebarOpen(!sidebarOpen)} src={sidebarOpen ? 'images/down-arrow.svg' : 'images/up-arrow.svg'}></img>
             <input className="search-bar" placeholder="Search for a society..." onChange={e => filterSocietyList(e.target.value)}></input>
             <div id="society-list"></div>
           </section>
