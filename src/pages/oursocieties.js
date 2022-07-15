@@ -14,8 +14,9 @@ var updateSocietyList;
 var updateSelectedSociety;
 
 
-function selectSociety(id) {
-  updateSelectedSociety(id)
+function selectSociety(name) {
+  // using name as id causes map to change position on search change
+  updateSelectedSociety(name)
 }
 
 const filterSocietyList = (filter) => {
@@ -60,13 +61,15 @@ function createSocialMediaIcon(link, item, imgLocation, inverted) {
 }
 
 function createSocietySidebarItem(id) {
+  var society = filteredSocietyList[id]
+
   var sideBar = document.getElementById('society-list');
 
   var sideBarItem = document.createElement('a');
   sideBarItem.classList.add('society-wrapper');
 
   sideBarItem.addEventListener("click", function() {
-    selectSociety(id)
+    selectSociety(society.name)
   })
 
   var societyName = document.createElement('h2');
@@ -74,8 +77,8 @@ function createSocietySidebarItem(id) {
   societyName.innerHTML = filteredSocietyList[id].name;
   sideBarItem.appendChild(societyName);
 
-  var color1 = filteredSocietyList[id].color1;
-  var color2 = filteredSocietyList[id].color2;
+  var color1 = society.color1;
+  var color2 = society.color2;
 
   if (color1 != null) {
     if (color2 != null) {
@@ -86,9 +89,9 @@ function createSocietySidebarItem(id) {
   }
 
   // Social Media Icons
-  createSocialMediaIcon(filteredSocietyList[id].facebook, sideBarItem, "/images/f_logo_RGB-White_250.png", false);
-  createSocialMediaIcon(filteredSocietyList[id].instagram, sideBarItem, "/images/instagram-logo-black.png", true);
-  createSocialMediaIcon(filteredSocietyList[id].discord, sideBarItem, "/images/icon_clyde_white_RGB.svg", false);
+  createSocialMediaIcon(society.facebook, sideBarItem, "/images/f_logo_RGB-White_250.png", false);
+  createSocialMediaIcon(society.instagram, sideBarItem, "/images/instagram-logo-black.png", true);
+  createSocialMediaIcon(society.discord, sideBarItem, "/images/icon_clyde_white_RGB.svg", false);
 
   // Add to Sidebar
   sideBar.appendChild(sideBarItem);
