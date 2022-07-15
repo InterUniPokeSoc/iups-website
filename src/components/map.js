@@ -33,10 +33,6 @@ export default function Map(props) {
    Handle Society Selection from Sidebar
   */
   useEffect(() => {
-    console.log("selected: "+props.selected)
-
-    console.log("Society List Count: "+societyList.length)
-
     societyList.forEach( society => {
       if (society.name == props.selected) {
         setSelectedSociety(society)
