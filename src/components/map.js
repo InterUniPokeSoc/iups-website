@@ -1,19 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react'
-import OLMap from 'ol/Map'
-import View from 'ol/View'
-import TileLayer from 'ol/layer/Tile'
-import XYZ from 'ol/source/XYZ'
-import SourceVector from 'ol/source/Vector'
-import LayerVector from 'ol/layer/Vector'
-import Overlay from 'ol/Overlay'
-import Feature from 'ol/Feature'
-import Point from 'ol/geom/Point'
-import {transform, toLonLat, fromLonLat} from 'ol/proj'
-import Style from 'ol/style/Style'
-import Icon from 'ol/style/Icon'
-import {toStringHDMS} from 'ol/coordinate'
-import '../styles/olmaps.scss'
+import Helmet from 'react-helmet'
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
 import * as mapStyles from './map.module.scss'
+import '../styles/leaflet.css'
 
 export default function Map(props) {
   const initialState = {
@@ -25,10 +14,7 @@ export default function Map(props) {
   const [mapParams, setMapParams] = useState(initialState)
 
   const [mapView, setMapView] = useState(
-    new View({
-      center: transform([mapParams.lng, mapParams.lat], 'EPSG:4326', 'EPSG:3857'),
-      zoom: mapParams.zoom
-    })
+    document.getElementById('main-map')
   )
 
   const [societyList, setSocietyList] = useState(props.societyList)
@@ -37,63 +23,15 @@ export default function Map(props) {
 
   var mapContainer = useRef(null)
 
-  // var markerFeatures = useRef([])
-
-  var overlay
-  var container
-  var content
-  var closer
-
   /*
    Generate Map
   */
   useEffect(() => {
-    container = document.getElementById('popup')
-    content = document.getElementById('popup-content')
-    closer = document.getElementById('popup-closer')
 
-    overlay = new Overlay({
-      element: container,
-      width: 100,
-      autoPan: {
-        animation: {
-          duration: 250,
-        },
-      },
-    })
+    var mapObject = document.getElementById('main-map')
 
-    var map = new OLMap({
-      target: 'map',
-      layers: [
-        new TileLayer({
-          source: new XYZ({
-            url: 'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-          })
-        }),
-      ],
-      overlays: [overlay],
-      view: mapView,
-    });
-
-    console.log(content)
-
-    map.on('singleclick', function (evt) {
-      console.log("CLICKED!!!")
-      const coordinate = evt.coordinate;
-      const hdms = toStringHDMS(toLonLat(coordinate));
-    
-      content.innerHTML = '<p>You clicked here:</p><code>' + hdms + '</code>';
-      overlay.setPosition(coordinate);
-    })
-
-    closer.onclick = function () {
-      overlay.setPosition(undefined);
-      closer.blur();
-      return false;
-    }
-
-    setMap(map)
-  }, [mapView])
+    setMap(mapObject)
+  }, [])
   
   /*
    Handle Society Selection from Sidebar
@@ -101,15 +39,10 @@ export default function Map(props) {
   useEffect(() => {
     var society = props.societyList[props.selected]
 
-    if (society != null && society.longitude != null && society.latitude != null) {
-      const societyGeometry = fromLonLat([society.longitude, society.latitude])
+    // guard
+    if (society == null || society.longitude == null || society.latitude == null) { return }
 
-      mapView.animate({
-        center: societyGeometry,
-        zoom: mapParams.zoom + 3,
-        duration: 2000,
-      })
-    }
+    
   }, [props.selected])
 
 
@@ -130,34 +63,9 @@ export default function Map(props) {
       //   // markerFeatures[i].remove()
       // }
 
-      var markerFeatures = [] // reset list
-
       Object.values(props.societyList).map((society) => {
-        const markerGeometry = new Point(transform([society.longitude, society.latitude], 'EPSG:4326', 'EPSG:3857'))
 
-        markerFeatures.push(
-          new Feature({
-            geometry: markerGeometry,
-            name: society.name,
-          })
-        )
       })
-
-      var layer = new LayerVector({
-        source: new SourceVector({
-            features: markerFeatures,
-        }),
-        style: new Style ({
-          image: new Icon({
-            anchor: [0.5, 46],
-            anchorXUnits: 'fraction',
-            anchorYUnits: 'pixels',
-            src: 'images/iups-marker.png',
-            scale: 0.9,
-          })
-        })
-      })
-      mapObject.addLayer(layer)
 
       // markerList.push(marker)
     }
@@ -165,11 +73,17 @@ export default function Map(props) {
 
   return (
     <div>
-      <div id="map" className={mapStyles.mapContainer} />
-      <div id="popup" className="ol-popup">
-      <a href="#" id="popup-closer" className="ol-popup-closer"></a>
-      <div id="popup-content"></div>
-    </div>
+      <MapContainer id="main-map" center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true}>
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        {/* <Marker position={[51.505, -0.09]}>
+          <Popup>
+            A pretty CSS3 popup. <br /> Easily customizable.
+          </Popup>
+        </Marker> */}
+      </MapContainer>
     </div>
   )
 }
