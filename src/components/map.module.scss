@@ -3,3 +3,28 @@
   width: 500px;
   cursor: grab;
 }
+
+#map-reset-button {
+  background-color: rgba(0, 0, 0, 1);
+  color: white;
+  width: 120px;
+  height: 40px;
+  padding: 6px;
+  border-radius: 25px;
+  z-index: 2000;
+  cursor: pointer;
+  user-select: none;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 20px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  text-align: center;
+
+  visibility: hidden;
+  opacity: 0;
+
+  transition: visibility 0.7s linear, opacity 0.7s linear;
+}

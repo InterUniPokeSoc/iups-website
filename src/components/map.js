@@ -68,7 +68,7 @@ export default function Map(props) {
           </Marker>
         )}
 
-        <MapAdjustments selectedSociety={selectedSociety}/>
+        <MapAdjustments selectedSociety={selectedSociety} defaultMapConfig={initialState}/>
       </MapContainer>
     </div>
   )
