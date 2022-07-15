@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react'
 import Helmet from 'react-helmet'
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup, useMap, useLeafletContext } from 'react-leaflet'
 import * as mapStyles from './map.module.scss'
 import '../styles/leaflet.css'
+import * as L from 'leaflet'
+import MapAdjustments from './mapAdjustments'
 
 export default function Map(props) {
   const initialState = {
@@ -11,38 +13,33 @@ export default function Map(props) {
     zoom: 6.2
   }
 
+  const icon = L.icon({
+    iconUrl: '/images/iups-icon.png',
+    iconSize: [46, 46],
+    iconAnchor: [12, 12],
+    popupAnchor: [0, 0],
+  });
+
+  // State to keep track of changing map parameters
   const [mapParams, setMapParams] = useState(initialState)
 
-  const [mapView, setMapView] = useState(
-    document.getElementById('main-map')
-  )
-
+  // Keeps track of list of societies
   const [societyList, setSocietyList] = useState(props.societyList)
 
-  const [mapObject, setMap] = useState()
-
-  var mapContainer = useRef(null)
-
-  /*
-   Generate Map
-  */
-  useEffect(() => {
-
-    var mapObject = document.getElementById('main-map')
-
-    setMap(mapObject)
-  }, [])
+  // Keeps track of the selected society from the sidebar
+  const [selectedSociety, setSelectedSociety] = useState(props.selected)
   
   /*
    Handle Society Selection from Sidebar
   */
   useEffect(() => {
-    var society = props.societyList[props.selected]
+    setSelectedSociety(props.societyList[props.selected])
 
-    // guard
-    if (society == null || society.longitude == null || society.latitude == null) { return }
+    console.log("selected: "+props.selected)
 
-    
+    if (selectedSociety == null) { return }
+
+    console.log(selectedSociety.name)
   }, [props.selected])
 
 
@@ -51,38 +48,29 @@ export default function Map(props) {
   */
   useEffect(() => {
     setSocietyList(props.societyList)
-
-    if (mapObject != null && mapObject != undefined) {
-      
-      // markerList.forEach((marker) => {
-      //   marker.remove()
-      //   mapObject.removeLayer(marker)
-      // })
-
-      // for (var i = 0; i < markerFeatures.length; i++) {
-      //   // markerFeatures[i].remove()
-      // }
-
-      Object.values(props.societyList).map((society) => {
-
-      })
-
-      // markerList.push(marker)
-    }
-  }, [props.societyList, mapObject])
+  }, [props.societyList])
 
   return (
     <div>
-      <MapContainer id="main-map" center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true}>
+      <MapContainer
+      id="main-map" 
+      center={[mapParams.lat, mapParams.lng]} zoom={mapParams.zoom} 
+      zoomControl={false}
+      scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {/* <Marker position={[51.505, -0.09]}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker> */}
+        { societyList.map( society => 
+          <Marker position={[society.latitude, society.longitude]}
+                  icon={icon}>
+            <Popup>
+              {society.name}
+            </Popup>
+          </Marker>
+        )}
+
+        <MapAdjustments selectedSociety={selectedSociety}/>
       </MapContainer>
     </div>
   )
