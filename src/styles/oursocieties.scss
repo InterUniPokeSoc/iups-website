@@ -29,6 +29,7 @@ $borderRadius: 20px;
   top: 3px;
   left: 50%;
   transform: translate(-50%, 0);
+  visibility: hidden;
 }
 
 .sidebar {
@@ -57,13 +58,25 @@ $borderRadius: 20px;
   .sidebar {
     max-width: 1000px;
     width: 95%;
-    height: 40vh;
     left: 50%;
     transform: translate(-50%, 0);
     top: auto;
     bottom: 0vh;
     border-radius: $borderRadius $borderRadius 0px 0px;
   }
+
+  .sidebar-closed {
+    height: 40vh;
+  }
+
+  .sidebar-open {
+    height: 80vh;
+  }
+
+  #sidebar-toggle-button {
+    visibility: visible;
+  }
+  
 }
 
 .search-bar {
@@ -78,10 +91,6 @@ $borderRadius: 20px;
   border-radius: 10px;
   border: white 1px solid;
   z-index: 100;
-}
-
-.societies-list {
-  
 }
 
 .society-wrapper {
@@ -100,7 +109,7 @@ $borderRadius: 20px;
 }
 
 .society-wrapper:first-child {
-  margin-top: 80px;
+  margin-top: 30px;
 }
 
 .society-wrapper:hover {
@@ -109,7 +118,7 @@ $borderRadius: 20px;
 }
 
 .society-wrapper:hover:first-child {
-  margin-top: 80px;
+  margin-top: 30px;
   transform: scale(1.08);
 }
 

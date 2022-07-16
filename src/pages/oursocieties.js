@@ -148,7 +148,8 @@ export default function OurSocietiesPage() {
   useEffect(() => {
     var sidebar = document.getElementById('sidebar')
 
-    sidebar.style.height = sidebarOpen ? "80vh" : "40vh"
+    sidebar.classList.remove(sidebarOpen ? 'sidebar-closed' : 'sidebar-open')
+    sidebar.classList.add(sidebarOpen ? 'sidebar-open' : 'sidebar-closed')
   }, [sidebarOpen])
 
   return (
@@ -165,7 +166,7 @@ export default function OurSocietiesPage() {
           </div>
 
           <section className="sidebar" id="sidebar">
-            <img id="sidebar-toggle-button" onClick={e => setSidebarOpen(!sidebarOpen)} src={sidebarOpen ? 'images/down-arrow.svg' : 'images/up-arrow.svg'}></img>
+            <img id="sidebar-toggle-button" className="sidebar-closed" onClick={e => setSidebarOpen(!sidebarOpen)} src={sidebarOpen ? 'images/down-arrow.svg' : 'images/up-arrow.svg'}></img>
             <input className="search-bar" placeholder="Search for a society..." onChange={e => filterSocietyList(e.target.value)}></input>
             <div id="society-list"></div>
           </section>
