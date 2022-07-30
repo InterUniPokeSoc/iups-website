@@ -41,6 +41,7 @@ $borderRadius: 20px;
   top: 12vh;
   bottom: auto;
   border-radius: $borderRadius $borderRadius $borderRadius $borderRadius;
+  -webkit-border-radius: $borderRadius $borderRadius $borderRadius $borderRadius;
   z-index: 1000;
 
   backdrop-filter: blur(7px);
@@ -63,6 +64,7 @@ $borderRadius: 20px;
     top: auto;
     bottom: 0vh;
     border-radius: $borderRadius $borderRadius 0px 0px;
+    -webkit-border-radius: $borderRadius $borderRadius 0px 0px;
   }
 
   .sidebar-closed {
