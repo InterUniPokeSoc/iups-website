@@ -1,4 +1,4 @@
-$display-font: 'Abril Fatface';
+@use '../styles/variables';
 
 #main-section {
     display: flex;
@@ -6,6 +6,10 @@ $display-font: 'Abril Fatface';
     align-items: center;
     gap: 30px;
     margin: 40px 20px;
+
+    @media only screen and (max-width: variables.$standard-mobile-max-width) {
+        display: block;
+    }
 }
 
 #circle-image {
@@ -17,6 +21,14 @@ $display-font: 'Abril Fatface';
 }
 
 #title {
-    font-family: $display-font;
+    font-family: variables.$display-font;
     font-size: 4.0em;
+}
+
+#circle-image, #title {
+    @media only screen and (max-width: variables.$standard-mobile-max-width) {
+        display: block;
+        margin: auto;
+        text-align: center;
+    }
 }
