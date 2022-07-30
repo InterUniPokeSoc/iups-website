@@ -6,7 +6,7 @@ function CircleImageTitle(props) {
   return (
     <section id={circleImageTitleStyles.mainSection}>
         <img id={circleImageTitleStyles.circleImage} src={props.src}/>
-        <a id={circleImageTitleStyles.title}>{props.children}</a>
+        <a id={circleImageTitleStyles.title} className="shiny-title">{props.children}</a>
     </section>
   );
 }

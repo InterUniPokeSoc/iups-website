@@ -28,27 +28,21 @@ function AboutPage() {
           <section className={aboutStyles.iconsContainer}>
             <div className={aboutStyles.icon}>
               <div className={aboutStyles.iconImageContainer}>
-                <div className={aboutStyles.iconImageBackground}>
-                  <img className={aboutStyles.iconImage} />
-                </div>
+                <img className={[aboutStyles.iconImage, aboutStyles.invertIcon].join(' ')} src="images/group-icon.svg" />
               </div>
               <a className={aboutStyles.iconText}>Community of 20+ Societies</a>
             </div>
 
             <div className={aboutStyles.icon}>
               <div className={aboutStyles.iconImageContainer}>
-                <div className={aboutStyles.iconImageBackground}>
-                  <img className={aboutStyles.iconImage} />
-                </div>
+                <img className={[aboutStyles.iconImage, aboutStyles.invertIcon].join(' ')} src="images/schedule-calendar-icon.svg" />
               </div>
               <a className={aboutStyles.iconText}>Multi-Uni Events</a>
             </div>
 
             <div className={aboutStyles.icon}>
               <div className={aboutStyles.iconImageContainer}>
-                <div className={aboutStyles.iconImageBackground}>
-                  <img className={aboutStyles.iconImage} />
-                </div>
+                <img className={aboutStyles.iconImage} src="images/icon_clyde_white_RGB.svg" />
               </div>
               <a className={aboutStyles.iconText}>Discord Server</a>
             </div>

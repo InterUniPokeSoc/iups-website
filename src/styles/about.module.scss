@@ -11,41 +11,51 @@
 .icons-container {
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
+  justify-items: center;
+  align-items: flex-start;
+  margin: 20px auto;
+  max-width: 800px;
 }
 
 .icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  margin: 30px;
+  display: block;
+  margin: 20px;
   box-sizing: border-box;
-  flex: 1;
-  flex-basis: 100%;
+  text-align: center;
+  flex: 1 1 0px;
+  text-align: center;
 }
 
 .icon-image-container {
-  width: 50%;
-  text-align: right;
-}
-
-.icon-image-background {
-  width: 90px;
-  height: 90px;
+  width: 140px;
+  height: 140px;
   background: variables.$standard-gradient;
   border-radius: 50%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .icon-image {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
 
+.invert-icon {
+  filter: invert(100%);
 }
 
 .icon-text {
-  width: 50%;
   font-size: 1.4em;
+  margin: 10px;
+  text-align: center;
+  display: block;
 }
-
 .wide-overlay-image-container {
   overflow: hidden;
   position: relative;
