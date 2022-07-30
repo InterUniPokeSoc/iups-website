@@ -5,6 +5,7 @@ import Layout from '../components/layout';
 import TitleBanner from '../components/titleBanner';
 import '../styles/general.scss';
 import '../styles/about.scss';
+import CircleImageTitle from '../components/circleImageTitle';
 
 function AboutPage() {
 
@@ -17,8 +18,10 @@ function AboutPage() {
     <Layout>
       <main className="page-content">
         <section className="page-section">
-          <h1 className="huge-title">About Us</h1>
-          <img src="images/harold-wide.jpg" id="about-image"/>
+
+          <CircleImageTitle src="images/harold-wide.jpg">About Us</CircleImageTitle>
+
+          {/* <img src="images/harold-wide.jpg" id="about-image"/> */}
           <h1 className="htj-title">What is the I-UPS?</h1>
           <p>The Inter-University Pokémon Society is a group of over 20 university countries around the UK, from Durham to Portsmouth.
             The I-UPS is designed to give university societies a central space to communicate and organise with each other, we also provide

@@ -1,0 +1,22 @@
+$display-font: 'Abril Fatface';
+
+#main-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin: 40px 20px;
+}
+
+#circle-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    filter: drop-shadow(10px 10px 10px rgba(10, 10, 10, 0.4));
+}
+
+#title {
+    font-family: $display-font;
+    font-size: 4.0em;
+}
