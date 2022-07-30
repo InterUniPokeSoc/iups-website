@@ -5,11 +5,15 @@ import * as mapStyles from './map.module.scss'
 import * as L from 'leaflet'
 
 export default function MapAdjustments(props) {
+  
   const map = useMap()
+
+  const [selectedSociety, setSelectedSociety] = useState(null)
 
   const [resetMap, setResetMap] = useState(false)
 
   function showResetButton(show) {
+
     var resetButton = document.getElementById(mapStyles.mapResetButton)
     resetButton.style.visibility = show ? "visible" : "hidden"
     resetButton.style.opacity = show ? 1 : 0
@@ -19,23 +23,40 @@ export default function MapAdjustments(props) {
    Handle Society Selection from Sidebar
   */
   useEffect(() => {
-    var society = props.selectedSociety
 
-    if (society == null || society.longitude == null || society.latitude == null) { return }
-
-    map.flyTo([society.latitude, society.longitude], 12)
-
-    showResetButton(true)
+    setSelectedSociety(props.selectedSociety)
   }, [props.selectedSociety])
 
   useEffect(() => {
+
+    if (selectedSociety == null || selectedSociety.longitude == null || selectedSociety.latitude == null) {
+      if (!resetMap) {
+        setSelectedSociety(props.selectedSociety)
+      }
+      
+      return 
+    }
+
+    map.flyTo([selectedSociety.latitude, selectedSociety.longitude], 12)
+
+    showResetButton(true)
+  }, [selectedSociety])
+
+  /*
+   Handle Reset Map Button
+  */
+  useEffect(() => {
+
     setResetMap(false)
     var mapConfig = props.defaultMapConfig
+
     if (mapConfig == null) { return }
 
     showResetButton(false)
 
     map.flyTo([mapConfig.lat, mapConfig.lng], mapConfig.zoom)
+
+    setSelectedSociety(null)
   }, [resetMap])
 
   return (
