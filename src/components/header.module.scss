@@ -1,10 +1,12 @@
+@use '../styles/variables';
+
 $headerHeight: 82px;
 
 .header, .open-header {
     margin: 0;
     min-height: $headerHeight;
     width: 100vw;
-    background-color: rgba(15, 45, 109, 0.7);
+    background-color: variables.$iups-yellow-transparent;
     backdrop-filter: blur(10px);
     display: flex;
     align-items: center;
@@ -17,7 +19,7 @@ $headerHeight: 82px;
 
 #main-logo, #main-logo-open-nav {
     padding: 0;
-    width: 170px;
+    width: 140px;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -45,7 +47,7 @@ $headerHeight: 82px;
 
 .nav-item {
     padding: 10px;
-    color: white;
+    color: variables.$iups-brown;
     font-size: .9rem;
     margin-right: 1.3rem;
     text-decoration: none;
@@ -59,13 +61,13 @@ $headerHeight: 82px;
 }
 
 .nav-item:hover {
-    color: black;
-    background-color: white;
+    color: white;
+    background-color: variables.$iups-brown;
 }
 
 .active-nav-item {
-    color: black;
-    background-color: white;
+    color: white;
+    background-color: variables.$iups-brown;
 }
 
 @media only screen and (max-width: 950px) {
@@ -77,7 +79,7 @@ $headerHeight: 82px;
         margin: 0;
         min-height: 10vh;
         width: 100vw;
-        background-color: rgba(15, 45, 109, 0.7);
+        background-color: variables.$iups-yellow-transparent;
         backdrop-filter: blur(10px);
         display: block;
         align-items: center;

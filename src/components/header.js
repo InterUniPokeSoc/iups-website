@@ -13,7 +13,7 @@ function Header() {
     <header className={navVisible ? headerStyles.openHeader : headerStyles.header}>
       <div className={headerStyles.mainLogoWrapper}>
       <Link to="/">
-        <img id={navVisible ? headerStyles.mainLogoOpenNav : headerStyles.mainLogo} src={'./images/iups-logo-acc.svg'} alt="Main Website Logo"/>
+        <img id={navVisible ? headerStyles.mainLogoOpenNav : headerStyles.mainLogo} src={'./images/iups-logo-full.svg'} alt="Main Website Logo"/>
       </Link>
       </div>
 

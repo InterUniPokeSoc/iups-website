@@ -25,7 +25,7 @@ function IndexPage() {
         <img className="main-bg" src="/images/sheffieldbg.jpeg" />
         <div className="main-area-flex">
           <div className="info">
-            <h1 className="index-title title">A Nationwide Group of Pokémon Societies</h1>
+            <h1 className="medium-title shiny-title">A Nationwide Group of Pokémon Societies</h1>
             <p>
             The Inter-University Pokémon Society is a union of more than 30 societies joined together to collaborate on all things Pokémon.
             </p>

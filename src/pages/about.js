@@ -20,9 +20,9 @@ function AboutPage() {
           <CircleImageTitle src="images/harold-wide.jpg">About Us</CircleImageTitle>
 
           <h1 className="shiny-title center-margins medium-title">What is the I-UPS?</h1>
-          <p className={aboutStyles.paragraph}>The Inter-University Pokémon Society is a group of over 20 university countries around the UK, from Durham to Portsmouth.
-            The I-UPS is designed to give university societies a central space to communicate and organise with each other, we also provide
-            assistance to people looking to set up new university Pokémon societies.
+          <p className={aboutStyles.paragraph}>The Inter-University Pokémon Society is a conglomerate of over 30 UK university societies, 
+          joined together to collaborate on all things Pokémon. We look to support and help form Pokémon Societies across England, Scotland, 
+          Wales, and N. Ireland. If you're wanting to set a PokéSoc up, give us a shout!
           </p>
 
           <section className={aboutStyles.iconsContainer}>
@@ -52,6 +52,12 @@ function AboutPage() {
             <a className={aboutStyles.hoverBox}>A Pokémon Community</a>
             <img className={aboutStyles.wideOverlayImage} src="images/londongang.png"/>
           </div>
+
+          <h1 className="shiny-title center-margins medium-title">The Comté</h1>
+          <p className={aboutStyles.paragraph}>The Inter-University Pokémon Society is a conglomerate of over 30 UK university societies, 
+          joined together to collaborate on all things Pokémon. We look to support and help form Pokémon Societies across England, Scotland, 
+          Wales, and N. Ireland. If you're wanting to set a PokéSoc up, give us a shout!
+          </p>
 
           <h2 className="shiny-title center-margins medium-title">Further Information</h2>
           <ul>
