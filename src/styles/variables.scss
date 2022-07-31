@@ -1,0 +1,31 @@
+@import 'https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat:ital,wght@0,400;0,700;1,400&family=Work+Sans:ital,wght@0,400;0,700;1,400&family=Baskervvill&family=Encode+Sans+SC:wght@300;400;500;700&display=swap';
+
+// Colours
+$primary-color: rgb(15, 45, 109); // TODO: Replace this.
+$secondary-color: rgb(173, 183, 204);
+
+$iups-yellow: #ffe29a;
+$iups-yellow-transparent: rgba(255, 248, 172, 0.7); // rgba(255, 256, 184, 0.7);
+$iups-pastel-green: #d5f4bf;
+
+$iups-dark-yellow: #fcd161;
+$iups-dark-green: #baf88f;
+
+$iups-brown: #373227;
+
+$iups-blue: rgb(15, 45, 109);
+$iups-light-blue: rgb(173, 183, 204);
+
+$standard-gradient: linear-gradient(to right, $iups-yellow, $iups-pastel-green);
+$darker-gradient: linear-gradient(to right, $iups-dark-yellow, $iups-dark-green);
+
+// Fonts
+$display-font: 'Abril Fatface';
+$main-font: 'Work Sans';
+
+// Sizes
+$standard-mobile-max-width: 950px;
+
+$large-title-font-size: 4.0em;
+$title-font-size: 2.4em;
+$medium-font-size: 2.0em;

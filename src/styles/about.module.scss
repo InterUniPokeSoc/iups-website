@@ -1,0 +1,88 @@
+@use 'variables';
+
+.paragraph {
+  width: 50%;
+  min-width: 300px;
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.icons-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-items: center;
+  align-items: flex-start;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.icon {
+  display: block;
+  margin: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  flex: 1 1 0px;
+  text-align: center;
+}
+
+.icon-image-container {
+  width: 140px;
+  height: 140px;
+  background: variables.$darker-gradient;
+  border-radius: 50%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-image {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.invert-icon {
+  filter: invert(100%);
+}
+
+.icon-text {
+  font-size: 1.4em;
+  margin: 10px;
+  text-align: center;
+  display: block;
+}
+.wide-overlay-image-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.wide-overlay-image {
+  width: 100%;
+  height: max-content;
+  z-index: 1;
+  margin: 20px 0;
+  opacity: 0.65;
+}
+
+.hover-box {
+  font-family: variables.$main-font;
+  font-size: 6.0em;
+  font-weight: bold;
+  z-index: 100;
+  opacity: 100%;
+  width: 100%;
+  color: black;
+  opacity: 1.0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 20px;
+  mix-blend-mode: lighten;
+}

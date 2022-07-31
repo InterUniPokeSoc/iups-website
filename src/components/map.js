@@ -1,63 +1,75 @@
-import React from 'react';
-import mapboxgl from 'mapbox-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
-import * as mapStyles from './map.module.scss';
-import { getSocieties } from "../utils/societies";
+import React, { useEffect, useState, useRef } from 'react'
+import Helmet from 'react-helmet'
+import { MapContainer, TileLayer, Marker, Popup, useMap, useLeafletContext } from 'react-leaflet'
+import * as mapStyles from './map.module.scss'
+import '../styles/leaflet.css'
+import * as L from 'leaflet'
+import MapAdjustments from './mapAdjustments'
 
-mapboxgl.accessToken = process.env.GATSBY_MAPBOX_KEY;
-
-class Map extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      lng: -3.638,
-      lat: 53.927,
-      zoom: 5.2
-    };
+export default function Map(props) {
+  const initialState = {
+    lat: 54.927,
+    lng: -3.638,
+    zoom: 6.2
   }
 
-  componentDidMount() {
-    const map = new mapboxgl.Map({
-      container: this.mapContainer,
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [this.state.lng, this.state.lat],
-      zoom: this.state.zoom,
-    });
+  const icon = L.icon({
+    iconUrl: '/images/iups-icon.png',
+    iconSize: [46, 46],
+    iconAnchor: [12, 12],
+    popupAnchor: [0, 0],
+  });
 
-    // const marker1 = new mapboxgl.Marker()
-    //   .setLngLat([-1.4875136, 53.3811227])
-    //   .setPopup(new mapboxgl.Popup().setHTML("<h1>Hello World!</h1>"))
-    //   .addTo(map);
+  // State to keep track of changing map parameters
+  const [mapParams, setMapParams] = useState(initialState)
 
-    var societies = [];
+  // Keeps track of list of societies
+  const [societyList, setSocietyList] = useState(props.societyList)
 
-    getSocieties().then((dbList) => {
-      console.log(dbList);
-      Object.values(dbList).map((society) => {
+  // Keeps track of the selected society from the sidebar
+  const [selectedSociety, setSelectedSociety] = useState(props.selected)
   
-        societies.push([
-          society.name,
-          society.longitude,
-          society.latitude
-        ]);
+  /*
+   Handle Society Selection from Sidebar
+  */
+  useEffect(() => {
+    societyList.forEach( society => {
+      if (society.name == props.selected) {
+        setSelectedSociety(society)
+      }
+    })
+  }, [props.selected])
 
-        const marker1 = new mapboxgl.Marker()
-          .setLngLat([society.longitude, society.latitude])
-          .setPopup(new mapboxgl.Popup().setHTML("<h1>"+society.name+"</h1>"))
-          .addTo(map);
-      });
-  
-    }).catch((e) => {});
 
-  }
+  /*
+   Add Markers to Map on update of the Society List
+  */
+  useEffect(() => {
+    setSocietyList(props.societyList)
+  }, [props.societyList])
 
-  render() {
-    return (
-      <div>
-        <div ref={el => this.mapContainer = el} className={mapStyles.mapContainer} />
-      </div>
-    )
-  }
+  return (
+    <div>
+      <MapContainer
+      id="main-map" 
+      center={[mapParams.lat, mapParams.lng]} zoom={mapParams.zoom} 
+      zoomControl={false}
+      scrollWheelZoom={true}>
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        { societyList.map( society => 
+          <Marker position={[society.latitude, society.longitude]}
+                  icon={icon}>
+            <Popup>
+              {society.name}
+            </Popup>
+          </Marker>
+        )}
+
+        <MapAdjustments selectedSociety={selectedSociety} defaultMapConfig={initialState}/>
+      </MapContainer>
+    </div>
+  )
 }
-
-export default Map;

@@ -3,6 +3,7 @@ import {Link} from 'gatsby';
 import {Helmet} from "react-helmet";
 import Layout from '../components/layout';
 import TitleBanner from '../components/titleBanner';
+import CircleImageTitle from '../components/circleImageTitle';
 import '../styles/general.scss';
 import '../styles/howtojoin.scss';
 
@@ -18,23 +19,25 @@ function HowToJoinPage() {
     <Layout>
 
       <main className="page-content">
-        <TitleBanner imageSource="/images/londongang.png" title="How to Join" />
+        {/* <TitleBanner imageSource="/images/londongang.png" title="How to Join" /> */}
 
         <section className="page-section">
-          <h2 className="title">Society Requirements</h2>
+          <CircleImageTitle src="images/londongang.png">How to Join</CircleImageTitle>
+
+          <h2 className="shiny-title medium-title">Society Requirements</h2>
           <ul>
             <li>You must be a dedicated Pokémon society, not a general gaming society. 'Pokémon and Nintendo' hybrid societies are accepted.</li>
             <li>You should ideally be associated with a Students' Union where possible.</li>
             <li>Your members should primarily be students and/or alumni.</li>
           </ul>
 
-          <h2 className="title">Individual Member Requirements</h2>
+          <h2 className="htj-title">Individual Member Requirements</h2>
           <ul>
             <li>You must be a member of a Pokémon Society that is associated with the I-UPS.</li>
             <li>You must be over 18 - to ensure everyone stays safe.</li>
           </ul>
 
-          <h2 className="title">FAQ</h2>
+          <h2 className="htj-title">FAQ</h2>
           <h3>Can I join I-UPS if I am a member of a general gaming or E-Sports society?</h3>
           <a>No, you must be a member of a dedicated Pokémon Society. Our aim is to bring together Pokémon Societies and to help run collaborative events. We are not focused on e-sports or general gaming.</a>
 

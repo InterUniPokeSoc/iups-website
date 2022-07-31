@@ -1,3 +1,5 @@
+@use 'variables';
+
 .main-content {
 
 }
@@ -26,6 +28,10 @@
     @media only screen and (max-width: 768px) {
         flex-direction: column-reverse;
     }
+}
+
+.index-title {
+    color: variables.$iups-yellow;
 }
 
 

@@ -1,3 +1,5 @@
+$borderRadius: 20px;
+
 #map {
   position: absolute;
   top: 0;
@@ -10,40 +12,137 @@
 }
 
 .map-sidebar-wrapper {
-  display: flex;
+  display: block;
 }
 
 .page-map {
-  height: 100vh;
-  flex-basis: 70%;
+  height: calc(100vh - 82px);
+  width: 100vw;
+}
+
+#sidebar-toggle-button {
+  filter: invert(100%);
+  width: 30px;
+  height: 20px;
+  padding: 10px;
+  position: sticky;
+  top: 3px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  visibility: hidden;
 }
 
 .sidebar {
-  height: 100vh;
-  flex-basis: 30%;
-  background-color: rgb(30,30,30);
+  width: 30%;
+  max-width: 360px;
+  height: 80vh;
+  position: absolute;
+  left: 20px;
+  top: 12vh;
+  bottom: auto;
+  border-radius: $borderRadius $borderRadius $borderRadius $borderRadius;
+  -webkit-border-radius: $borderRadius $borderRadius $borderRadius $borderRadius;
+  z-index: 1000;
+
+  backdrop-filter: blur(7px);
+  
+  background-color: rgba(30,30,30, 0.7);
+
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+
+  transition: height 0.3s linear;
+}
+
+@media only screen and (max-width: 950px) {
+  .sidebar {
+    max-width: 1000px;
+    width: 95%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    top: auto;
+    bottom: 0vh;
+    border-radius: $borderRadius $borderRadius 0px 0px;
+    -webkit-border-radius: $borderRadius $borderRadius 0px 0px;
+  }
+
+  .sidebar-closed {
+    height: 40vh;
+  }
+
+  .sidebar-open {
+    height: 80vh;
+  }
+
+  #sidebar-toggle-button {
+    visibility: visible;
+  }
+  
 }
 
 .search-bar {
-  margin: 20px auto;
-  margin-bottom: 30px;
+  position: sticky;
+  top: 40px;
+  margin-left: 20px;
+  margin-right: 20px;
   display: block;
   padding: 10px;
-  width: 70%;
-  max-width: 300px;
+  background-color: rgba(255,255,255,0.8);
+  backdrop-filter: blur(7px);
   border-radius: 10px;
+  border: white 1px solid;
+  z-index: 100;
 }
 
 .society-wrapper {
   background-color: rgb(131, 48, 113);
   color: white;
-  margin: auto;
+  margin: 10px auto;
   padding: 10px;
   border-radius: 30px;
   display: block;
   width: 80%;
+  min-height: 150px;
   max-width: 400px;
   text-align: center;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.society-wrapper:first-child {
+  margin-top: 30px;
+}
+
+.society-wrapper:hover {
+  margin: 20px auto;
+  transform: scale(1.08);
+}
+
+.society-wrapper:hover:first-child {
+  margin-top: 30px;
+  transform: scale(1.08);
+}
+
+.social-icon-society-wrapper {
+  padding: 5px;
+  margin: 5px;
+  display: inline-block;
+}
+
+.social-icon-society {
+  width: 35px;
+  height: 35px;
+  padding: 5px;
+  transition: filter 0.2s;
+}
+
+.social-icon-society:hover {
+  filter: brightness(85%)
+}
+
+.invert-icon {
+  filter: invert(1);
 }
 
 .society-title {

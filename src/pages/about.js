@@ -2,9 +2,9 @@ import React from 'react';
 import {Link, useState, useRef, useEffect} from 'gatsby';
 import {Helmet} from "react-helmet";
 import Layout from '../components/layout';
-import TitleBanner from '../components/titleBanner';
 import '../styles/general.scss';
-import '../styles/about.scss';
+import * as aboutStyles from '../styles/about.module.scss';
+import CircleImageTitle from '../components/circleImageTitle';
 
 function AboutPage() {
 
@@ -16,11 +16,53 @@ function AboutPage() {
 
     <Layout>
       <main className="page-content">
-        <TitleBanner imageSource="/images/wooperbanner.svg" title="About" />
+        <section>
+          <CircleImageTitle src="images/harold-wide.jpg">About Us</CircleImageTitle>
 
-        <section className="page-section">
-          <h1 className="title">What is the I-UPS?</h1>
-          <p>Test</p>
+          <h1 className="shiny-title center-margins medium-title">What is the I-UPS?</h1>
+          <p className={aboutStyles.paragraph}>The Inter-University Pokémon Society is a conglomerate of over 30 UK university societies, 
+          joined together to collaborate on all things Pokémon. We look to support and help form Pokémon Societies across England, Scotland, 
+          Wales, and N. Ireland. If you're wanting to set a PokéSoc up, give us a shout!
+          </p>
+
+          <section className={aboutStyles.iconsContainer}>
+            <div className={aboutStyles.icon}>
+              <div className={aboutStyles.iconImageContainer}>
+                <img className={[aboutStyles.iconImage, aboutStyles.invertIcon].join(' ')} src="images/group-icon.svg" />
+              </div>
+              <a className={aboutStyles.iconText}>Community of 20+ Societies</a>
+            </div>
+
+            <div className={aboutStyles.icon}>
+              <div className={aboutStyles.iconImageContainer}>
+                <img className={[aboutStyles.iconImage, aboutStyles.invertIcon].join(' ')} src="images/schedule-calendar-icon.svg" />
+              </div>
+              <a className={aboutStyles.iconText}>Multi-Uni Events</a>
+            </div>
+
+            <div className={aboutStyles.icon}>
+              <div className={aboutStyles.iconImageContainer}>
+                <img className={aboutStyles.iconImage} src="images/icon_clyde_white_RGB.svg" />
+              </div>
+              <a className={aboutStyles.iconText}>Discord Server</a>
+            </div>
+          </section>
+
+          <div className={aboutStyles.wideOverlayImageContainer}>
+            <a className={aboutStyles.hoverBox}>A Pokémon Community</a>
+            <img className={aboutStyles.wideOverlayImage} src="images/londongang.png"/>
+          </div>
+
+          <h1 className="shiny-title center-margins medium-title">The Comté</h1>
+          <p className={aboutStyles.paragraph}>The Inter-University Pokémon Society is a conglomerate of over 30 UK university societies, 
+          joined together to collaborate on all things Pokémon. We look to support and help form Pokémon Societies across England, Scotland, 
+          Wales, and N. Ireland. If you're wanting to set a PokéSoc up, give us a shout!
+          </p>
+
+          <h2 className="shiny-title center-margins medium-title">Further Information</h2>
+          <ul>
+            <li>Pokémon and All Respective Names are Trademark & &copy; of Nintendo 1996-2022.</li>
+          </ul>
         </section>
 
       </main>
