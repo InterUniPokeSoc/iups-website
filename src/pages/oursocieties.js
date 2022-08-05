@@ -152,31 +152,33 @@ export default function OurSocietiesPage() {
     sidebar.classList.add(sidebarOpen ? 'sidebar-open' : 'sidebar-closed')
   }, [sidebarOpen])
 
-  return (
-    <>
-    <Helmet>
-      <title>Inter-Uni PokéSoc - Our Societies</title>
-    </Helmet>
+  if (typeof window !== 'undefined') {
+    return (
+      <>
+      <Helmet>
+        <title>Inter-Uni PokéSoc - Our Societies</title>
+      </Helmet>
 
-    <Layout>
-      <main className="page-content">
-        <div className="map-sidebar-wrapper">
-          <div className="page-map">
-            { typeof window !== 'undefined' ?
-              <Map societyList={societies} selected={selectedSociety} />
-              : null
-            }
+      <Layout>
+        <main className="page-content">
+          <div className="map-sidebar-wrapper">
+            <div className="page-map">
+              { typeof window !== 'undefined' ?
+                <Map societyList={societies} selected={selectedSociety} />
+                : null
+              }
+            </div>
+
+            <section className="sidebar" id="sidebar">
+              <img id="sidebar-toggle-button" className="sidebar-closed" onClick={e => setSidebarOpen(!sidebarOpen)} src={sidebarOpen ? 'images/down-arrow.svg' : 'images/up-arrow.svg'}></img>
+              <input className="search-bar" placeholder="Search for a society..." onChange={e => filterSocietyList(e.target.value)}></input>
+              <div id="society-list"></div>
+            </section>
           </div>
+        </main>
 
-          <section className="sidebar" id="sidebar">
-            <img id="sidebar-toggle-button" className="sidebar-closed" onClick={e => setSidebarOpen(!sidebarOpen)} src={sidebarOpen ? 'images/down-arrow.svg' : 'images/up-arrow.svg'}></img>
-            <input className="search-bar" placeholder="Search for a society..." onChange={e => filterSocietyList(e.target.value)}></input>
-            <div id="society-list"></div>
-          </section>
-        </div>
-      </main>
-
-    </Layout>
-    </>
-  );
+      </Layout>
+      </>
+    );
+  }
 }
