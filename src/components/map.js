@@ -48,28 +48,30 @@ export default function Map(props) {
     setSocietyList(props.societyList)
   }, [props.societyList])
 
-  return (
-    <div>
-      <MapContainer
-      id="main-map" 
-      center={[mapParams.lat, mapParams.lng]} zoom={mapParams.zoom} 
-      zoomControl={false}
-      scrollWheelZoom={true}>
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        { societyList.map( society => 
-          <Marker position={[society.latitude, society.longitude]}
-                  icon={icon}>
-            <Popup>
-              {society.name}
-            </Popup>
-          </Marker>
-        )}
+  if (typeof window !== 'undefined') {
+    return (
+      <div>
+        <MapContainer
+        id="main-map" 
+        center={[mapParams.lat, mapParams.lng]} zoom={mapParams.zoom} 
+        zoomControl={false}
+        scrollWheelZoom={true}>
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          { societyList.map( society => 
+            <Marker position={[society.latitude, society.longitude]}
+                    icon={icon}>
+              <Popup>
+                {society.name}
+              </Popup>
+            </Marker>
+          )}
 
-        <MapAdjustments selectedSociety={selectedSociety} defaultMapConfig={initialState}/>
-      </MapContainer>
-    </div>
-  )
+          <MapAdjustments selectedSociety={selectedSociety} defaultMapConfig={initialState}/>
+        </MapContainer>
+      </div>
+    )
+  }
 }
