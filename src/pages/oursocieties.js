@@ -162,7 +162,7 @@ export default function OurSocietiesPage() {
       <main className="page-content">
         <div className="map-sidebar-wrapper">
           <div className="page-map">
-            { typeof window !== 'undefined' ?
+            { process.env.BROWSER ?
               <Map societyList={societies} selected={selectedSociety} />
               : null
             }
