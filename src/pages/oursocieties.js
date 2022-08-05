@@ -162,7 +162,10 @@ export default function OurSocietiesPage() {
       <main className="page-content">
         <div className="map-sidebar-wrapper">
           <div className="page-map">
-            <Map societyList={societies} selected={selectedSociety} />
+            { typeof window !== 'undefined' ?
+              <Map societyList={societies} selected={selectedSociety} />
+              : null
+            }
           </div>
 
           <section className="sidebar" id="sidebar">
