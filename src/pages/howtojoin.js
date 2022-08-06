@@ -2,7 +2,6 @@ import React from 'react';
 import {Link} from 'gatsby';
 import {Helmet} from "react-helmet";
 import Layout from '../components/layout';
-import TitleBanner from '../components/titleBanner';
 import CircleImageTitle from '../components/circleImageTitle';
 import '../styles/general.scss';
 import '../styles/howtojoin.scss';
@@ -19,10 +18,8 @@ function HowToJoinPage() {
     <Layout>
 
       <main className="page-content">
-        {/* <TitleBanner imageSource="/images/londongang.png" title="How to Join" /> */}
-
         <section className="page-section">
-          <CircleImageTitle src="images/londongang.png">How to Join</CircleImageTitle>
+          <CircleImageTitle src="images/backgrounds/londongang.png">How to Join</CircleImageTitle>
 
           <h2 className="shiny-title medium-title">Society Requirements</h2>
           <ul>

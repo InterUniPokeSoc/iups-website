@@ -89,9 +89,9 @@ function createSocietySidebarItem(id) {
   }
 
   // Social Media Icons
-  createSocialMediaIcon(society.facebook, sideBarItem, "/images/f_logo_RGB-White_250.png", false);
-  createSocialMediaIcon(society.instagram, sideBarItem, "/images/instagram-logo-black.png", true);
-  createSocialMediaIcon(society.discord, sideBarItem, "/images/icon_clyde_white_RGB.svg", false);
+  createSocialMediaIcon(society.facebook, sideBarItem, "/images/social-media-icons/facebook/f_logo_RGB-White_250.png", false);
+  createSocialMediaIcon(society.instagram, sideBarItem, "/images/social-media-icons/instagram/instagram-logo-black.png", true);
+  createSocialMediaIcon(society.discord, sideBarItem, "/images/social-media-icons/discord/icon_clyde_white_RGB.png", false);
 
   // Add to Sidebar
   sideBar.appendChild(sideBarItem);

@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link, useState, useRef, useEffect} from 'gatsby';
 import {Helmet} from "react-helmet";
 import Layout from '../components/layout';
 import '../styles/general.scss';
@@ -17,7 +16,7 @@ function AboutPage() {
     <Layout>
       <main className="page-content">
         <section>
-          <CircleImageTitle src="images/harold-wide.jpg">About Us</CircleImageTitle>
+          <CircleImageTitle src="images/pokemon/harold-wide.jpg">About Us</CircleImageTitle>
 
           <h1 className="shiny-title center-margins medium-title">What is the I-UPS?</h1>
           <p className={aboutStyles.paragraph}>The Inter-University Pokémon Society is a conglomerate of over 30 UK university societies, 
@@ -28,21 +27,21 @@ function AboutPage() {
           <section className={aboutStyles.iconsContainer}>
             <div className={aboutStyles.icon}>
               <div className={aboutStyles.iconImageContainer}>
-                <img className={[aboutStyles.iconImage, aboutStyles.invertIcon].join(' ')} src="images/group-icon.svg" />
+                <object className={[aboutStyles.iconImage, aboutStyles.invertIcon].join(' ')} data="images/icons/group-icon.svg" type="image/svg+xml" />
               </div>
               <a className={aboutStyles.iconText}>Community of 20+ Societies</a>
             </div>
 
             <div className={aboutStyles.icon}>
               <div className={aboutStyles.iconImageContainer}>
-                <img className={[aboutStyles.iconImage, aboutStyles.invertIcon].join(' ')} src="images/schedule-calendar-icon.svg" />
+                <object className={[aboutStyles.iconImage, aboutStyles.invertIcon].join(' ')} data="images/icons/schedule-calendar-icon.svg" type="image/svg+xml" />
               </div>
               <a className={aboutStyles.iconText}>Multi-Uni Events</a>
             </div>
 
             <div className={aboutStyles.icon}>
               <div className={aboutStyles.iconImageContainer}>
-                <img className={aboutStyles.iconImage} src="images/icon_clyde_white_RGB.svg" />
+                <object className={aboutStyles.iconImage} data="images/social-media-icons/discord/icon_clyde_white_RGB.svg" type="image/svg+xml" />
               </div>
               <a className={aboutStyles.iconText}>Discord Server</a>
             </div>
@@ -50,7 +49,7 @@ function AboutPage() {
 
           <div className={aboutStyles.wideOverlayImageContainer}>
             <a className={aboutStyles.hoverBox}>A Pokémon Community</a>
-            <img className={aboutStyles.wideOverlayImage} src="images/londongang.png"/>
+            <img className={aboutStyles.wideOverlayImage} src="images/backgrounds/londongang.png"/>
           </div>
 
           <h1 className="shiny-title center-margins medium-title">The Comté</h1>

@@ -13,7 +13,7 @@ function Header() {
     <header className={navVisible ? headerStyles.openHeader : headerStyles.header}>
       <div className={headerStyles.mainLogoWrapper}>
       <Link to="/">
-        <img id={navVisible ? headerStyles.mainLogoOpenNav : headerStyles.mainLogo} src={'./images/iups-logo-full.svg'} alt="Main Website Logo"/>
+        <object id={navVisible ? headerStyles.mainLogoOpenNav : headerStyles.mainLogo} data={'./images/iups-branding/iups-logo-full.svg'} type="image/svg+xml" />
       </Link>
       </div>
 
@@ -28,7 +28,7 @@ function Header() {
         </ul>
       </nav>
 
-      <img className={navVisible ? headerStyles.closeIcon : headerStyles.navIcon} onClick={() => switchNav()} src={navVisible ? "/images/times-solid.svg" : "/images/bars-solid.svg"}/>
+      <object className={navVisible ? headerStyles.closeIcon : headerStyles.navIcon} onClick={() => switchNav()} data={navVisible ? "/images/icons/times-solid.svg" : "/images/icons/bars-solid.svg"} type="image/svg+xml"/>
     </header>
   );
 }

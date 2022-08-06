@@ -14,7 +14,7 @@ export default function Map(props) {
   }
 
   const icon = L.icon({
-    iconUrl: '/images/iups-icon.png',
+    iconUrl: '/images/iups-branding/iups-icon.png',
     iconSize: [46, 46],
     iconAnchor: [12, 12],
     popupAnchor: [0, 0],
