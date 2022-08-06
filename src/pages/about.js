@@ -36,7 +36,7 @@ function AboutPage() {
               <div className={aboutStyles.iconImageContainer}>
                 <img className={[aboutStyles.iconImage, aboutStyles.invertIcon].join(' ')} src={ CommunityIcon } />
               </div>
-              <a className={aboutStyles.iconText}>Community of 20+ Societies</a>
+              <a className={aboutStyles.iconText}>Community of 30+ Societies</a>
             </div>
 
             <div className={aboutStyles.icon}>
@@ -54,10 +54,10 @@ function AboutPage() {
             </div>
           </section>
 
-          <div className={aboutStyles.wideOverlayImageContainer}>
+          {/* <div className={aboutStyles.wideOverlayImageContainer}>
             <a className={aboutStyles.hoverBox}>A Pokémon Community</a>
             <img className={aboutStyles.wideOverlayImage} src={ LondonGangBg } />
-          </div>
+          </div> */}
 
           <h1 className="shiny-title center-margins medium-title">The Comté</h1>
           <p className={aboutStyles.paragraph}>The Inter-University Pokémon Society is a conglomerate of over 30 UK university societies, 
@@ -65,10 +65,33 @@ function AboutPage() {
           Wales, and N. Ireland. If you're wanting to set a PokéSoc up, give us a shout!
           </p>
 
+          <h1 className="shiny-title center-margins medium-title">History</h1>
+          <h1 className="shiny-title center-margins small-title">PokéSoc Beginnings</h1>
+          <p className={aboutStyles.paragraph}>The UK's oldest known Pokémon Society began in Hull in 2010, followed shortly by York and 
+          Sheffield in 2012. These early societies were dedicated to growing their membership along with running socials and tournaments. Early 
+          signs of aliances were formed with Sheffield running a 24-hour event involving Leeds, but this was a mere prelude compared to 
+          what followed.
+          </p>
+          <h1 className="shiny-title center-margins small-title">Sussex's Grand Idea</h1>
+          <p className={aboutStyles.paragraph}>Sussex initially contacted Durham
+          </p>
+          <h1 className="shiny-title center-margins small-title">The Discord Server</h1>
+          <p className={aboutStyles.paragraph}>As more and more societies were in correspondance, it was apparent that a place was needed to
+          unify communication with all the societies, that place became our Discord server. The server was initially private and intended just for
+          committee's to correspond, however, this quickly changed with the server opening to all members in 2021.
+          </p>
+          <h1 className="shiny-title center-margins small-title">Comté is Formed</h1>
+          <p className={aboutStyles.paragraph}>The initial leadership of I-UPS consisted of the triad of Hanny, Dom and Georgina, with I-UPS already 
+          having dozens of societies involved, it was clear that a governing body was needed to manage I-UPS. A group of members applied, were chosen 
+          and quickly got to work at making I-UPS the amazing place it is now.
+          </p>
+          <h1 className="shiny-title center-margins small-title">The First Draft League</h1>
+          <p className={aboutStyles.paragraph}>I-UPS now needed to run its first event, as Hanny had run draft leagues for Durham before this became the
+          obvious choice. Many societies signed up, battled hard and eventually a winner was crowned. That winner was MewCL (UCL).
+          </p>
+
           <h2 className="shiny-title center-margins medium-title">Further Information</h2>
-          <ul>
-            <li>Pokémon and All Respective Names are Trademark & &copy; of Nintendo 1996-2022.</li>
-          </ul>
+          <p className={aboutStyles.paragraph}>Pokémon and All Respective Names and Designs are Trademark & &copy; of Nintendo 1996-2022.</p>
         </section>
 
       </main>
