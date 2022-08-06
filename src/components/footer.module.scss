@@ -1,8 +1,11 @@
+@use '../styles/variables';
+
 .footer {
   margin: 0px;
   padding: 10px;
-  background-color: rgba(15, 45, 109, 1);
-  color: white;
+  background-color: variables.$iups-yellow;
+  color: variables.$iups-brown;
+  font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;

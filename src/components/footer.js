@@ -6,7 +6,7 @@ function Footer() {
 
   return(
     <footer className={footerStyles.footer}>
-      <p>© Inter-University Pokémon Society {year}. Designed by Matt Sykes.</p>
+      <p>© Inter-University Pokémon Society {year}.</p>
     </footer>
   );
 }
