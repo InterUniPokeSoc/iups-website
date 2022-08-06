@@ -9,6 +9,8 @@ import RoundButton from '../components/roundButton';
 import TitleBanner from '../components/titleBanner';
 import VideoBanner from '../components/videoBanner';
 
+import Doggo from '../images/branding/doggo.png'
+
 
 function IndexPage() {
   return (
@@ -34,7 +36,7 @@ function IndexPage() {
             </p>
           </div>
           <div id="home-logo-wrapper">
-            <img id="home-logo" src="/images/iups-branding/doggo.png" link="" />
+            <img id="home-logo" src={Doggo} link="" />
           </div>
         </div>
 
