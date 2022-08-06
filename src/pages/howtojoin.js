@@ -6,6 +6,8 @@ import CircleImageTitle from '../components/circleImageTitle';
 import '../styles/general.scss';
 import '../styles/howtojoin.scss';
 
+// Image Imports
+import TitleImg from '../images/backgrounds/londongang.png'
 
 function HowToJoinPage() {
 
@@ -19,7 +21,7 @@ function HowToJoinPage() {
 
       <main className="page-content">
         <section className="page-section">
-          <CircleImageTitle src="images/backgrounds/londongang.png">How to Join</CircleImageTitle>
+          <CircleImageTitle src={ TitleImg }>How to Join</CircleImageTitle>
 
           <h2 className="shiny-title medium-title">Society Requirements</h2>
           <ul>

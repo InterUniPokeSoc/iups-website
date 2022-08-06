@@ -8,6 +8,13 @@ import Map from '../components/map';
 
 import { getSocieties } from "../utils/societies";
 
+// Image Imports
+import InstaIcon from '../images/social-media-icons/instagram/instagram-logo-black.png'
+import DiscordIcon from '../images/social-media-icons/discord/icon_clyde_white_RGB.svg'
+import FacebookIcon from '../images/social-media-icons/facebook/f_logo_RGB-White_250.png'
+import UpIcon from '../images/icons/up-arrow.svg'
+import DownIcon from '../images/icons/down-arrow.svg'
+
 var societyList = [];
 var filteredSocietyList = [];
 var updateSocietyList;
@@ -89,9 +96,9 @@ function createSocietySidebarItem(id) {
   }
 
   // Social Media Icons
-  createSocialMediaIcon(society.facebook, sideBarItem, "/images/social-media-icons/facebook/f_logo_RGB-White_250.png", false);
-  createSocialMediaIcon(society.instagram, sideBarItem, "/images/social-media-icons/instagram/instagram-logo-black.png", true);
-  createSocialMediaIcon(society.discord, sideBarItem, "/images/social-media-icons/discord/icon_clyde_white_RGB.png", false);
+  createSocialMediaIcon(society.facebook, sideBarItem, FacebookIcon, false);
+  createSocialMediaIcon(society.instagram, sideBarItem, InstaIcon, true);
+  createSocialMediaIcon(society.discord, sideBarItem, DiscordIcon, false);
 
   // Add to Sidebar
   sideBar.appendChild(sideBarItem);
@@ -170,7 +177,7 @@ export default function OurSocietiesPage() {
             </div>
 
             <section className="sidebar" id="sidebar">
-              <img id="sidebar-toggle-button" className="sidebar-closed" onClick={e => setSidebarOpen(!sidebarOpen)} src={sidebarOpen ? 'images/down-arrow.svg' : 'images/up-arrow.svg'}></img>
+              <img id="sidebar-toggle-button" className="sidebar-closed" onClick={e => setSidebarOpen(!sidebarOpen)} src={sidebarOpen ?  DownIcon : UpIcon }></img>
               <input className="search-bar" placeholder="Search for a society..." onChange={e => filterSocietyList(e.target.value)}></input>
               <div id="society-list"></div>
             </section>

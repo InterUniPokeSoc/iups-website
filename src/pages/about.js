@@ -5,6 +5,13 @@ import '../styles/general.scss';
 import * as aboutStyles from '../styles/about.module.scss';
 import CircleImageTitle from '../components/circleImageTitle';
 
+// Image Imports
+import TitleImg from '../images/pokemon/harold-wide.jpg'
+import CommunityIcon from '../images/icons/group-icon.svg'
+import EventsIcon from '../images/icons/schedule-calendar-icon.svg'
+import DiscordIcon from '../images/social-media-icons/discord/icon_clyde_white_RGB.svg'
+import LondonGangBg from '../images/backgrounds/londongang.png'
+
 function AboutPage() {
 
   return (
@@ -16,7 +23,7 @@ function AboutPage() {
     <Layout>
       <main className="page-content">
         <section>
-          <CircleImageTitle src="images/pokemon/harold-wide.jpg">About Us</CircleImageTitle>
+          <CircleImageTitle src={ TitleImg }>About Us</CircleImageTitle>
 
           <h1 className="shiny-title center-margins medium-title">What is the I-UPS?</h1>
           <p className={aboutStyles.paragraph}>The Inter-University Pokémon Society is a conglomerate of over 30 UK university societies, 
@@ -27,21 +34,21 @@ function AboutPage() {
           <section className={aboutStyles.iconsContainer}>
             <div className={aboutStyles.icon}>
               <div className={aboutStyles.iconImageContainer}>
-                <object className={[aboutStyles.iconImage, aboutStyles.invertIcon].join(' ')} data="images/icons/group-icon.svg" type="image/svg+xml" />
+                <img className={[aboutStyles.iconImage, aboutStyles.invertIcon].join(' ')} src={ CommunityIcon } />
               </div>
               <a className={aboutStyles.iconText}>Community of 20+ Societies</a>
             </div>
 
             <div className={aboutStyles.icon}>
               <div className={aboutStyles.iconImageContainer}>
-                <object className={[aboutStyles.iconImage, aboutStyles.invertIcon].join(' ')} data="images/icons/schedule-calendar-icon.svg" type="image/svg+xml" />
+                <img className={[aboutStyles.iconImage, aboutStyles.invertIcon].join(' ')} src={ EventsIcon } />
               </div>
               <a className={aboutStyles.iconText}>Multi-Uni Events</a>
             </div>
 
             <div className={aboutStyles.icon}>
               <div className={aboutStyles.iconImageContainer}>
-                <object className={aboutStyles.iconImage} data="images/social-media-icons/discord/icon_clyde_white_RGB.svg" type="image/svg+xml" />
+                <img className={aboutStyles.iconImage} src={ DiscordIcon } />
               </div>
               <a className={aboutStyles.iconText}>Discord Server</a>
             </div>
@@ -49,7 +56,7 @@ function AboutPage() {
 
           <div className={aboutStyles.wideOverlayImageContainer}>
             <a className={aboutStyles.hoverBox}>A Pokémon Community</a>
-            <img className={aboutStyles.wideOverlayImage} src="images/backgrounds/londongang.png"/>
+            <img className={aboutStyles.wideOverlayImage} src={ LondonGangBg } />
           </div>
 
           <h1 className="shiny-title center-margins medium-title">The Comté</h1>

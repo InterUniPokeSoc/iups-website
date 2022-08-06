@@ -2,6 +2,11 @@ import React, {useState} from 'react';
 import {Link} from 'gatsby';
 import * as headerStyles from './header.module.scss';
 
+// Image Imports
+import MainLogo from '../images/branding/iups-logo-full.svg'
+import HamburgerIcon from '../images/icons/bars-solid.svg'
+import CloseIcon from '../images/icons/times-solid.svg'
+
 function Header() {
   const [navVisible, setNavVisible] = useState(false);
 
@@ -13,7 +18,7 @@ function Header() {
     <header className={navVisible ? headerStyles.openHeader : headerStyles.header}>
       <div className={headerStyles.mainLogoWrapper}>
       <Link to="/">
-        <object id={navVisible ? headerStyles.mainLogoOpenNav : headerStyles.mainLogo} data={'./images/iups-branding/iups-logo-full.svg'} type="image/svg+xml" />
+        <img id={navVisible ? headerStyles.mainLogoOpenNav : headerStyles.mainLogo} src={ MainLogo }/>
       </Link>
       </div>
 
@@ -28,7 +33,7 @@ function Header() {
         </ul>
       </nav>
 
-      <object className={navVisible ? headerStyles.closeIcon : headerStyles.navIcon} onClick={() => switchNav()} data={navVisible ? "/images/icons/times-solid.svg" : "/images/icons/bars-solid.svg"} type="image/svg+xml"/>
+      <img className={navVisible ? headerStyles.closeIcon : headerStyles.navIcon} onClick={() => switchNav()} src={navVisible ? CloseIcon : HamburgerIcon } />
     </header>
   );
 }

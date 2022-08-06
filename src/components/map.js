@@ -6,6 +6,9 @@ import '../styles/leaflet.css'
 import * as L from 'leaflet'
 import MapAdjustments from './mapAdjustments'
 
+// Image Imports
+import MarkerIcon from '../images/branding/iups-icon.png'
+
 export default function Map(props) {
   const initialState = {
     lat: 54.927,
@@ -14,7 +17,7 @@ export default function Map(props) {
   }
 
   const icon = L.icon({
-    iconUrl: '/images/iups-branding/iups-icon.png',
+    iconUrl: MarkerIcon,
     iconSize: [46, 46],
     iconAnchor: [12, 12],
     popupAnchor: [0, 0],
