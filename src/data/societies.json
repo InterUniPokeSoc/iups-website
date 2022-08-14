@@ -1,0 +1,372 @@
+{
+    "societies": [
+        {
+            "name": "Abertay Pokémon Society",
+            "colours": [ 
+                "b91a2b",
+                "ffffff"
+            ],
+            "latitude": 56.4632009,
+            "longitude": -2.9744091,
+            "discord": "https://discord.gg/97GU7mc",
+            "twitter": "https://twitter.com/PoketaySociety",
+            "su-link": "https://www.abertaysa.com/groups/poketay-society"
+        },
+    
+        {
+            "name": "Birmingham Pokémon Society",
+            "colours": [ 
+                "ff1622",
+                "ffffff"
+            ],
+            "latitude": 52.4492377,
+            "longitude": -1.9276488,
+            "discord": "https://discord.gg/QkaUFHg3jF",
+            "facebook": "https://www.facebook.com/groups/469255993477288/",
+            "su-link": "https://www.guildofstudents.com/organisation/pokesoc/"
+        },
+
+        {
+            "name": "Bath Pokémon Society",
+            "colours": [ 
+                "1000a9",
+                "ffffff"
+            ],
+            "latitude": 51.3760752,
+            "longitude": -2.6154473
+        },
+
+        {
+            "name": "Bristol Pokémon Society",
+            "colours": [ 
+                "a71127",
+                "fddf3b"
+            ],
+            "latitude": 51.4567659,
+            "longitude": -2.4193113,
+            "instagram": "https://www.instagram.com/bristolpokemon/?hl=en",
+            "su-link": "https://www.bristolsu.org.uk/groups/bristol-pokemon-trainer-society"
+        },
+
+        {
+            "name": "Cambridge Pokémon Society",
+            "colours": [ 
+                "ed3333",
+                "faea33"
+            ],
+            "latitude": 52.2022138,
+            "longitude": 0.1153172,
+            "instagram": "https://instagram.com/cambridgepokemonsoc",
+            "facebook": "https://www.facebook.com/CambridgeUniversityPokemonSociety",
+            "su-link": "https://www.cambridgesu.co.uk/organisation/9571/"
+        },
+
+        {
+            "name": "Durham Pokémon Society",
+            "colours": [ 
+                "c21219",
+                "ffc525"
+            ],
+            "latitude": 54.773576,
+            "longitude": -1.5740081,
+            "discord": "https://discord.gg/2yddxr4XXY",
+            "su-link": "https://www.durhamsu.com/groups/pokemon-6bd2"
+        },
+
+        {
+            "name": "East Anglia Pokémon Society",
+            "colours": [ 
+                "73c5de",
+                "ec1626"
+            ],
+            "latitude": 52.6203091,
+            "longitude": 1.238072,
+            "discord": "https://discord.gg/DQr87JD",
+            "instagram": "https://instagram.com/uea_pokesoc",
+            "facebook": "https://www.facebook.com/groups/2600502316669778/?ref=bookmarks",
+            "twitter": "https://twitter.com/UEAPokesoc",
+            "su-link": "https://www.ueasu.org/opportunities/society/pokemon/"
+        },
+
+        {
+            "name": "Falmouth Pokémon Society",
+            "colours": [ 
+                "ffdd26",
+                "2d62bc"
+            ],
+            "latitude": 50.1707684,
+            "longitude": -5.4225554,
+            "discord": "https://discord.gg/4t3eagw",
+            "su-link": "https://www.thesu.org.uk/activities/groups/directory/group/fxupokemonsociety/"
+        },
+
+        {
+            "name": "UoG (Glasgow) Nintendo Society",
+            "colours": [ 
+                "e2001D"
+            ],
+            "latitude": 55.8672473,
+            "longitude": -4.2746072,
+            "discord": "https://discord.gg/EEuC8Gzj5c",
+            "instagram": "https://www.instagram.com/uofglasgow/?hl=en",
+            "twitter": "https://twitter.com/uofgnintendo?lang=en",
+            "facebook": "https://www.facebook.com/groups/1235802906599868/?fref=mentions",
+            "su-link": "https://www.glasgowunisrc.org/organisation/7759/"
+        },
+
+        {
+            "name": "Hull Pokémon Society",
+            "colours": [ 
+                "151515",
+                "ffffff"
+            ],
+            "latitude": 53.7717421,
+            "longitude": -0.3690288,
+            "discord": "https://discord.gg/wabXzKb",
+            "twitter": "https://mobile.twitter.com/poksoc",
+            "facebook": "https://facebook.com/groups/HUUPokSoc/",
+            "su-link": "https://hulluniunion.com/join-in/societies"
+        },
+
+        {
+            "name": "Imperial College Pokémon Society",
+            "latitude": 51.5004448,
+            "longitude": -0.180373
+        },
+
+        {
+            "name": "Lancaster Pokémon Society",
+            "colours": [ 
+                "af101f",
+                "b7b8ba"
+            ],            
+            "latitude": 54.0236735,
+            "longitude": -2.804431,
+            "su-link": "https://lancastersu.co.uk/groups/lancaster-university-pokemon-society"
+        },
+
+        {
+            "name": "Leeds Pokémon Society",
+            "colours": [ 
+                "e4001b",
+                "ffffff"
+            ],            
+            "latitude": 53.8242809,
+            "longitude": -1.6327348,
+            "discord": "https://discord.gg/cUNqYewn2Y",
+            "facebook": "https://www.facebook.com/groups/luunapsoc",
+            "su-link": "https://engage.luu.org.uk/groups/T9G/nintendo-and-pokemon"
+        },
+
+        {
+            "name": "KCL Pokémon Society",
+            "colours": [ 
+                "de2126",
+                "fafff8"
+            ],
+            "latitude": 51.5004963,
+            "longitude": -0.2132949,
+            "discord": "https://www.kclsu.org/groups/activities/join/20479/",
+            "instagram": "https://instagram.com/kclpokemonsoc",
+            "twitter": "https://twitter.com/KclPokemonSoc",
+            "facebook": "https://facebook.com/groups/HUUPokSoc/",
+            "su-link": "https://www.kclsu.org/groups/activities/join/20479/"
+        },
+
+        {
+            "name": "Keele University Pokémon Society",
+            "colours": [ 
+                "23213f",
+                "1cad6b"
+            ],
+            "latitude": 53.0022352,
+            "longitude": -2.272919,
+            "discord": "https://discord.gg/Y8mJfk67jg",
+            "facebook": "https://www.facebook.com/groups/pogokeele/",
+            "su-link": "https://keelesu.com/activities/society/19356/"
+        },
+
+        {
+            "name": "LSE PokéSoc",
+            "colours": [ 
+                "ffc95c",
+                "403c88"
+            ],
+            "latitude": 51.5146473,
+            "longitude": -0.119724,
+            "twitter": "https://twitter.com/lse_pokesoc",
+            "su-link": "https://www.lsesu.com/communities/societies/group/17023/"
+        },
+
+        {
+            "name": "Maynooth Pokémon Society",
+            "colours": [ 
+                "ff5054",
+                "d79555"
+            ],
+            "latitude": 53.3830526,
+            "longitude": -6.6058241,
+            "su-link": "https://www.msu.ie/clubsandsocieties/societies/7107/"
+        },
+
+        {
+            "name": "Newcastle Pokémon Society",
+            "colours": [ 
+                "233685",
+                "fa4823"
+            ],
+            "latitude": 54.9786844,
+            "longitude": -1.6176044,
+            "discord": "https://discord.gg/8YeqcUd",
+            "twitter": "https://twitter.com/lse_pokesoc",
+            "facebook": "https://www.facebook.com/groups/387074044668309/",
+            "su-link": "https://nusu.co.uk/activities/view-society/149"
+        },
+
+        {
+            "name": "Nottingham Pokémon Society",
+            "colours": [ 
+                "208086",
+                "1e1935"
+            ],
+            "latitude": 52.9381747,
+            "longitude": -1.1964736,
+            "su-link": "https://su.nottingham.ac.uk/activities/list/sb"
+        },
+
+        {
+            "name": "Nottingham Trent Pokémon Society",
+            "colours": [ 
+                "ec0059",
+                "141420"
+            ],
+            "latitude": 52.958700,
+            "longitude": -1.1579021,
+            "discord": "https://discord.gg/tbp5bbN79v",
+            "facebook": "https://www.facebook.com/groups/346463912769243/",
+            "su-link": "https://www.trentstudents.org/groups/pokemon"
+        },
+
+        {
+            "name": "Oxford Pokémon Society",
+            "colours": [ 
+                "00c1a8",
+                "192125"
+            ],
+            "latitude": 51.7541998,
+            "longitude": -1.2652953,
+            "discord": "https://discord.gg/vKk4r55",
+            "facebook": "https://www.facebook.com/groups/oupokesoc/",
+            "su-link": "https://www.oxfordsu.org/"
+        },
+
+        {
+            "name": "Plymouth Pokémon Society",
+            "colours": [ 
+                "ecd0df",
+                "500008"
+            ],
+            "latitude": 50.3750449,
+            "longitude": -4.1404052,
+            "twitter": "http://twitter.com/UoPPTS",
+            "facebook": "https://facebook.com/groups/plyuni.pts/",
+            "su-link": "https://www.upsu.com/societies/pokemontrainers/"
+        },
+
+        {
+            "name": "QML Pokémon Society",
+            "colours": [ 
+                "000000",
+                "ff001b"
+            ],
+            "latitude": 51.5236797,
+            "longitude": -0.0413831,
+            "discord": "https://discord.gg/N4DURt5v",
+            "twitter": "https://twitter.com/QMULPokesoc",
+            "facebook": "https://www.facebook.com/groups/QMULPokesoc/",
+            "su-link": "https://www.qmsu.org/groups/15234/"
+        },
+
+        {
+            "name": "Royal Holloway Pokémon Society",
+            "colours": [ 
+                "caecfc",
+                "542357"
+            ],
+            "latitude": 51.4273517,
+            "longitude": -0.5651243,
+            "discord": "https://discord.gg/tPuPW7S",
+            "instagram": "https://www.instagram.com/rhul_pokemon/",
+            "facebook": "https://www.facebook.com/groups/421017082042550",
+            "su-link": "https://www.su.rhul.ac.uk/societies/a-z/13715/"
+        },
+
+        {
+            "name": "Sheffield PokéSoc",
+            "colours": [ 
+                "833071",
+                "b49dab"
+            ],
+            "latitude": 53.3811227,
+            "longitude": -1.4875136,
+            "discord": "https://discord.gg/hPydgHA",
+            "instagram": "https://www.instagram.com/pokesocsu/",
+            "facebook": "https://www.facebook.com/PokeSocSU/",
+            "twitter": "https://twitter.com/PokeSocSU/",
+            "su-link": "https://su.sheffield.ac.uk/activities/view/pokemon-society?activity=304"
+        },
+
+        {
+            "name": "Staffordshire Pokémon Society",
+            "colours": [ 
+                "ff0016",
+                "ff9c1f"
+            ],
+            "latitude": 53.0096343,
+            "longitude": -2.1819509,
+            "discord": "https://discord.com/invite/Tceh2Yk",
+            "instagram": "https://instagram.com/staffspkmnsociety",
+            "facebook": "https://www.facebook.com/groups/216760642435833/",
+            "su-link": "https://www.staffsunion.com/activities/society/staffspokemon/"
+        },
+
+        {
+            "name": "St. Andrews Pokémon Society",
+            "colours": [ 
+                "1f1c1d",
+                "fca641"
+            ],
+            "latitude": 56.340564,
+            "longitude": -2.8023491,
+            "facebook": "https://www.facebook.com/groups/SAPokesoc/",
+            "su-link": "https://www.yourunion.net/activities/societies/explore/pokemon/"
+        },
+
+        {
+            "name": "Strathclyde Pokémon Society",
+            "colours": [ 
+                "1c3567",
+                "d1342d"
+            ],
+            "latitude": 55.8619859,
+            "longitude": -4.248924,
+            "discord": "https://discord.gg/rZgSnpd",
+            "facebook": "https://www.facebook.com/groups/320072521374371/",
+            "su-link": "https://www.strathunion.com/groups/find-a-society/society/7512/"
+        },
+
+
+        {
+            "name": "York Pokémon Society",
+            "colours": [ 
+                "fcc724",
+                "37383b"
+            ],
+            "latitude": 53.9557362,
+            "longitude": -1.0764024,
+            "discord": "https://discord.gg/YKXpz5Uf2U",
+            "facebook": "https://facebook.com/groups/uoypokemon/",
+            "su-link": "https://yusu.org/activities/view/pokemon-society"
+        }
+    ]
+}

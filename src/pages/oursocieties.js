@@ -84,14 +84,11 @@ function createSocietySidebarItem(id) {
   societyName.innerHTML = filteredSocietyList[id].name;
   sideBarItem.appendChild(societyName);
 
-  var color1 = society.color1;
-  var color2 = society.color2;
-
-  if (color1 != null) {
-    if (color2 != null) {
-      sideBarItem.style.background = `linear-gradient(45deg,#${color1},#${color2})`;
+  if (society.colours != null && society.colours[0] != null) {
+    if (society.colours[1] != null) {
+      sideBarItem.style.background = `linear-gradient(45deg,#${society.colours[0]},#${society.colours[1]})`;
     } else {
-      sideBarItem.style.backgroundColor = "#"+color1;
+      sideBarItem.style.backgroundColor = "#"+society.colours[0];
     }
   }
 
