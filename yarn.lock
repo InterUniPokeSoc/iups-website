@@ -2944,6 +2944,53 @@
     "escape-string-regexp" "^2.0.0"
     "lodash.deburr" "^4.1.0"
 
+"@supabase/functions-js@^1.3.4":
+  "integrity" "sha512-yYVgkECjv7IZEBKBI3EB5Q7R1p0FJ10g8Q9N7SWKIHUU6i6DnbEGHIMFLyQRm1hmiNWD8fL7bRVEYacmTRJhHw=="
+  "resolved" "https://registry.npmjs.org/@supabase/functions-js/-/functions-js-1.3.4.tgz"
+  "version" "1.3.4"
+  dependencies:
+    "cross-fetch" "^3.1.5"
+
+"@supabase/gotrue-js@^1.22.21":
+  "integrity" "sha512-exbCopLo4tLawKZR25wEdipm+IRVujuqFRR4h2wiXd11YA+N8rfgg/4S4L6BTFHmzV+KMjy0kDF3yMbsjIR/xA=="
+  "resolved" "https://registry.npmjs.org/@supabase/gotrue-js/-/gotrue-js-1.22.22.tgz"
+  "version" "1.22.22"
+  dependencies:
+    "cross-fetch" "^3.0.6"
+
+"@supabase/postgrest-js@^0.37.4":
+  "integrity" "sha512-x+c2rk1fz9s6f1PrGxCJ0QTUgXPDI0G3ngIqD5sSiXhhCyfl8Q5V92mXl2EYtlDhkiUkjFNrOZFhXVbXOHgvDw=="
+  "resolved" "https://registry.npmjs.org/@supabase/postgrest-js/-/postgrest-js-0.37.4.tgz"
+  "version" "0.37.4"
+  dependencies:
+    "cross-fetch" "^3.1.5"
+
+"@supabase/realtime-js@^1.7.4":
+  "integrity" "sha512-h/Jk3PCLkIVonsNavof/LvHbvF41UD+D+mWcA3m8yHzJ2TLbV3S4XDYId+A3AkvFOAork7Ns/9O8rK0uY4F4zw=="
+  "resolved" "https://registry.npmjs.org/@supabase/realtime-js/-/realtime-js-1.7.4.tgz"
+  "version" "1.7.4"
+  dependencies:
+    "@types/phoenix" "^1.5.4"
+    "websocket" "^1.0.34"
+
+"@supabase/storage-js@^1.7.2":
+  "integrity" "sha512-jnIZWqOc9TGclOozgX9v/RWGFCgJAyW/yvmauexgRZhWknUXoA4b2i8tj7vfwE0WTvNRuA5JpXID98rfJeSG7Q=="
+  "resolved" "https://registry.npmjs.org/@supabase/storage-js/-/storage-js-1.7.3.tgz"
+  "version" "1.7.3"
+  dependencies:
+    "cross-fetch" "^3.1.0"
+
+"@supabase/supabase-js@^1.35.6":
+  "integrity" "sha512-KDRXRr+kdGwruIUizZPALbe5YccMYFVyZJf1sFWKLncaLYSFiM6iKFnqCrNeQ4JFoZZiICkiTl1FUuai62jVpg=="
+  "resolved" "https://registry.npmjs.org/@supabase/supabase-js/-/supabase-js-1.35.6.tgz"
+  "version" "1.35.6"
+  dependencies:
+    "@supabase/functions-js" "^1.3.4"
+    "@supabase/gotrue-js" "^1.22.21"
+    "@supabase/postgrest-js" "^0.37.4"
+    "@supabase/realtime-js" "^1.7.4"
+    "@supabase/storage-js" "^1.7.2"
+
 "@swc/helpers@^0.3.15":
   "integrity" "sha512-tb7Iu+oZ+zWJZ3HJqwx8oNwSDIU440hmVMDPhpACWQWnrZHK99Bxs70gT1L2dnr5Hg50ZRWEFkQCAnOVVV0z1Q=="
   "resolved" "https://registry.npmjs.org/@swc/helpers/-/helpers-0.3.17.tgz"
@@ -3168,6 +3215,11 @@
   "integrity" "sha512-kUNnecmtkunAoQ3CnjmMkzNU/gtxG8guhi+Fk2U/kOpIKjIMKnXGp4IJCgQJrXSgMsWYimYG4TGjz/UzbGEBTw=="
   "resolved" "https://registry.npmjs.org/@types/parse5/-/parse5-5.0.3.tgz"
   "version" "5.0.3"
+
+"@types/phoenix@^1.5.4":
+  "integrity" "sha512-L5eZmzw89eXBKkiqVBcJfU1QGx9y+wurRIEgt0cuLH0hwNtVUxtx+6cu0R2STwWj468sjXyBYPYDtGclUd1kjQ=="
+  "resolved" "https://registry.npmjs.org/@types/phoenix/-/phoenix-1.5.4.tgz"
+  "version" "1.5.4"
 
 "@types/prop-types@*":
   "integrity" "sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w=="
@@ -4153,6 +4205,13 @@
     "base64-js" "^1.3.1"
     "ieee754" "^1.1.13"
 
+"bufferutil@^4.0.1":
+  "integrity" "sha512-jduaYOYtnio4aIAyc6UbvPCVcgq7nYpVnucyxr6eCYg/Woad9Hf/oxxBRDnGGjPfjUm6j5O/uBWhIu4iLebFaw=="
+  "resolved" "https://registry.npmjs.org/bufferutil/-/bufferutil-4.0.6.tgz"
+  "version" "4.0.6"
+  dependencies:
+    "node-gyp-build" "^4.3.0"
+
 "busboy@^0.2.11":
   "integrity" "sha512-InWFDomvlkEj+xWLBfU3AvnbVYqeTWmQopiW0tWWEy5yehYm2YkGEc59sUmw/4ty5Zj/b0WHGs1LgecuBSBGrg=="
   "resolved" "https://registry.npmjs.org/busboy/-/busboy-0.2.14.tgz"
@@ -4879,7 +4938,7 @@
   "resolved" "https://registry.npmjs.org/create-require/-/create-require-1.1.1.tgz"
   "version" "1.1.1"
 
-"cross-fetch@^3.1.5":
+"cross-fetch@^3.0.6", "cross-fetch@^3.1.0", "cross-fetch@^3.1.5":
   "integrity" "sha512-lvb1SBsI0Z7GDwmuid+mU3kWVBwTVUbe7S0H52yaaAdQOXq2YktTCZdlAcNKFzE6QtRz0snpw9bNiPeOIkkQvw=="
   "resolved" "https://registry.npmjs.org/cross-fetch/-/cross-fetch-3.1.5.tgz"
   "version" "3.1.5"
@@ -5148,6 +5207,13 @@
   "integrity" "sha512-8d35hViGYx/QH0icHYCeLmsLmMUheMmTyV9Fcm6gvNwdw31yXXH+O85sOBJ+OLnLQMKZowvpKb6FgMIQjcpvQw=="
   "resolved" "https://registry.npmjs.org/date-fns/-/date-fns-2.28.0.tgz"
   "version" "2.28.0"
+
+"debug@^2.2.0":
+  "integrity" "sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA=="
+  "resolved" "https://registry.npmjs.org/debug/-/debug-2.6.9.tgz"
+  "version" "2.6.9"
+  dependencies:
+    "ms" "2.0.0"
 
 "debug@^2.6.0":
   "integrity" "sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA=="
@@ -6943,6 +7009,11 @@
     "progress" "^2.0.3"
     "valid-url" "^1.0.9"
     "xstate" "^4.26.1"
+
+"gatsby-source-supabase@^2.0.0":
+  "integrity" "sha512-TfXVU2UoOayZm8qPrpi9OHg8K6nI1tX+OASmPMyoSu8tlbWpnkadouLNUk2GTy+W/kyM/2ENuIEis1BFaUoOTQ=="
+  "resolved" "https://registry.npmjs.org/gatsby-source-supabase/-/gatsby-source-supabase-2.0.0.tgz"
+  "version" "2.0.0"
 
 "gatsby-telemetry@^3.18.1", "gatsby-telemetry@^3.20.0":
   "integrity" "sha512-tHQITCmO8gHYbvb7OeMhyOHiCITK0mNI7d0v/UGaXbR0ALO/hsOT29TkMDEeaHtnTZ5kTY/4hLq/3P0X4qrJiQ=="
@@ -12738,6 +12809,13 @@
     "punycode" "1.3.2"
     "querystring" "0.2.0"
 
+"utf-8-validate@^5.0.2":
+  "integrity" "sha512-Yek7dAy0v3Kl0orwMlvi7TPtiCNrdfHNd7Gcc/pLq4BLXqfAmd0J7OWMizUQnTTJsyjKn02mU7anqwfmUP4J8Q=="
+  "resolved" "https://registry.npmjs.org/utf-8-validate/-/utf-8-validate-5.0.9.tgz"
+  "version" "5.0.9"
+  dependencies:
+    "node-gyp-build" "^4.3.0"
+
 "utif@^2.0.1":
   "integrity" "sha512-Z/S1fNKCicQTf375lIP9G8Sa1H/phcysstNrrSdZKj1f9g58J4NMgb5IgiEZN9/nLMPDwF0W7hdOe9Qq2IYoLg=="
   "resolved" "https://registry.npmjs.org/utif/-/utif-2.0.1.tgz"
@@ -12975,6 +13053,18 @@
   "resolved" "https://registry.npmjs.org/websocket-extensions/-/websocket-extensions-0.1.4.tgz"
   "version" "0.1.4"
 
+"websocket@^1.0.34":
+  "integrity" "sha512-PRDso2sGwF6kM75QykIesBijKSVceR6jL2G8NGYyq2XrItNC2P5/qL5XeR056GhA+Ly7JMFvJb9I312mJfmqnQ=="
+  "resolved" "https://registry.npmjs.org/websocket/-/websocket-1.0.34.tgz"
+  "version" "1.0.34"
+  dependencies:
+    "bufferutil" "^4.0.1"
+    "debug" "^2.2.0"
+    "es5-ext" "^0.10.50"
+    "typedarray-to-buffer" "^3.1.5"
+    "utf-8-validate" "^5.0.2"
+    "yaeti" "^0.0.6"
+
 "whatwg-fetch@2.0.4":
   "integrity" "sha512-dcQ1GWpOD/eEQ97k66aiEVpNnapVj90/+R+SXTPYGHpYBBypfKJEQjLrvMZ7YXbKm21gXd4NcuxUTjiv1YtLng=="
   "resolved" "https://registry.npmjs.org/whatwg-fetch/-/whatwg-fetch-2.0.4.tgz"
@@ -13160,6 +13250,11 @@
   "integrity" "sha512-0pfFzegeDWJHJIAmTLRP2DwHjdF5s7jo9tuztdQxAhINCdvS+3nGINqPd00AphqJR/0LhANUS6/+7SCb98YOfA=="
   "resolved" "https://registry.npmjs.org/y18n/-/y18n-5.0.8.tgz"
   "version" "5.0.8"
+
+"yaeti@^0.0.6":
+  "integrity" "sha512-MvQa//+KcZCUkBTIC9blM+CU9J2GzuTytsOUwf2lidtvkx/6gnEp1QvJv34t9vdjhFmha/mUiNDbN0D0mJWdug=="
+  "resolved" "https://registry.npmjs.org/yaeti/-/yaeti-0.0.6.tgz"
+  "version" "0.0.6"
 
 "yallist@^2.0.0":
   "integrity" "sha512-ncTzHV7NvsQZkYe1DW7cbDLm0YpzHmZF5r/iyP3ZnQtMiJ+pjzisCiMNI+Sj+xQF5pXhSHxSB3uDbsBTzY/c2A=="

@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
-// import "firebase/firestore";
 
 // This can be committed to GitHub not private
 const config = {
