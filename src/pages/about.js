@@ -69,16 +69,17 @@ function AboutPage() {
           <h1 className="shiny-title center-margins small-title">PokéSoc Beginnings</h1>
           <p className={aboutStyles.paragraph}>The UK's oldest known Pokémon Society began in Hull in 2010, followed shortly by York and 
           Sheffield in 2012. These early societies were dedicated to growing their membership along with running socials and tournaments. Early 
-          signs of aliances were formed with Sheffield running a 24-hour event involving Leeds, but this was a mere prelude compared to 
+          signs of alliances were formed with Sheffield running a 24-hour event involving Leeds, but this was a mere prelude compared to 
           what followed.
           </p>
           <h1 className="shiny-title center-margins small-title">Sussex's Grand Idea</h1>
-          <p className={aboutStyles.paragraph}>Sussex initially contacted Durham
+          <p className={aboutStyles.paragraph}>Rob, a Sussex committee member started the chain of events by joining the York PokéSoc server, it 
+          was from there that the I-UPS Discord server was first created. Durham was next to join which laid the foundations for the initial leadership
+          Triad consisting of Hanny, Georgina and Dom.
           </p>
           <h1 className="shiny-title center-margins small-title">The Discord Server</h1>
-          <p className={aboutStyles.paragraph}>As more and more societies were in correspondance, it was apparent that a place was needed to
-          unify communication with all the societies, that place became our Discord server. The server was initially private and intended just for
-          committee's to correspond, however, this quickly changed with the server opening to all members in 2021.
+          <p className={aboutStyles.paragraph}>As more and more societies were in correspondance, it was apparent that a server merely for committees was
+          limiting the potential of I-UPS' outreach; so, the server opened to all I-UPS society members in 2021.
           </p>
           <h1 className="shiny-title center-margins small-title">Comté is Formed</h1>
           <p className={aboutStyles.paragraph}>The initial leadership of I-UPS consisted of the triad of Hanny, Dom and Georgina, with I-UPS already 
