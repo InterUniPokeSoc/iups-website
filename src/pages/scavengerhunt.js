@@ -1,8 +1,10 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef, useInsertionEffect } from 'react'
 import {Helmet} from "react-helmet";
 import Layout from '../components/layout';
 import '../styles/general.scss';
 import '../styles/scavengerHunt.scss';
+
+import Loader from '../components/loader'
 
 import {getHints, getWinners} from "../utils/hints";
 
@@ -17,14 +19,22 @@ function ScavengerHuntPage() {
   // User Input
   const [userAnswer, setUserAnswer] = useState("")
 
+  // Show loading animation
+  const [isLoading, setIsLoading] = useState(true)
+
   // Output Messages
-  const [message, setMessage] = useState("Loading...")
+  const [message, setMessage] = useState("")
   const [errorMessage, setErrorMessage] = useState(null)
+
+  function myGreeting() {
+  }
 
   /*
     Get Hints from the database and store in hints
   */
   useEffect(() => {
+    setIsLoading(true)
+
     getHints().then((dbList) => {
       var tempHintList = []
   
@@ -40,7 +50,9 @@ function ScavengerHuntPage() {
       } else {
         setErrorMessage("An error occurred while retrieving the scavenger hunt data. Please contact a member of Comté.")
       }
-    });
+    }).finally (() => {
+      setIsLoading(false)
+    })
   }, [])
 
   /*
@@ -73,6 +85,10 @@ function ScavengerHuntPage() {
 
     <Layout>
       <main className="page-content">
+
+        { isLoading &&
+          <Loader center={true} />
+        }
 
         { hints.length > 0 && errorMessage == null &&
           <section className="page-section hint-wrapper">
