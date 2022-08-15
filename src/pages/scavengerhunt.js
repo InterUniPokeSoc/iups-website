@@ -34,6 +34,7 @@ function ScavengerHuntPage() {
     setIsLoading(true)
 
     getHints().then((dbList) => {
+      console.log("DB LIST RETURNED: "+dbList)
       var tempHintList = []
   
       Object.values(dbList).map((hint) => {
@@ -122,7 +123,7 @@ function ScavengerHuntPage() {
               { currentHintNo >= hints.length &&
                 <>
                   <h2 id={styles.hintTitle} className="medium-title">Congratulations</h2>
-                  <p>You have completed the Treasure Hunt. You may have not been first this time, but they'll be another hunt soon!</p>
+                  <p>You have completed the Treasure Hunt. You may have not been first this time, but there'll be another hunt soon!</p>
                 </>
               }
             </section>
