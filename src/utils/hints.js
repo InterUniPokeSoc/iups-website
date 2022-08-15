@@ -2,6 +2,7 @@ import { supabase } from '../utils/supabase'
 
 const noHuntError = new Error("no hunt available")
 const noHintsError = new Error("no hints were found")
+const winnerError = new Error("no winners were found")
 
 /**
  * Get latest Hunt ID.
@@ -49,14 +50,14 @@ async function getHuntID() {
  * Get Winner Data
  * @returns All Winner data from Database for an ID
  */
- async function getWinnerDataFor(id) {
+ async function doesHuntHaveWinnerWith(id) {
 
-  const { data: winnerData, error: error } = await supabase
-    .from('winner')
+  const { data: winnersData, error: error } = await supabase
+    .from('winners')
     .select('*')
     .eq('hunt_id', id)
 
-  return winnerData
+  return winnersData == null || winnersData.length > 0
 }
 
 /**
@@ -91,14 +92,10 @@ async function getWinners() {
   return getHuntID()
   .then((newestHuntID) => {
     const id = newestHuntID[0].id
-    return getWinnerDataFor(id)
+    return doesHuntHaveWinnerWith(id)
   })
-  .then((winnerData) => {
-    if (winnerData != null && winnerData.length < 0) {
-      throw noHintsError
-    }
-
-    return winnerData[0]
+  .then((doesHaveWinner) => {
+    return doesHaveWinner
   })
   .catch((e) => {
     console.log(e)

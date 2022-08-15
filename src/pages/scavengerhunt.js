@@ -13,6 +13,9 @@ function ScavengerHuntPage() {
   // List of Hints
   const [hints, setHints] = useState([])
 
+  // List of Winners
+  const [isWinner, setIsWinner] = useState([])
+
   // Current Hint Number
   const [currentHintNo, setCurrentHintNo] = useState(0)
 
@@ -34,7 +37,6 @@ function ScavengerHuntPage() {
     setIsLoading(true)
 
     getHints().then((dbList) => {
-      console.log("DB LIST RETURNED: "+dbList)
       var tempHintList = []
   
       Object.values(dbList).map((hint) => {
@@ -53,6 +55,27 @@ function ScavengerHuntPage() {
       setIsLoading(false)
     })
   }, [])
+
+  /*
+    Get Winners from the database and store in winners
+  */
+  useEffect(() => {
+    setIsLoading(true)
+
+    if (currentHintNo == 0 || currentHintNo < hints.length) {
+      setIsLoading(false)
+      return
+    }
+
+    getWinners().then((isWinner) => {
+      setIsWinner(isWinner)
+    }).catch(() => {
+      setErrorMessage("An error occurred while retrieving the scavenger hunt data. Please contact a member of Comté.")
+    }).finally (() => {
+      setIsLoading(false)
+    })
+    
+  }, [currentHintNo])
 
   /*
     Manage user input
@@ -120,10 +143,17 @@ function ScavengerHuntPage() {
               }
 
               {/* On Hunt Completion UI */}
-              { currentHintNo >= hints.length &&
+              { !isLoading && currentHintNo >= hints.length &&
                 <>
                   <h2 id={styles.hintTitle} className="medium-title">Congratulations</h2>
-                  <p>You have completed the Treasure Hunt. You may have not been first this time, but there'll be another hunt soon!</p>
+
+                  { !isWinner &&
+                    <p>You have completed the Treasure Hunt first! WELL DONE!</p>
+                  }
+
+                  { isWinner &&
+                    <p>You have completed the Treasure Hunt. You may have not been first this time, but there'll be another hunt soon!</p>
+                  }
                 </>
               }
             </section>
