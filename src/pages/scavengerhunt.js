@@ -84,22 +84,43 @@ function ScavengerHuntPage() {
     <Layout>
       <main className="page-content">
 
+        <h1 className={["shiny-title", "huge-title", styles.scavengerHuntTitle].join(' ')}>Scavenger Hunt</h1>
+
+        {/* Loading Indicator */}
         { isLoading &&
           <Loader center={true} />
         }
 
+        <div id={styles.centeredContent}>
         { hints.length > 0 && errorMessage == null &&
-          <section className="page-section hint-wrapper">
-            <h2 id={styles.hintTitle}>Hint { currentHintNo + 1 }</h2>
-            <p id={styles.hintText}>{ hints[currentHintNo].hint }</p>
-            <input id={styles.hintInput} className={ answerIncorrect ? styles.error : "" } value={ userAnswer } onInput={ e => setUserAnswer(e.target.value) }></input>
-            <a id={styles.hintButton} onClick={questionResponse}>Check Answer</a>
-          </section>
+          <>
+            <section id={styles.hintWrapper}>
+              {/* Indicator of Questions */}
+              <section id={ styles.indicatorWrapper }>
+                {hints.map((element, index) => {
+                  return <div className={
+                    [(index == currentHintNo ? styles.currentIndicator : ""),
+                    (index < currentHintNo ? styles.completedIndicator : ""),
+                    styles.indicator
+                    ].join(' ')
+                  }></div>
+                })}
+              </section>
+
+              {/* Hint UI */}
+              <h2 id={styles.hintTitle} className="medium-title">Hint { currentHintNo + 1 }</h2>
+              <p id={styles.hintText}>{ hints[currentHintNo].hint }</p>
+              <input id={styles.hintInput} className={ answerIncorrect ? styles.error : styles.noError } value={ userAnswer } onInput={ e => setUserAnswer(e.target.value) }></input>
+              <a id={styles.hintButton} onClick={questionResponse}>Check Answer</a>
+              <p id={styles.updateMessage}>{ message }</p>
+            </section>
+          </>
         }
+        </div>
 
         <section className="page-section">
-          <p id="update-message" className={ errorMessage != null ? "error-message" : "" }>
-            { errorMessage == null ? message : errorMessage }
+          <p id="error-message" className={ styles.errorMessage }>
+            { errorMessage != null ? errorMessage : "" }
           </p>
         </section>
 

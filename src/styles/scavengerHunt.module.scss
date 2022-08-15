@@ -1,16 +1,91 @@
+@use 'variables';
+
 .hide {
   display: none;
 }
 
+.scavenger-hunt-title {
+  display: block;
+  margin: 20px auto;
+}
+
+#centered-content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 700px;
+  width: 90%;
+}
+
+/*
+  Hint Top Indicator
+*/
+
+#indicator-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.indicator {
+  height: 20px;
+  width: 20px;
+  background-color: none;
+  border: 2px solid variables.$iups-brown;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 10px;
+}
+
+.current-indicator {
+  background-color: variables.$iups-brown;
+}
+
+.completed-indicator {
+  background-color: rgb(64, 135, 25);
+}
+
+
+#hint-wrapper {
+  background-color: white;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 5px 10px 40px rgba(20, 20, 20, 0.2);
+}
+
+#hint-title {
+  text-align: center;
+  display: block;
+  margin: auto;
+  color: variables.$iups-brown;
+}
+
+#hint-text {
+  font-size: 1.2em;
+  color: variables.$iups-brown;
+  text-align: center;
+}
+
 #hint-input {
-  padding: 7px;
-  border: 2px solid black;
+  padding: 14px;
+  border: 2px solid variables.$iups-brown;
   border-radius: 7px;
+  display: block;
+
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
 
   &.error
   {
     animation: shake 0.2s ease-in-out 0s 2;
     box-shadow: 0 0 0.5em red;
+  }
+
+  &.noError
+  {
+    animation: none;
   }
 }
 
@@ -20,28 +95,27 @@
   outline: none;
 }
 
-#hint-input:disabled {
-  border: 2px solid rgb(12, 148, 73);
-  outline: none;
-  color: white;
-  background-color: rgb(12, 148, 73);
-}
-
 #hint-button {
+  margin-top: 20px;
   padding: 8px;
-  background-color: rgb(44, 134, 150);
+  background-color: variables.$iups-brown;
   color: white;
-  // border: 2px rgb(44, 134, 150) solid;
   border-radius: 10px;
   cursor: pointer;
+  display: block;
+  width: 140px;
+  text-align: center;
+  display: block;
+  margin: 20px auto;
 }
 
 #hint-button:active {
-  background-color: rgb(44, 134, 150);
+  background-color: black;
 }
 
-#hint-text {
-  font-size: 1.2em;
+#update-message {
+  margin: 20px;
+  text-align: center;
 }
 
 .error-message {

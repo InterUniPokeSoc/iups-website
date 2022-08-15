@@ -9,13 +9,14 @@ $loader-size: 40px;
     width: $loader-size;
     height: $loader-size;
     animation: spin 0.5s linear infinite;
+    z-index: 1000;
 }
 
 .center {
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
   
 @keyframes spin {
