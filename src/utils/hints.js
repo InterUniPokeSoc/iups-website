@@ -1,44 +1,49 @@
 import { supabase } from '../utils/supabase'
 
+/**
+ * Get all Hints for the latest Scavenger Hunt.
+ * @returns Object of Hints from the Hints table.
+ */
 async function getHints() {
-  const date = new Date()
-  const currentDate = date.toISOString().slice(0, 10)
-  const sixDaysAgo = new Date(date.getDate() - 6).toISOString().slice(0, 10)
 
-  console.log(`START DATE BETWEEN: [${sixDaysAgo},${currentDate}]`)
+  const noHuntError = new Error("no hunt available")
+  const noHintsError = new Error("no hints were found")
 
-  const { data: huntsIDs, error: errorInfoRequest1 } = await supabase
+  // Get ID for the newest Hunt available
+  const { data: newestHuntID, error: errorInfoRequest1 } = await supabase
     .from('hunts')
-    .select('id')
-    // .lt('start_date', currentDate)
-    // .gt('start_date', sixDaysAgo)
-    
-    // TODO: REPLACE DATE CHECK WITH MAX ID INSTEAD BUT KEEP CURRENT DATE
+    .select('id', { count: 'exact' })
 
-  console.log(huntsIDs)
+  if (newestHuntID == null || newestHuntID[0] == null) {
+    throw noHuntError
+  }
 
-  const huntID = huntsIDs[0].id
+  // Ensure the latest Hunt is available
+  const { data: checkAvailability, error: errorInfoRequest2 } = await supabase
+    .from('hunts')
+    .select('*')
+    .eq('is_available', true)
 
-  const { data: hintsData, error: errorInfoRequest2 } = await supabase
+  if (checkAvailability.length < 1) {
+    throw noHuntError
+  }
+
+  const huntID = newestHuntID[0].id // Single item returned as array
+
+  // Get all hint data from the Hint table for latest Hunt
+  const { data: hintsData, error: errorInfoRequest3 } = await supabase
     .from('hints')
-    .select('order_number, hint')
+    .select('*')
     .eq('hunt_id', huntID)
 
-  const hints = hintsData
-  
-  console.log("HINTS")
-  console.log(hints)
+  if (hintsData.length < 1) {
+    throw noHintsError
+  }
 
-  return hints
+  return hintsData
 }
 
 async function getWinners() {
-  // const hintsCol = collection(db, 'scavenger-hunt');
-  // const hintSnapshot = await getDocs(hintsCol);
-  // var winnersList = hintSnapshot.docs.map(function(doc) {
-  //   return doc.data();
-  // });
-  // return winnersList[1];
 }
 
 export { getHints, getWinners };

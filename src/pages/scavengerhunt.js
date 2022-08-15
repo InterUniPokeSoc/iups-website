@@ -10,24 +10,11 @@ import {getHints, getWinners} from "../utils/hints";
 
 function ScavengerHuntPage() {
 
-  var hints = [
-    // "What is the best Pokémon?",
-    // "Aquire the?",
-    // "That's very...",
-  ];
-
-  var answers = [
-    // "Quag",
-    // "Sire",
-    // "Sus",
-  ];
+  var hints = []
 
   getHints().then((dbList) => {
-    // console.log(dbList[0].hint1.hint);
-
     Object.values(dbList).map((hint) => {
-      hints.push(hint.hint);
-      answers.push(hint.answer);
+      hints.push(hint);
     });
 
     document.getElementById("update-message").innerHTML = "";
@@ -35,10 +22,15 @@ function ScavengerHuntPage() {
 
     generateHint();
   }).catch((e) => {
+    if (e.contains("available")) {
+      document.getElementById("update-message").innerHTML = "There is no Scavenger Hunt currently available.";
+    } else {
+      document.getElementById("update-message").innerHTML = "An error occurred while retrieving the scavenger hunt data. Please contact a member of Comté.";
+    }
+
     document.getElementById("update-message").style.fontSize = "1.4em";
     document.getElementById("update-message").style.fontWeight = "bold";
     document.getElementById("update-message").style.color = "red";
-    document.getElementById("update-message").innerHTML = "An error occurred while retrieving the scavenger hunt data. Please contact a member of Comté.";
     console.log(e);
   });
 
@@ -56,7 +48,7 @@ function ScavengerHuntPage() {
     var hintText = document.createElement('p');
     hintText.classList = ["hint-text"];
     hintText.id = "hint-text-"+currentHintNo;
-    hintText.innerHTML = hints[currentHintNo];
+    hintText.innerHTML = hints[currentHintNo].hint;
 
     var hintInput = document.createElement('input');
     hintInput.classList = ["hint-input"];
@@ -79,10 +71,7 @@ function ScavengerHuntPage() {
     var userAnswer = document.getElementById("hint-input-"+currentHintNo).value;
     var updateMessageBox = document.getElementById("update-message");
 
-    console.log(userAnswer + "     " + answers[currentHintNo]);
-
-    if (userAnswer == answers[currentHintNo]) {
-      console.log("Answer is Correct!");
+    if (hints[currentHintNo].answers.includes(userAnswer.toLowerCase())) {
       updateMessageBox.innerHTML = "Correct! The next hint has been revealed to you.";
 
       // Disable old inputs
