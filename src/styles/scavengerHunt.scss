@@ -2,7 +2,7 @@
   display: none;
 }
 
-.hint-input {
+#hint-input {
   padding: 7px;
   border: 2px solid black;
   border-radius: 7px;
@@ -14,13 +14,13 @@
   }
 }
 
-.hint-input:focus {
+#hint-input:focus {
   border: 2px solid rgb(44, 134, 150);
   box-shadow: 0 0 0.5em rgb(44, 134, 150);
   outline: none;
 }
 
-.hint-input:disabled {
+#hint-input:disabled {
   border: 2px solid rgb(12, 148, 73);
   outline: none;
   color: white;
@@ -40,8 +40,14 @@
   background-color: rgb(44, 134, 150);
 }
 
-.hint-text {
+#hint-text {
   font-size: 1.2em;
+}
+
+.error-message {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: red;
 }
 
 @keyframes shake {
