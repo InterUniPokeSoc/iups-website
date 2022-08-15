@@ -26,9 +26,6 @@ function ScavengerHuntPage() {
   const [message, setMessage] = useState("")
   const [errorMessage, setErrorMessage] = useState(null)
 
-  function myGreeting() {
-  }
-
   /*
     Get Hints from the database and store in hints
   */
