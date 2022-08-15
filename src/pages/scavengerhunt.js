@@ -108,11 +108,23 @@ function ScavengerHuntPage() {
               </section>
 
               {/* Hint UI */}
-              <h2 id={styles.hintTitle} className="medium-title">Hint { currentHintNo + 1 }</h2>
-              <p id={styles.hintText}>{ hints[currentHintNo].hint }</p>
-              <input id={styles.hintInput} className={ answerIncorrect ? styles.error : styles.noError } value={ userAnswer } onInput={ e => setUserAnswer(e.target.value) }></input>
-              <a id={styles.hintButton} onClick={questionResponse}>Check Answer</a>
-              <p id={styles.updateMessage}>{ message }</p>
+              { currentHintNo < hints.length &&
+                <>
+                  <h2 id={styles.hintTitle} className="medium-title">Hint { currentHintNo + 1 }</h2>
+                  <p id={styles.hintText}>{ hints[currentHintNo].hint }</p>
+                  <input id={styles.hintInput} className={ answerIncorrect ? styles.error : styles.noError } value={ userAnswer } onInput={ e => setUserAnswer(e.target.value) }></input>
+                  <a id={styles.hintButton} onClick={questionResponse}>Check Answer</a>
+                  <p id={styles.updateMessage}>{ message }</p>
+                </>
+              }
+
+              {/* On Hunt Completion UI */}
+              { currentHintNo >= hints.length &&
+                <>
+                  <h2 id={styles.hintTitle} className="medium-title">Congratulations</h2>
+                  <p>You have completed the Treasure Hunt. You may have not been first this time, but they'll be another hunt soon!</p>
+                </>
+              }
             </section>
           </>
         }
