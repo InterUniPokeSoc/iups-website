@@ -15,31 +15,37 @@ function ScavengerHuntPage() {
   const [currentHintNo, setCurrentHintNo] = useState(0)
 
   // User Input
-  const [userAnswer, setUserAnswer] = useState(null)
+  const [userAnswer, setUserAnswer] = useState("")
 
   // Output Messages
   const [message, setMessage] = useState("Loading...")
   const [errorMessage, setErrorMessage] = useState(null)
 
-  // Get Hints from the database and store in hints
-  getHints().then((dbList) => {
-    var tempHintList = []
-
-    Object.values(dbList).map((hint) => {
-      tempHintList.push(hint);
+  /*
+    Get Hints from the database and store in hints
+  */
+  useEffect(() => {
+    getHints().then((dbList) => {
+      var tempHintList = []
+  
+      Object.values(dbList).map((hint) => {
+        tempHintList.push(hint);
+      });
+  
+      setHints(tempHintList)
+      setMessage("")
+    }).catch((e) => {
+      if (e.message.includes("available")) {
+        setErrorMessage("There is no Scavenger Hunt currently available.")
+      } else {
+        setErrorMessage("An error occurred while retrieving the scavenger hunt data. Please contact a member of Comté.")
+      }
     });
+  }, [])
 
-    setHints(tempHintList)
-    setMessage("")
-  }).catch((e) => {
-    if (e.message.includes("available")) {
-      setErrorMessage("There is no Scavenger Hunt currently available.")
-    } else {
-      setErrorMessage("An error occurred while retrieving the scavenger hunt data. Please contact a member of Comté.")
-    }
-  });
-
-  // Manage user input
+  /*
+    Manage user input
+  */
   let questionResponse = () => {
     var userInputBox = document.getElementById("hint-input");
 
@@ -68,7 +74,7 @@ function ScavengerHuntPage() {
     <Layout>
       <main className="page-content">
 
-        { hints.length > 0 &&
+        { hints.length > 0 && errorMessage == null &&
           <section className="page-section hint-wrapper">
             <h2 id="hint-title">Hint { currentHintNo + 1 }</h2>
             <p id="hint-text">{ hints[currentHintNo].hint }</p>
