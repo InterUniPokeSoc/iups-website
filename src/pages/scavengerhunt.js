@@ -14,7 +14,7 @@ function ScavengerHuntPage() {
   const [hints, setHints] = useState([])
 
   // List of Winners
-  const [isWinner, setIsWinner] = useState([])
+  const [winnerAlreadyExists, setWinnerAlreadyExists] = useState([])
 
   // Current Hint Number
   const [currentHintNo, setCurrentHintNo] = useState(0)
@@ -71,8 +71,8 @@ function ScavengerHuntPage() {
     
     setIsLoading(true)
 
-    getWinners().then((isWinner) => {
-      setIsWinner(isWinner)
+    getWinners().then((winnerAlreadyExists) => {
+      setWinnerAlreadyExists(winnerAlreadyExists)
     }).catch(() => {
       setErrorMessage("An error occurred while retrieving the scavenger hunt data. Please contact a member of Comté.")
     }).finally (() => {
@@ -182,12 +182,13 @@ function ScavengerHuntPage() {
               {/* On Hunt Completion UI */}
               { !isLoading && currentHintNo >= hints.length &&
                 <>
-                  <h2 id={styles.hintTitle} className={isWinner ? ['medium-title', 'shiny-title'].join(' ') : "medium-title"}>
-                    { isWinner ? "Congratulations Winner" : "Scavenger Hunt Complete" }
+                  {/* TODO: winnerAlreadyExists ternary is wrong here fix to something like !winnerAlreadyExists */}
+                  <h2 id={styles.hintTitle} className={!winnerAlreadyExists ? ['medium-title', 'shiny-title'].join(' ') : "medium-title"}>
+                    { !winnerAlreadyExists ? "Congratulations Winner" : "Scavenger Hunt Complete" }
                   </h2>
 
                   {/* Enter Winner Details UI */}
-                  { !isWinner && !userDiscordIDProcessed &&
+                  { !winnerAlreadyExists && !userDiscordIDProcessed &&
                     <>
                       <p className={styles.winnerInfo}>Amazing! You were first to complete the Scavenger Hunt!</p>
                       <p className={styles.winnerInfo}>Please enter your Discord username below to confirm your win.</p>
@@ -202,7 +203,7 @@ function ScavengerHuntPage() {
                   }
 
                   {/* Winner Already Exists UI */}
-                  { isWinner && !userDiscordIDProcessed &&
+                  { winnerAlreadyExists && !userDiscordIDProcessed &&
                     <p className={styles.winnerInfo}>You have completed the Scavenger Hunt. You may have not been first this time, but there'll be another hunt soon!</p>
                   }
 
