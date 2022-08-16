@@ -215,7 +215,8 @@ function ScavengerHuntPage() {
           </>
         }
         </div>
-
+        
+        {/* Display Error Message */}
         <section className="page-section">
           <p id="error-message" className={ styles.errorMessage }>
             { errorMessage != null ? errorMessage : "" }
