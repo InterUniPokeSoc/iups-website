@@ -140,6 +140,7 @@ function ScavengerHuntPage() {
     <>
     <Helmet>
       <title>Inter-Uni PokéSoc - Scavenger Hunt</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
     </Helmet>
 
     <Layout>
