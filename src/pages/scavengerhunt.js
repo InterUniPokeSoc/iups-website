@@ -1,108 +1,101 @@
-import React from 'react';
-import {Link, useState, useRef, useEffect} from 'gatsby';
+import React, { useEffect, useState, useRef, useInsertionEffect } from 'react'
 import {Helmet} from "react-helmet";
 import Layout from '../components/layout';
-import TitleBanner from '../components/titleBanner';
 import '../styles/general.scss';
-import '../styles/scavengerHunt.scss';
+import * as styles from '../styles/scavengerHunt.module.scss';
+
+import Loader from '../components/loader'
 
 import {getHints, getWinners} from "../utils/hints";
 
 function ScavengerHuntPage() {
 
-  var hints = [
-    // "What is the best Pokémon?",
-    // "Aquire the?",
-    // "That's very...",
-  ];
+  // List of Hints
+  const [hints, setHints] = useState([])
 
-  var answers = [
-    // "Quag",
-    // "Sire",
-    // "Sus",
-  ];
+  // List of Winners
+  const [isWinner, setIsWinner] = useState([])
 
-  getHints().then((dbList) => {
-    // console.log(dbList[0].hint1.hint);
+  // Current Hint Number
+  const [currentHintNo, setCurrentHintNo] = useState(0)
 
-    Object.values(dbList).map((hint) => {
-      hints.push(hint.hint);
-      answers.push(hint.answer);
-    });
+  // User Input
+  const [userAnswer, setUserAnswer] = useState("")
+  const [answerIncorrect, setAnswerIncorrect] = useState(false)
 
-    document.getElementById("update-message").innerHTML = "";
-    document.getElementById("hint-button").classList.remove("hide");
+  // Show loading animation
+  const [isLoading, setIsLoading] = useState(true)
 
-    generateHint();
-  }).catch((e) => {
-    document.getElementById("update-message").style.fontSize = "1.4em";
-    document.getElementById("update-message").style.fontWeight = "bold";
-    document.getElementById("update-message").style.color = "red";
-    document.getElementById("update-message").innerHTML = "An error occurred while retrieving the scavenger hunt data. Please contact a member of Comté.";
-    console.log(e);
-  });
+  // Output Messages
+  const [message, setMessage] = useState("")
+  const [errorMessage, setErrorMessage] = useState(null)
 
-  var currentHintNo = 0;
+  /*
+    Get Hints from the database and store in hints
+  */
+  useEffect(() => {
+    setIsLoading(true)
 
-  function generateHint() {
-    var sectionDiv = document.getElementById("hints-page");
-    var hintDiv = document.createElement('div');
-    hintDiv.classList = ["hint-wrapper"];
+    getHints().then((dbList) => {
+      var tempHintList = []
+  
+      Object.values(dbList).map((hint) => {
+        tempHintList.push(hint);
+      });
+  
+      setHints(tempHintList)
+      setMessage("")
+    }).catch((e) => {
+      if (e.message.includes("available")) {
+        setErrorMessage("There is no Scavenger Hunt currently available.")
+      } else {
+        setErrorMessage("An error occurred while retrieving the scavenger hunt data. Please contact a member of Comté.")
+      }
+    }).finally (() => {
+      setIsLoading(false)
+    })
+  }, [])
 
-    var hintTitle = document.createElement('h2');
-    hintTitle.classList = ["hint-title"];
-    hintTitle.innerHTML = "Hint " + (currentHintNo+1);
+  /*
+    Get Winners from the database and store in winners
+  */
+  useEffect(() => {
+    setIsLoading(true)
 
-    var hintText = document.createElement('p');
-    hintText.classList = ["hint-text"];
-    hintText.id = "hint-text-"+currentHintNo;
-    hintText.innerHTML = hints[currentHintNo];
+    if (currentHintNo == 0 || currentHintNo < hints.length) {
+      setIsLoading(false)
+      return
+    }
 
-    var hintInput = document.createElement('input');
-    hintInput.classList = ["hint-input"];
-    hintInput.id = "hint-input-"+currentHintNo;
-    hintInput.onchange = (() => { 
-      hintInput.classList.remove("error"); 
-      document.getElementById("update-message").innerHTML = "";
-    });
+    getWinners().then((isWinner) => {
+      setIsWinner(isWinner)
+    }).catch(() => {
+      setErrorMessage("An error occurred while retrieving the scavenger hunt data. Please contact a member of Comté.")
+    }).finally (() => {
+      setIsLoading(false)
+    })
+    
+  }, [currentHintNo])
 
-    hintDiv.appendChild(hintTitle);
-    hintDiv.appendChild(hintText);
-    hintDiv.appendChild(hintInput);
-
-    sectionDiv.appendChild(hintDiv);
-  }
-
-
+  /*
+    Manage user input
+  */
   let questionResponse = () => {
-    var userInputBox = document.getElementById("hint-input-"+currentHintNo);
-    var userAnswer = document.getElementById("hint-input-"+currentHintNo).value;
-    var updateMessageBox = document.getElementById("update-message");
+    setAnswerIncorrect(false)
 
-    console.log(userAnswer + "     " + answers[currentHintNo]);
-
-    if (userAnswer == answers[currentHintNo]) {
-      console.log("Answer is Correct!");
-      updateMessageBox.innerHTML = "Correct! The next hint has been revealed to you.";
-
-      // Disable old inputs
-      document.getElementById("hint-input-"+currentHintNo).disabled = true;
+    if (hints[currentHintNo].answers.includes(userAnswer.toLowerCase())) {
+      setMessage("Correct! The next hint has been revealed to you.")
 
       // Increment hint number
-      currentHintNo++;
+      setCurrentHintNo(currentHintNo + 1)
       
-      if (currentHintNo < hints.length) {
-        generateHint();
-      } else {
-        console.log("Congrats you've won the prize!");
-        updateMessageBox.innerHTML = "Congrats, you've won the Scavenger Hunt! If you were first you can claim the prize!";
+      if (currentHintNo >= hints.length) {
+        setMessage("Congrats, you've won the Scavenger Hunt! If you were first you can claim the prize!")
       }
 
     } else {
-      userInputBox.classList.add("error");
-
-      console.log("Answer is Incorrect!");
-      updateMessageBox.innerHTML = "Try again!";
+      setAnswerIncorrect(true)
+      setMessage("Try again!")
     }
   };
 
@@ -114,14 +107,64 @@ function ScavengerHuntPage() {
 
     <Layout>
       <main className="page-content">
-        <TitleBanner imageSource="images/pelipperbg.jpg" title="Scavenger Hunt" />
 
-        <section className="page-section" id="hints-page">
-        </section>
+        <h1 className={["shiny-title", "huge-title", styles.scavengerHuntTitle].join(' ')}>Scavenger Hunt</h1>
 
-        <section className="page-section" id="info-section">
-          <a id={"hint-button"} className="hide" onClick={questionResponse}>Check Answer</a>
-          <p id="update-message">Loading...</p>
+        {/* Loading Indicator */}
+        { isLoading &&
+          <Loader center={true} />
+        }
+
+        <div id={styles.centeredContent}>
+        { hints.length > 0 && errorMessage == null &&
+          <>
+            <section id={styles.hintWrapper}>
+              {/* Indicator of Questions */}
+              <section id={ styles.indicatorWrapper }>
+                {hints.map((element, index) => {
+                  return <div className={
+                    [(index == currentHintNo ? styles.currentIndicator : ""),
+                    (index < currentHintNo ? styles.completedIndicator : ""),
+                    styles.indicator
+                    ].join(' ')
+                  }></div>
+                })}
+              </section>
+
+              {/* Hint UI */}
+              { currentHintNo < hints.length &&
+                <>
+                  <h2 id={styles.hintTitle} className="medium-title">Hint { currentHintNo + 1 }</h2>
+                  <p id={styles.hintText}>{ hints[currentHintNo].hint }</p>
+                  <input id={styles.hintInput} className={ answerIncorrect ? styles.error : styles.noError } value={ userAnswer } onInput={ e => setUserAnswer(e.target.value) }></input>
+                  <a id={styles.hintButton} onClick={questionResponse}>Check Answer</a>
+                  <p id={styles.updateMessage}>{ message }</p>
+                </>
+              }
+
+              {/* On Hunt Completion UI */}
+              { !isLoading && currentHintNo >= hints.length &&
+                <>
+                  <h2 id={styles.hintTitle} className="medium-title">Congratulations</h2>
+
+                  { !isWinner &&
+                    <p>You have completed the Treasure Hunt first! WELL DONE!</p>
+                  }
+
+                  { isWinner &&
+                    <p>You have completed the Treasure Hunt. You may have not been first this time, but there'll be another hunt soon!</p>
+                  }
+                </>
+              }
+            </section>
+          </>
+        }
+        </div>
+
+        <section className="page-section">
+          <p id="error-message" className={ styles.errorMessage }>
+            { errorMessage != null ? errorMessage : "" }
+          </p>
         </section>
 
       </main>
