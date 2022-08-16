@@ -3,12 +3,13 @@
 $loader-size: 40px;
 
 .loader {
-    border: 12px solid #f3f3f3;
+    border: 12px solid #ffffff;
     border-top: 12px solid variables.$iups-dark-yellow;
     border-radius: 50%;
     width: $loader-size;
     height: $loader-size;
     animation: spin 0.5s linear infinite;
+    -webkit-animation: spin 0.5s linear infinite;
     z-index: 1000;
 }
 
@@ -20,6 +21,11 @@ $loader-size: 40px;
 }
   
 @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@-webkit-keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
