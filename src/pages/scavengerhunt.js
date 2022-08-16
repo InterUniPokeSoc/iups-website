@@ -183,13 +183,13 @@ function ScavengerHuntPage() {
               { !isLoading && currentHintNo >= hints.length &&
                 <>
                   <h2 id={styles.hintTitle} className={isWinner ? ['medium-title', 'shiny-title'].join(' ') : "medium-title"}>
-                    { isWinner ? "Congratulations Winner" : "Treasure Hunt Complete" }
+                    { isWinner ? "Congratulations Winner" : "Scavenger Hunt Complete" }
                   </h2>
 
                   {/* Enter Winner Details UI */}
                   { !isWinner && !userDiscordIDProcessed &&
                     <>
-                      <p className={styles.winnerInfo}>Amazing! You were first to complete the Treasure Hunt!</p>
+                      <p className={styles.winnerInfo}>Amazing! You were first to complete the Scavenger Hunt!</p>
                       <p className={styles.winnerInfo}>Please enter your Discord username below to confirm your win.</p>
                       <input id={styles.hintInput} className={ discordIDIncorrect ? styles.error : styles.noError } value={ userDiscordID } onInput={ e => setUserDiscordID(e.target.value) }></input>
                       <label className={ styles.discordCheckboxLabel }>
@@ -203,7 +203,7 @@ function ScavengerHuntPage() {
 
                   {/* Winner Already Exists UI */}
                   { isWinner && !userDiscordIDProcessed &&
-                    <p className={styles.winnerInfo}>You have completed the Treasure Hunt. You may have not been first this time, but there'll be another hunt soon!</p>
+                    <p className={styles.winnerInfo}>You have completed the Scavenger Hunt. You may have not been first this time, but there'll be another hunt soon!</p>
                   }
 
                   {/* Winner Data Added UI */}
