@@ -61,6 +61,16 @@ async function getHuntID() {
 }
 
 /**
+ * Input new winner into the Database
+ */
+ async function addWinnerToDatabase(huntID, discordID) {
+
+  const { data, error } = await supabase
+    .from('winners')
+    .insert([{ hunt_id: huntID, discord_id: discordID }])
+}
+
+/**
  * Get all Hints for the latest Scavenger Hunt.
  * @returns Object of Hints from the Hints table.
  */
@@ -103,4 +113,19 @@ async function getWinners() {
   })
 }
 
-export { getHints, getWinners };
+/**
+ * Input new winner into the Winners table.
+ */
+ async function inputNewWinner(discordID) {
+  return getHuntID()
+  .then((newestHuntID) => {
+    const id = newestHuntID[0].id
+    addWinnerToDatabase(id, discordID)
+  })
+  .catch((e) => {
+    console.log(e)
+    throw noHuntError
+  })
+}
+
+export { getHints, getWinners, inputNewWinner };

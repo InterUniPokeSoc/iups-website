@@ -6,7 +6,7 @@ import * as styles from '../styles/scavengerHunt.module.scss';
 
 import Loader from '../components/loader'
 
-import {getHints, getWinners} from "../utils/hints";
+import { getHints, getWinners, inputNewWinner } from "../utils/hints";
 
 function ScavengerHuntPage() {
 
@@ -22,6 +22,11 @@ function ScavengerHuntPage() {
   // User Input
   const [userAnswer, setUserAnswer] = useState("")
   const [answerIncorrect, setAnswerIncorrect] = useState(false)
+
+  const [userDiscordID, setUserDiscordID] = useState("")
+  const [userDiscordIDAgreement, setUserDiscordIDAgreement] = useState(false)
+  const [discordIDIncorrect, setDiscordIDIncorrect] = useState(false)
+  const [userDiscordIDProcessed, setUserDiscordIDProcessed] = useState(false)
 
   // Show loading animation
   const [isLoading, setIsLoading] = useState(true)
@@ -60,12 +65,11 @@ function ScavengerHuntPage() {
     Get Winners from the database and store in winners
   */
   useEffect(() => {
-    setIsLoading(true)
-
     if (currentHintNo == 0 || currentHintNo < hints.length) {
-      setIsLoading(false)
       return
     }
+    
+    setIsLoading(true)
 
     getWinners().then((isWinner) => {
       setIsWinner(isWinner)
@@ -78,7 +82,7 @@ function ScavengerHuntPage() {
   }, [currentHintNo])
 
   /*
-    Manage user input
+    Manage user responses input
   */
   let questionResponse = () => {
     setAnswerIncorrect(false)
@@ -93,10 +97,43 @@ function ScavengerHuntPage() {
         setMessage("Congrats, you've won the Scavenger Hunt! If you were first you can claim the prize!")
       }
 
+      setUserAnswer("")
+
     } else {
       setAnswerIncorrect(true)
       setMessage("Try again!")
     }
+  };
+
+  /*
+    Manage user Discord ID input
+  */
+  let discordIDResponse = () => {
+    setDiscordIDIncorrect(false)
+
+    // Assert whether Discord ID is valid
+    if (userDiscordID == null || !userDiscordID.match(/^\w+#\d{4}$/g)) {
+      setDiscordIDIncorrect(true)
+      setMessage("Your Discord username is not valid.")
+      return
+    }
+
+    // Assert that the checkbox is selected
+    if (!userDiscordIDAgreement) {
+      setMessage("You need to agree to the storage and publication of your Discord username to continue.")
+      return
+    }
+
+    setIsLoading(true)
+
+    inputNewWinner(userDiscordID).then(() => {
+      setUserDiscordIDProcessed(true)
+      setMessage("Discord ID: " + userDiscordID + " uploaded!")
+    }).catch(() => {
+      setMessage("An error occurred while processing your Discord username.")
+    }).finally (() => {
+      setIsLoading(false)
+    })
   };
 
   return (
@@ -107,16 +144,15 @@ function ScavengerHuntPage() {
 
     <Layout>
       <main className="page-content">
-
-        <h1 className={["shiny-title", "huge-title", styles.scavengerHuntTitle].join(' ')}>Scavenger Hunt</h1>
+        <h1 className={["shiny-title", styles.scavengerHuntTitle].join(' ')}>Scavenger Hunt Alpha</h1>
 
         {/* Loading Indicator */}
         { isLoading &&
-          <Loader center={true} />
+          <div className={styles.loader}><Loader /></div>
         }
 
         <div id={styles.centeredContent}>
-        { hints.length > 0 && errorMessage == null &&
+        { hints.length > 0 && errorMessage == null && !isLoading &&
           <>
             <section id={styles.hintWrapper}>
               {/* Indicator of Questions */}
@@ -145,14 +181,33 @@ function ScavengerHuntPage() {
               {/* On Hunt Completion UI */}
               { !isLoading && currentHintNo >= hints.length &&
                 <>
-                  <h2 id={styles.hintTitle} className="medium-title">Congratulations</h2>
+                  <h2 id={styles.hintTitle} className={isWinner ? ['medium-title', 'shiny-title'].join(' ') : "medium-title"}>
+                    { isWinner ? "Congratulations Winner" : "Treasure Hunt Complete" }
+                  </h2>
 
-                  { !isWinner &&
-                    <p>You have completed the Treasure Hunt first! WELL DONE!</p>
+                  {/* Enter Winner Details UI */}
+                  { !isWinner && !userDiscordIDProcessed &&
+                    <>
+                      <p className={styles.winnerInfo}>Amazing! You were first to complete the Treasure Hunt!</p>
+                      <p className={styles.winnerInfo}>Please enter your Discord username below to confirm your win.</p>
+                      <input id={styles.hintInput} className={ discordIDIncorrect ? styles.error : styles.noError } value={ userDiscordID } onInput={ e => setUserDiscordID(e.target.value) }></input>
+                      <label className={ styles.discordCheckboxLabel }>
+                        <input type="checkbox" className={ styles.discordCheckbox } onChange={ (e) => setUserDiscordIDAgreement(e) } />
+                        I agree to have my Discord username stored and published on this website
+                      </label>
+                      <a id={styles.hintButton} onClick={discordIDResponse}>Submit</a>
+                      <p id={styles.updateMessage}>{ message }</p>
+                    </>
                   }
 
-                  { isWinner &&
-                    <p>You have completed the Treasure Hunt. You may have not been first this time, but there'll be another hunt soon!</p>
+                  {/* Winner Already Exists UI */}
+                  { isWinner && !userDiscordIDProcessed &&
+                    <p className={styles.winnerInfo}>You have completed the Treasure Hunt. You may have not been first this time, but there'll be another hunt soon!</p>
+                  }
+
+                  {/* Winner Data Added UI */}
+                  { userDiscordIDProcessed &&
+                    <p className={styles.winnerInfo}>Your winner data has been added { userDiscordID }! Now go and boast about it on the Discord server :).</p>
                   }
                 </>
               }

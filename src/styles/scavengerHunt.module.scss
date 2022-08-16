@@ -4,18 +4,23 @@
   display: none;
 }
 
+.loader {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
 .scavenger-hunt-title {
   display: block;
-  margin: 20px auto;
+  margin: 40px auto;
+  font-size: 2.7em;
 }
 
 #centered-content {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   max-width: 700px;
   width: 90%;
+  display: block;
+  margin: 20px auto;
 }
 
 /*
@@ -81,6 +86,7 @@
   &.error
   {
     animation: shake 0.2s ease-in-out 0s 2;
+    -webkit-animation: shake 0.2s ease-in-out 0s 2;
     box-shadow: 0 0 0.5em red;
   }
 
@@ -125,7 +131,32 @@
   color: red;
 }
 
+.winner-info {
+  text-align: center;
+}
+
+.discord-checkbox-label {
+  margin: 10px auto;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.discord-checkbox {
+  margin: 10px;
+  width: 20px;
+  height: 20px;
+}
+
 @keyframes shake {
+  0% { margin-left: 0rem; }
+  25% { margin-left: 0.5rem; }
+  75% { margin-left: -0.5rem; }
+  100% { margin-left: 0rem; }
+}
+
+@-webkit-keyframes shake {
   0% { margin-left: 0rem; }
   25% { margin-left: 0.5rem; }
   75% { margin-left: -0.5rem; }
