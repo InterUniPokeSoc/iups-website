@@ -51,10 +51,8 @@ export default function OurSocietiesPage() {
     Manage search query changes
   */
   useEffect(() => {
-    console.log("QUERY CHANGED TO: "+sidebarSearchQuery)
 
     if (fullSocietiesList == null || fullSocietiesList.length == 0) {
-      console.log("fullSocietiesList is NULL!")
       return
     }
 
@@ -63,8 +61,6 @@ export default function OurSocietiesPage() {
       return
     }
 
-    console.log("GUARD STATEMENT PASSED!")
-
     var filteredSocietyList = []
 
     societies.forEach((society) => {
@@ -72,7 +68,6 @@ export default function OurSocietiesPage() {
 
       if (societyName != undefined && societyName.includes(sidebarSearchQuery.toLowerCase())) {
         filteredSocietyList.push(society)
-        console.log(`SOCIETY ${society.name} is INCLUDED!`)
       }
     })
 
