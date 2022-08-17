@@ -1,16 +1,17 @@
-import {db} from "./firebase";
-import { collection, getDocs } from 'firebase/firestore/lite';
+import { supabase } from '../utils/supabase'
 
-import Societies from '../data/societies.json'
+const noSocietiesError = new Error("no societies were found")
 
 async function getSocieties() {
+  const { data: societies, error: error } = await supabase
+    .from('societies')
+    .select('*')
 
-  const data = JSON.stringify({ Societies })
-  const json = JSON.parse(data)
+  if (societies == null || societies.length < 1) {
+    throw noSocietiesError
+  }
 
-  var societiesList = Object.values(json)[0].societies
-
-  return societiesList
+  return societies
 }
 
 export { getSocieties };

@@ -1,11 +1,13 @@
-import React, {useState, useRef, useEffect} from 'react';
-import Layout from '../components/layout';
-import '../styles/general.scss';
-import '../styles/oursocieties.scss';
-import {Helmet} from "react-helmet";
-import Map from '../components/map';
+import React, {useState, useEffect} from 'react'
+import Layout from '../components/layout'
+import '../styles/general.scss'
+import '../styles/oursocieties.scss'
+import {Helmet} from "react-helmet"
 
-import { getSocieties } from "../utils/societies";
+import Map from '../components/map'
+import Loader from '../components/loader'
+
+import { getSocieties } from "../utils/societies"
 
 // Image Imports
 import InstaIcon from '../images/social-media-icons/instagram/instagram-logo-white.png'
@@ -31,10 +33,15 @@ export default function OurSocietiesPage() {
   // Sidebar view mode on mobile
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
+  const [isLoading, setIsLoading] = useState(false)
+  const [errorMessage, setErrorMessage] = useState(null)
+
   /*
     On page load make an API call to Supabase to get the list of societies
   */
   useEffect(() => {
+    setIsLoading(true)
+
     var tempSocietiesList = []
 
     getSocieties().then((dbList) => {
@@ -46,8 +53,10 @@ export default function OurSocietiesPage() {
       setSocieties(tempSocietiesList)
 
     }).catch((e) => {
-      console.log(e);
-    });
+      setErrorMessage("An error occurred while fetching the societies data. Please try again later.")
+    }).finally(() => {
+      setIsLoading(false)
+    })
   }, [])
 
   /*
@@ -87,66 +96,76 @@ export default function OurSocietiesPage() {
 
       <Layout>
         <main className="page-content">
-          <div className="map-sidebar-wrapper">
-            <div className="page-map">
-              { typeof window !== 'undefined' &&
-                <Map societyList={societies} selected={selectedSociety} />
-              }
-            </div>
-            
-            {/* Sidebar UI */}
-            <section className={ sidebarOpen ? ['sidebar', 'sidebar-open'].join(' ') : ['sidebar', 'sidebar-closed'].join(' ') } id="sidebar">
-              <img id="sidebar-toggle-button" className="sidebar-closed" onClick={e => setSidebarOpen(!sidebarOpen)} src={sidebarOpen ?  DownIcon : UpIcon }></img>
-              <input className="search-bar" placeholder="Search for a society..." value={ sidebarSearchQuery } onChange={e => { setSidebarSearchQuery(e.target.value) }}></input>
+          { isLoading &&
+            <Loader center={ true } />
+          }
 
-              <div id="society-list">
+          { errorMessage != null &&
+            <p className={ 'error-message' } >{ errorMessage }</p>
+          }
 
-                {/* For each society in the list create a 'bubble' containing the societies information */}
-                { societies.map((society, index) => {
-                  return <a className={"society-wrapper"} 
-                  onClick={() => { setSelectedSociety(society.name) }}
-                  // Determine the colour of the societies bubble
-                  style = {
-                    society.colours == null ? {} : (
-                      society.colours[1] == null ? { 'backgroundColor': `#${society.colours[0]}` }
-                      : { 'background': `linear-gradient(45deg,#${society.colours[0]},#${society.colours[1]})` }
-                    )
-                  }
-                  >
-                    {/* Society Name Title */}
-                    <h2 className={ 'society-name' }> { society.name ?? "" } </h2>
-
-                    {/* Social Media Links */}
-                    { society.discord != null &&
-                      <a className={ 'social-icon-society-wrapper' } href={ society.discord } target={ '_blank' } rel={ 'noopener noreferrer' }>
-                        <img className={ 'social-icon-society' } src={ DiscordIcon } alt={ "Discord Icon" }/>
-                      </a>
-                    }
-
-                    { society.instagram != null &&
-                      <a className={ 'social-icon-society-wrapper' } href={ society.instagram } target={ '_blank' } rel={ 'noopener noreferrer' }>
-                        <img className={ 'social-icon-society' } src={ InstaIcon } alt={ "Instagram Icon" }/>
-                      </a>
-                    }
-
-                    { society.facebook != null &&
-                      <a className={ 'social-icon-society-wrapper' } href={ society.facebook } target={ '_blank' } rel={ 'noopener noreferrer' }>
-                        <img className={ 'social-icon-society' } src={ FacebookIcon } alt={ "Facebook Icon" }/>
-                      </a>
-                    }
-
-                    { society.twitter != null &&
-                      <a className={ 'social-icon-society-wrapper' } href={ society.twitter } target={ '_blank' } rel={ 'noopener noreferrer' }>
-                        <img className={ 'social-icon-society' } src={ TwitterIcon } alt={ "Twitter Icon" }/>
-                      </a>
-                    }
-                  </a>
-                })}
-
+          { !isLoading && errorMessage == null &&
+            <div className="map-sidebar-wrapper">
+              <div className="page-map">
+                { typeof window !== 'undefined' &&
+                  <Map societyList={societies} selected={selectedSociety} />
+                }
               </div>
+              
+              {/* Sidebar UI */}
+              <section className={ sidebarOpen ? ['sidebar', 'sidebar-open'].join(' ') : ['sidebar', 'sidebar-closed'].join(' ') } id="sidebar">
+                <img id="sidebar-toggle-button" className="sidebar-closed" onClick={e => setSidebarOpen(!sidebarOpen)} src={sidebarOpen ?  DownIcon : UpIcon }></img>
+                <input className="search-bar" placeholder="Search for a society..." value={ sidebarSearchQuery } onChange={e => { setSidebarSearchQuery(e.target.value) }}></input>
 
-            </section>
-          </div>
+                <div id="society-list">
+
+                  {/* For each society in the list create a 'bubble' containing the societies information */}
+                  { societies.map((society, index) => {
+                    return <a className={"society-wrapper"} 
+                    onClick={() => { setSelectedSociety(society.name) }}
+                    // Determine the colour of the societies bubble
+                    style = {
+                      society.colour1 == null && society.colour2 == null ? {} : (
+                        society.colour2 == null ? { 'backgroundColor': `#${society.colour1}` }
+                        : { 'background': `linear-gradient(45deg,#${society.colour1},#${society.colour2})` }
+                      )
+                    }
+                    >
+                      {/* Society Name Title */}
+                      <h2 className={ 'society-name' }> { society.name ?? "" } </h2>
+
+                      {/* Social Media Links */}
+                      { society.discord != null &&
+                        <a className={ 'social-icon-society-wrapper' } href={ society.discord } target={ '_blank' } rel={ 'noopener noreferrer' }>
+                          <img className={ 'social-icon-society' } src={ DiscordIcon } alt={ "Discord Icon" }/>
+                        </a>
+                      }
+
+                      { society.instagram != null &&
+                        <a className={ 'social-icon-society-wrapper' } href={ society.instagram } target={ '_blank' } rel={ 'noopener noreferrer' }>
+                          <img className={ 'social-icon-society' } src={ InstaIcon } alt={ "Instagram Icon" }/>
+                        </a>
+                      }
+
+                      { society.facebook != null &&
+                        <a className={ 'social-icon-society-wrapper' } href={ society.facebook } target={ '_blank' } rel={ 'noopener noreferrer' }>
+                          <img className={ 'social-icon-society' } src={ FacebookIcon } alt={ "Facebook Icon" }/>
+                        </a>
+                      }
+
+                      { society.twitter != null &&
+                        <a className={ 'social-icon-society-wrapper' } href={ society.twitter } target={ '_blank' } rel={ 'noopener noreferrer' }>
+                          <img className={ 'social-icon-society' } src={ TwitterIcon } alt={ "Twitter Icon" }/>
+                        </a>
+                      }
+                    </a>
+                  })}
+
+                </div>
+
+              </section>
+            </div>
+          }
         </main>
 
       </Layout>
