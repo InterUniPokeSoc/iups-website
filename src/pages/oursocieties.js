@@ -14,146 +14,71 @@ import FacebookIcon from '../images/social-media-icons/facebook/f_logo_RGB-White
 import UpIcon from '../images/icons/up-arrow.svg'
 import DownIcon from '../images/icons/down-arrow.svg'
 
-var societyList = [];
-var filteredSocietyList = [];
-var updateSocietyList;
-var updateSelectedSociety;
 
-
-function selectSociety(name) {
-  // using name as id causes map to change position on search change
-  updateSelectedSociety(name)
-}
-
-const filterSocietyList = (filter) => {
-  filter = filter.toLowerCase()
-
-  filteredSocietyList = []
-  if (filter == undefined || filter === "") {
-    filteredSocietyList = societyList
-  } else {
-    societyList.forEach((society) => {
-      var societyName = society.name.toLowerCase()
-
-      if (societyName != undefined && societyName.includes(filter)) {
-        filteredSocietyList.push(society)
-      }
-    }) 
-    
-  }
-
-  updateSocietyList(filteredSocietyList)
-  addSocietiesToSidebar()
-}
-
-function createSocialMediaIcon(link, item, imgLocation, inverted) {
-  var wrapper = document.createElement('a');
-  wrapper.classList.add('social-icon-society-wrapper');
-
-  var icon = document.createElement('img');
-  icon.classList.add('social-icon-society');
-  icon.src = imgLocation;
-
-  if (inverted)
-    icon.classList.add('invert-icon');
-
-  if (link != null) {
-    wrapper.href = link;
-    wrapper.appendChild(icon);
-    item.appendChild(wrapper);
-  }
-
-  return wrapper
-}
-
-function createSocietySidebarItem(id) {
-  var society = filteredSocietyList[id]
-
-  var sideBar = document.getElementById('society-list');
-
-  var sideBarItem = document.createElement('a');
-  sideBarItem.classList.add('society-wrapper');
-
-  sideBarItem.addEventListener("click", function() {
-    selectSociety(society.name)
-  })
-
-  var societyName = document.createElement('h2');
-  societyName.classList.add('society-name');
-  societyName.innerHTML = filteredSocietyList[id].name;
-  sideBarItem.appendChild(societyName);
-
-  if (society.colours != null && society.colours[0] != null) {
-    if (society.colours[1] != null) {
-      sideBarItem.style.background = `linear-gradient(45deg,#${society.colours[0]},#${society.colours[1]})`;
-    } else {
-      sideBarItem.style.backgroundColor = "#"+society.colours[0];
-    }
-  }
-
-  // Social Media Icons
-  createSocialMediaIcon(society.facebook, sideBarItem, FacebookIcon, false);
-  createSocialMediaIcon(society.instagram, sideBarItem, InstaIcon, true);
-  createSocialMediaIcon(society.discord, sideBarItem, DiscordIcon, false);
-
-  // Add to Sidebar
-  sideBar.appendChild(sideBarItem);
-}
-
-function addSocietiesToSidebar() {
-  var sideBar = document.getElementById('society-list');
-
-  // Remove all society elements from sidebar in case page reload duplicates items.
-  while (sideBar.lastChild) {
-      sideBar.lastChild.remove()
-  }
-
-  // Add each society as sidebar item
-  filteredSocietyList.forEach(function (_, index) {
-    createSocietySidebarItem(index)
-  });
-}
-
- 
 export default function OurSocietiesPage() {
 
-  const [societies, setSocieties] = useState([]);
+  const [fullSocietiesList, setFullSocietiesList] = useState([])
 
-  const [selectedSociety, setSelectedSociety] = useState(null);
+  const [societies, setSocieties] = useState([])
+
+  const [selectedSociety, setSelectedSociety] = useState(null)
+
+  const [sidebarSearchQuery, setSidebarSearchQuery] = useState("")
 
   // Sidebar view mode on mobile
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
+  /*
+    On page load make an API call to Supabase to get the list of societies
+  */
   useEffect(() => {
-    setSocieties([])
-    societyList = []
+    var tempSocietiesList = []
 
-    // Make API call to Firebase to get society list.
     getSocieties().then((dbList) => {
       Object.values(dbList).map((society) => {
-        societyList.push(society);
+        tempSocietiesList.push(society);
       });
 
-      filteredSocietyList = societyList
-
-      setSocieties(societyList)
-
-      addSocietiesToSidebar()
+      setFullSocietiesList(tempSocietiesList)
+      setSocieties(tempSocietiesList)
 
     }).catch((e) => {
       console.log(e);
     });
-
-    updateSocietyList = setSocieties
-    updateSelectedSociety = setSelectedSociety
   }, [])
 
+  /*
+    Manage search query changes
+  */
   useEffect(() => {
-    var sidebar = document.getElementById('sidebar')
+    console.log("QUERY CHANGED TO: "+sidebarSearchQuery)
 
-    sidebar.classList.remove(sidebarOpen ? 'sidebar-closed' : 'sidebar-open')
-    sidebar.classList.add(sidebarOpen ? 'sidebar-open' : 'sidebar-closed')
-  }, [sidebarOpen])
+    if (fullSocietiesList == null || fullSocietiesList.length == 0) {
+      console.log("fullSocietiesList is NULL!")
+      return
+    }
+
+    if (sidebarSearchQuery == null || sidebarSearchQuery.length == 0) {
+      setSocieties(fullSocietiesList)
+      return
+    }
+
+    console.log("GUARD STATEMENT PASSED!")
+
+    var filteredSocietyList = []
+
+    societies.forEach((society) => {
+      var societyName = society.name.toLowerCase()
+
+      if (societyName != undefined && societyName.includes(sidebarSearchQuery.toLowerCase())) {
+        filteredSocietyList.push(society)
+        console.log(`SOCIETY ${society.name} is INCLUDED!`)
+      }
+    })
+
+    setSocieties(filteredSocietyList)
+
+  }, [sidebarSearchQuery])
 
   if (typeof window !== 'undefined') {
     return (
@@ -166,16 +91,56 @@ export default function OurSocietiesPage() {
         <main className="page-content">
           <div className="map-sidebar-wrapper">
             <div className="page-map">
-              { typeof window !== 'undefined' ?
+              { typeof window !== 'undefined' &&
                 <Map societyList={societies} selected={selectedSociety} />
-                : null
               }
             </div>
-
-            <section className="sidebar" id="sidebar">
+            
+            {/* Sidebar UI */}
+            <section className={ sidebarOpen ? ['sidebar', 'sidebar-open'].join(' ') : ['sidebar', 'sidebar-closed'].join(' ') } id="sidebar">
               <img id="sidebar-toggle-button" className="sidebar-closed" onClick={e => setSidebarOpen(!sidebarOpen)} src={sidebarOpen ?  DownIcon : UpIcon }></img>
-              <input className="search-bar" placeholder="Search for a society..." onChange={e => filterSocietyList(e.target.value)}></input>
-              <div id="society-list"></div>
+              <input className="search-bar" placeholder="Search for a society..." value={ sidebarSearchQuery } onChange={e => { setSidebarSearchQuery(e.target.value) }}></input>
+
+              <div id="society-list">
+
+                {/* For each society in the list create a 'bubble' containing the societies information */}
+                { societies.map((society, index) => {
+                  return <a className={"society-wrapper"} 
+                  onClick={() => { setSelectedSociety(society.name) }}
+                  // Determine the colour of the societies bubble
+                  style = {
+                    society.colours == null ? {} : (
+                      society.colours[1] == null ? { 'backgroundColor': `#${society.colours[0]}` }
+                      : { 'background': `linear-gradient(45deg,#${society.colours[0]},#${society.colours[1]})` }
+                    )
+                  }
+                  >
+                    {/* Society Name Title */}
+                    <h2 className={ 'society-name' }> {society.name} </h2>
+
+                    {/* Social Media Links */}
+                    { society.discord != null &&
+                      <a className={ 'social-icon-society-wrapper' } href={ society.discord }>
+                        <img className={ 'social-icon-society' } src={ DiscordIcon } alt={ "Discord Icon" }/>
+                      </a>
+                    }
+
+                    { society.instagram != null &&
+                      <a className={ 'social-icon-society-wrapper' } href={ society.instagram }>
+                        <img className={ ['social-icon-society', 'invert-icon'].join(' ') } src={ InstaIcon } alt={ "Instagram Icon" }/>
+                      </a>
+                    }
+
+                    { society.facebook != null &&
+                      <a className={ 'social-icon-society-wrapper' } href={ society.facebook }>
+                        <img className={ 'social-icon-society' } src={ FacebookIcon } alt={ "Facebook Icon" }/>
+                      </a>
+                    }
+                  </a>
+                })}
+
+              </div>
+
             </section>
           </div>
         </main>
