@@ -17,6 +17,7 @@
     display: flex;
     margin: auto;
     padding: 0 20px;
+    width: 95%;
     max-width: 1100px;
     align-items: center;
     justify-content: center;
@@ -24,6 +25,7 @@
     color: white;
 
     animation: fadeUpIn 3s;
+    -webkit-animation: fadeUpIn 3s;
 
     @media only screen and (max-width: 768px) {
         flex-direction: column-reverse;
@@ -37,6 +39,7 @@
 
 .info {
     filter: drop-shadow(10px 10px 10px rgba(10, 10, 10, 0.8));
+    width: 100%;
 }
 
 #home-logo-wrapper {
@@ -216,6 +219,17 @@
 // Animations
 
 @keyframes fadeUpIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@-webkit-keyframes fadeUpIn {
     0% {
         opacity: 0;
         transform: translateY(-20px);

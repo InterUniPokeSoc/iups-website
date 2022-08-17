@@ -1,6 +1,8 @@
 @use '../styles/variables';
 
 $headerHeight: 82px;
+$compactNavButtonWidth: 100px;
+$compactNavButtonHeight: 40px;
 
 .header, .open-header {
     margin: 0;
@@ -70,7 +72,38 @@ $headerHeight: 82px;
     background-color: variables.$iups-brown;
 }
 
+.compact-nav-menu-button {
+    display: none;
+}
+
 @media only screen and (max-width: 950px) {
+    .compact-nav-menu-button {
+        color: white;
+        background-color: variables.$iups-brown;
+        border-radius: 10px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    
+        width: $compactNavButtonWidth;
+        height: $compactNavButtonHeight;
+    
+        position: absolute;
+        right: 15px;
+        top: calc(($headerHeight - $compactNavButtonHeight) / 2);
+
+        cursor: pointer;
+
+        a {
+            -webkit-user-select: none;      
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    }
+
     .open-header {
         object-fit: cover;
         width: 100%;
@@ -79,14 +112,18 @@ $headerHeight: 82px;
         margin: 0;
         min-height: 10vh;
         width: 100vw;
+
         background-color: variables.$iups-yellow-transparent;
         backdrop-filter: blur(10px);
+
         display: block;
         align-items: center;
         justify-content: space-around;
+
         position: fixed;
         top: 0;
         left: 0;
+        
         z-index: 10000;
     }
 
@@ -138,23 +175,14 @@ $headerHeight: 82px;
 
     .nav-icon {
         margin: 0;
-        display: flex;
-        position: absolute;
-        align-content: center;
-        right: 15px;
-        width: 25px;
-        cursor: pointer;
+        width: 18px;
+        display: block;
     }
 
     .close-icon {
         margin: 0;
-        display: flex;
-        position: absolute;
-        align-content: center;
-        right: 15px;
-        top: 3.6vh;
-        width: 25px;
-        cursor: pointer;
+        width: 18px;
+        display: block;
     }
 
     .hidden-nav-icon {

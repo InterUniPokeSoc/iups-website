@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from 'gatsby';
-import * as headerStyles from './header.module.scss';
+import * as styles from './header.module.scss';
 
 // Image Imports
 import MainLogo from '../images/branding/iups-logo-full.svg'
@@ -15,25 +15,28 @@ function Header() {
   }
 
   return (
-    <header className={navVisible ? headerStyles.openHeader : headerStyles.header}>
-      <div className={headerStyles.mainLogoWrapper}>
+    <header className={navVisible ? styles.openHeader : styles.header}>
+      <div className={styles.mainLogoWrapper}>
       <Link to="/">
-        <img id={navVisible ? headerStyles.mainLogoOpenNav : headerStyles.mainLogo} src={ MainLogo }/>
+        <img id={navVisible ? styles.mainLogoOpenNav : styles.mainLogo} src={ MainLogo }/>
       </Link>
       </div>
 
-      <nav className={navVisible ? headerStyles.openNav : headerStyles.closedNav}>
-        <ul className={headerStyles.navList}>
-            <li><Link className={headerStyles.navItem} activeClassName={headerStyles.activeNavItem} to="/">Home</Link></li>
-            <li><Link className={headerStyles.navItem} activeClassName={headerStyles.activeNavItem} to="/about">About</Link></li>
-            <li><Link className={headerStyles.navItem} activeClassName={headerStyles.activeNavItem} to="/events">Events</Link></li>
-            <li><Link className={headerStyles.navItem} activeClassName={headerStyles.activeNavItem} to="/oursocieties">Our Societies</Link></li>
-            <li><Link className={headerStyles.navItem} activeClassName={headerStyles.activeNavItem} to="/howtojoin">How to Join</Link></li>
-            <li><Link className={headerStyles.navItem} activeClassName={headerStyles.activeNavItem} to="/contact">Contact</Link></li>
+      <nav className={navVisible ? styles.openNav : styles.closedNav}>
+        <ul className={styles.navList}>
+            <li><Link className={styles.navItem} activeClassName={styles.activeNavItem} to="/">Home</Link></li>
+            <li><Link className={styles.navItem} activeClassName={styles.activeNavItem} to="/about">About</Link></li>
+            <li><Link className={styles.navItem} activeClassName={styles.activeNavItem} to="/events">Events</Link></li>
+            <li><Link className={styles.navItem} activeClassName={styles.activeNavItem} to="/oursocieties">Our Societies</Link></li>
+            <li><Link className={styles.navItem} activeClassName={styles.activeNavItem} to="/howtojoin">How to Join</Link></li>
+            <li><Link className={styles.navItem} activeClassName={styles.activeNavItem} to="/contact">Contact</Link></li>
         </ul>
       </nav>
 
-      <img className={navVisible ? headerStyles.closeIcon : headerStyles.navIcon} onClick={() => switchNav()} src={navVisible ? CloseIcon : HamburgerIcon } />
+      <a className={ styles.compactNavMenuButton } onClick={() => switchNav()}>
+        <a>{navVisible ? "Close" : "Menu"}</a>
+        <img className={navVisible ? styles.closeIcon : styles.navIcon} src={navVisible ? CloseIcon : HamburgerIcon } />
+      </a>
     </header>
   );
 }
