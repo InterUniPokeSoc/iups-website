@@ -1,5 +1,4 @@
 import React, {useState, useRef, useEffect} from 'react';
-import {Link} from 'gatsby';
 import Layout from '../components/layout';
 import '../styles/general.scss';
 import '../styles/oursocieties.scss';

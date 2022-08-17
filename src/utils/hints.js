@@ -124,7 +124,7 @@ async function getWinners() {
   })
   .catch((e) => {
     console.log(e)
-    throw noHuntError
+    throw winnerError
   })
 }
 
