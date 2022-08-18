@@ -4,7 +4,7 @@
 
 }
 
-.main-bg {
+.main-background {
     position: absolute;
     z-index: -1;
     object-fit: cover;
@@ -13,10 +13,9 @@
     filter: brightness(30%);
 }
 
-.main-area-flex {
+.main-area {
     display: flex;
-    margin: auto;
-    padding: 0 20px;
+    margin: 0 20px;
     width: 95%;
     max-width: 1100px;
     align-items: center;
@@ -27,13 +26,22 @@
     animation: fadeUpIn 3s;
     -webkit-animation: fadeUpIn 3s;
 
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: variables.$standard-mobile-max-width) {
         flex-direction: column-reverse;
+    }
+}
+
+.main-area-title {
+    width: 100%;
+
+    @media only screen and (max-width: variables.$standard-mobile-max-width) {
+        width: 100%;
     }
 }
 
 .index-title {
     color: variables.$iups-yellow;
+    width: 100%;
 }
 
 
@@ -44,6 +52,10 @@
 
 #home-logo-wrapper {
     padding: 10px;
+
+    @media only screen and (max-width: variables.$standard-mobile-max-width) {
+        margin-top: 60px;
+    }
 }
 
 #home-logo {
@@ -54,47 +66,6 @@
     @media only screen and (max-width: 768px) {
         width: 220px;
     }
-}
-
-.map-link-section {
-    position: relative;
-    margin: 0;
-    padding: 0;
-}
-
-.map-link-background {
-    max-width: 1100px;
-    width: 100%;
-    display: block;
-    z-index: 1;
-    margin: auto;
-    padding: 0;
-    filter: brightness(70%);
-}
-
-.map-link-info {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-}
-
-.map-link-title {
-    margin: auto;
-    padding: 20px;
-    z-index: 2;
-    color: white;
-    font-size: 2.2em;
-    text-align: center;
-}
-
-.map-link-button {
-    z-index: 2;
-    text-align: center;
-    margin: auto;
-    display: block;
-    max-width: 110px;
 }
 
 

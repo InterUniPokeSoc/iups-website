@@ -32,10 +32,10 @@ function IndexPage() {
       <title>Inter-Uni PokéSoc</title>
     </Helmet>
       <main className={ styles.mainContent }>
-        <img className={ styles.mainBg } src={ Background } alt="Night time image of Sheffield used as background." />
-        <div className={ styles.mainAreaFlex }>
+        <img className={ styles.mainBackground } src={ Background } alt="Night time image of Sheffield used as background." />
+        <div className={ styles.mainArea }>
           <div className={ styles.info }>
-            <h1 className="medium-title shiny-title">A Nationwide Group of Pokémon Societies</h1>
+            <h1 className={ [styles.mainAreaTitle, "medium-title", "shiny-title"].join(' ') }>A Nationwide Group of Pokémon Societies</h1>
             <p>
             The Inter-University Pokémon Society is a union of more than 30 societies joined together to collaborate on all things Pokémon.
             </p>

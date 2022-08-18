@@ -18,7 +18,7 @@ function Header() {
     <header className={navVisible ? styles.openHeader : styles.header}>
       <div className={styles.mainLogoWrapper}>
       <Link to="/">
-        <img id={navVisible ? styles.mainLogoOpenNav : styles.mainLogo} src={ MainLogo }/>
+        <img id={ styles.mainLogo } src={ MainLogo }/>
       </Link>
       </div>
 

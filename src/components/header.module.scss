@@ -1,6 +1,9 @@
 @use '../styles/variables';
 
 $headerHeight: 82px;
+
+$headerLogoHeight: 70px;
+
 $compactNavButtonWidth: 100px;
 $compactNavButtonHeight: 40px;
 
@@ -21,10 +24,9 @@ $compactNavButtonHeight: 40px;
 
 #main-logo, #main-logo-open-nav {
     padding: 0;
-    width: 140px;
+    height: $headerLogoHeight;
     position: absolute;
-    top: 0;
-    bottom: 0;
+    top: calc(($headerHeight - $headerLogoHeight) / 2);;
     margin: auto;
     transition: filter 0.2s;
 }
@@ -57,11 +59,6 @@ $compactNavButtonHeight: 40px;
     transition: background-color 0.2s;
 }
 
-.nav-icon {
-    display: none;
-    cursor: pointer;
-}
-
 .nav-item:hover {
     color: white;
     background-color: variables.$iups-brown;
@@ -70,6 +67,11 @@ $compactNavButtonHeight: 40px;
 .active-nav-item {
     color: white;
     background-color: variables.$iups-brown;
+}
+
+.nav-icon {
+    display: none;
+    cursor: pointer;
 }
 
 .compact-nav-menu-button {
@@ -128,20 +130,13 @@ $compactNavButtonHeight: 40px;
     }
 
     #main-logo {
-        display: block;
-        margin: auto;
-        text-align: center;
-        position: static;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0);
     }
 
     #main-logo-wrapper {
         padding: 10px;
-    }
-
-    #main-logo-open-nav {
-        margin: 1.8vh auto;
-        position: relative;
-        display: block;
     }
 
     .nav-list {
@@ -151,8 +146,13 @@ $compactNavButtonHeight: 40px;
         list-style-type: none;
         text-align: center;
         overflow: auto;
-        max-width: 170px;
+        max-width: 200px;
         padding: 0;
+
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
     }
 
     .nav-item {
@@ -160,6 +160,17 @@ $compactNavButtonHeight: 40px;
         display: block;
         width: auto;
         max-width: 200px;
+        font-size: 1.2em;
+    }
+
+    .nav-item:hover:not(.active-nav-item) {
+        color: variables.$iups-brown;
+        background-color: transparent;
+    }
+    
+    .active-nav-item {
+        color: white;
+        background-color: variables.$iups-brown;
     }
 
     .open-nav {
@@ -177,12 +188,22 @@ $compactNavButtonHeight: 40px;
         margin: 0;
         width: 18px;
         display: block;
+
+        -webkit-user-select: none;      
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
     }
 
     .close-icon {
         margin: 0;
         width: 18px;
         display: block;
+
+        -webkit-user-select: none;      
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
     }
 
     .hidden-nav-icon {
