@@ -18,7 +18,7 @@ function ScavengerHuntPage() {
   const [winnerAlreadyExists, setWinnerAlreadyExists] = useState([])
 
   // Current Hint Number
-  const [currentHintNo, setCurrentHintNo] = useState(3)
+  const [currentHintNo, setCurrentHintNo] = useState(0)
 
   // User Input
   const [userAnswer, setUserAnswer] = useState("")
@@ -214,8 +214,8 @@ function ScavengerHuntPage() {
                         <HCaptcha
                           ref={captchaRef}
                           sitekey={ 
-                            `${process.env.IS_DEVELOPMENT}` == null ? `${process.env.HCAPTCHA_SITE_KEY}`
-                            : '10000000-ffff-ffff-ffff-000000000001'
+                            `${process.env.HCAPTCHA_SITE_KEY}`
+                            // '10000000-ffff-ffff-ffff-000000000001'
                           }
                           theme="light"
                           onVerify={() => setUserVerifiedHuman(true)}
