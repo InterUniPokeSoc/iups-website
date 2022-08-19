@@ -14,4 +14,16 @@ async function getSocieties() {
   return societies
 }
 
-export { getSocieties };
+async function getNumberOfSocieties() {
+  const { data: societies, error: error } = await supabase
+    .from('societies')
+    .select('id')
+
+  if (societies == null && societies.length < 1) {
+    return null
+  }
+
+  return societies.length
+}
+
+export { getSocieties, getNumberOfSocieties };

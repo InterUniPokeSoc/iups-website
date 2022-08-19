@@ -10,6 +10,7 @@ const winnerError = new Error("no winners were found")
  */
 async function getHuntID() {
 
+  // TODO: This could cause bugs, requires fixing.
   // Get ID for the newest Hunt available
   const { data: newestHuntID, error: errorInfoRequest1 } = await supabase
     .from('hunts')

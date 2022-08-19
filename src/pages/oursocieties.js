@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Layout from '../components/layout'
 import '../styles/general.scss'
 import '../styles/oursocieties.scss'
-import {Helmet} from "react-helmet"
+import { Helmet } from "react-helmet"
 
 import Map from '../components/map'
 import Loader from '../components/loader'
