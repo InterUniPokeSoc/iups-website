@@ -1,0 +1,27 @@
+@use 'variables';
+
+.main-title {
+    margin: 20px auto;
+}
+
+.subtitle {
+    margin: 20px;
+    font-size: 2.2em;
+}
+
+.events-container {
+    display: flex;
+    overflow-x: scroll;
+    width: 100%;
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.4);
+}

@@ -1,0 +1,32 @@
+@use '../styles/variables';
+
+$container-width: 400px;
+$container-height: 250px;
+
+.event-container {
+    margin: 20px;
+
+    height: $container-height;
+    width: $container-width;
+
+    background-color: black;
+
+    border-radius: 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    flex-shrink: 0;
+
+    cursor: pointer;
+
+    transition: transform 0.3s;
+}
+
+.event-container:hover {
+    transform: scale(110%);
+}
+
+.event-title {
+    color: white;
+}
