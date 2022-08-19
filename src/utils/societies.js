@@ -6,6 +6,7 @@ async function getSocieties() {
   const { data: societies, error: error } = await supabase
     .from('societies')
     .select('*')
+    .order('name', { ascending: true })
 
   if (societies == null || societies.length < 1) {
     throw noSocietiesError
