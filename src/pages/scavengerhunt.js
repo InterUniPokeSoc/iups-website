@@ -18,7 +18,7 @@ function ScavengerHuntPage() {
   const [winnerAlreadyExists, setWinnerAlreadyExists] = useState([])
 
   // Current Hint Number
-  const [currentHintNo, setCurrentHintNo] = useState(3)
+  const [currentHintNo, setCurrentHintNo] = useState(0)
 
   // User Input
   const [userAnswer, setUserAnswer] = useState("")
