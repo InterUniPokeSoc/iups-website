@@ -153,6 +153,11 @@
   height: 20px;
 }
 
+.captcha {
+  display: flex;
+  justify-content: center;
+}
+
 @keyframes shake {
   0% { margin-left: 0rem; }
   25% { margin-left: 0.5rem; }

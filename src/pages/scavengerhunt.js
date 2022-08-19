@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, useInsertionEffect } from 'react'
 import {Helmet} from "react-helmet";
 import Layout from '../components/layout';
+import HCaptcha from "@hcaptcha/react-hcaptcha"
 import '../styles/general.scss';
 import * as styles from '../styles/scavengerHunt.module.scss';
 
@@ -17,7 +18,7 @@ function ScavengerHuntPage() {
   const [winnerAlreadyExists, setWinnerAlreadyExists] = useState([])
 
   // Current Hint Number
-  const [currentHintNo, setCurrentHintNo] = useState(0)
+  const [currentHintNo, setCurrentHintNo] = useState(3)
 
   // User Input
   const [userAnswer, setUserAnswer] = useState("")
@@ -34,6 +35,12 @@ function ScavengerHuntPage() {
   // Output Messages
   const [message, setMessage] = useState("")
   const [errorMessage, setErrorMessage] = useState(null)
+
+  // Captcha Reference
+  const captchaRef = useRef();
+  const [userVerifiedHuman, setUserVerifiedHuman] = useState(false)
+
+
 
   /*
     Get Hints from the database and store in hints
@@ -124,6 +131,12 @@ function ScavengerHuntPage() {
       return
     }
 
+    // Assert that the user is human
+    if (!userVerifiedHuman) {
+      setMessage("You need to verify using the captcha.")
+      return
+    }
+
     setIsLoading(true)
 
     inputNewWinner(userDiscordID).then(() => {
@@ -197,6 +210,17 @@ function ScavengerHuntPage() {
                         <input type="checkbox" className={ styles.discordCheckbox } onChange={ (e) => setUserDiscordIDAgreement(e) } />
                         I agree to have my Discord username stored and published on this website
                       </label>
+                      <div className={ styles.captcha }>
+                        <HCaptcha
+                          ref={captchaRef}
+                          sitekey={ 
+                            `${process.env.IS_DEVELOPMENT}` == null ? `${process.env.HCAPTCHA_SITE_KEY}`
+                            : '10000000-ffff-ffff-ffff-000000000001'
+                          }
+                          theme="light"
+                          onVerify={() => setUserVerifiedHuman(true)}
+                        />
+                      </div>
                       <a id={styles.hintButton} onClick={discordIDResponse}>Submit</a>
                       <p id={styles.updateMessage}>{ message }</p>
                     </>
