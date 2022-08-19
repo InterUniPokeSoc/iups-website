@@ -40,7 +40,7 @@ function IndexPage() {
             The Inter-University Pokémon Society is a union of more than 30 societies joined together to collaborate on all things Pokémon.
             </p>
             <p>
-            Our primary goal to unite and help form Pokémon societies across the country, if you're looking to set a PokéSoc up, we can help you out!
+            Our primary goal to unite and help form Pokémon societies across the UK and Ireland, if you're looking to set a PokéSoc up, we can help you out!
             </p>
           </div>
           <div id={ styles.homeLogoWrapper }>

@@ -133,6 +133,11 @@ $compactNavButtonHeight: 40px;
         position: absolute;
         left: 50%;
         transform: translate(-50%, 0);
+
+        @media only screen and (max-width: variables.$small-mobile-max-width) {
+            left: 30px;
+            transform: translate(0, 0);
+        }
     }
 
     #main-logo-wrapper {
