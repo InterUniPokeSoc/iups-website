@@ -13,6 +13,9 @@ function Event(props) {
 
     return (
         <div className={ [styles.eventContainer].join(' ') }>
+            { event.image != null &&
+                <img className={ [styles.eventImage].join(' ') } src={ `../images/${event.image}` }/>
+            }
             <h2 className={ [styles.eventTitle].join(' ') }>{event.name ?? ""}</h2>
         </div>
     )
