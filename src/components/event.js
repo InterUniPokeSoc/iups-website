@@ -3,16 +3,18 @@ import * as styles from './event.module.scss';
 
 function Event(props) {
 
-    const event = {
-        title: "Event"
+    const testEvent = {
+        name: "Event"
     }
+
+    const event = props.event ?? testEvent
 
     if (event == null) { return }
 
     return (
-    <div className={ [styles.eventContainer].join(' ') }>
-        <h2 className={ [styles.eventTitle].join(' ') }>{event.title ?? ""}</h2>
-    </div>
+        <div className={ [styles.eventContainer].join(' ') }>
+            <h2 className={ [styles.eventTitle].join(' ') }>{event.name ?? ""}</h2>
+        </div>
     )
 }
 

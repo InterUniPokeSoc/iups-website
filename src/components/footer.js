@@ -6,7 +6,8 @@ function Footer() {
 
   return(
     <footer className={footerStyles.footer}>
-      <p>© Inter-University Pokémon Society {year}.</p>
+      <p className={footerStyles.paragraph}>© Inter-University Pokémon Society {year}</p>
+      <p className={footerStyles.paragraph}>Pokémon and All Respective Names are Trademark & © of Nintendo 1996-{year}</p>
     </footer>
   );
 }

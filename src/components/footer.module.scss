@@ -6,11 +6,10 @@
   background-color: variables.$iups-yellow;
   color: variables.$iups-brown;
   font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.footer > p {
-  margin: 0;
+.paragraph {
+  margin: 0px;
+  display: block;
+  text-align: center;
 }
