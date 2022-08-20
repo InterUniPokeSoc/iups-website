@@ -15,8 +15,11 @@ $container-height: 250px;
 
     display: flex;
     justify-content: center;
-    align-items: top;
+    align-items: center;
     flex-shrink: 0;
+
+    // filter: drop-shadow(5px 5px 5px rgba(10, 10, 10, 0.2));
+    // -webkit-filter: drop-shadow(5px 5px 5px rgba(10, 10, 10, 0.2));
 
     cursor: pointer;
 
@@ -24,9 +27,26 @@ $container-height: 250px;
 }
 
 .event-container:hover {
-    transform: scale(110%);
+    transform: scale(105%);
+
+    @media only screen and (max-width: variables.$standard-mobile-max-width) {
+        transform: scale(100%);
+    }
+}
+
+.event-container-background {
+    background: variables.$darker-gradient;
 }
 
 .event-title {
     color: white;
+    font-size: 1.8em;
+}
+
+.event-image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+
+    border-radius: 25px;
 }

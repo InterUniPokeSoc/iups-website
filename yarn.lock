@@ -2980,7 +2980,7 @@
     "@types/phoenix" "^1.5.4"
     "websocket" "^1.0.34"
 
-"@supabase/storage-js@^1.7.2":
+"@supabase/storage-js@^1.7.2", "@supabase/storage-js@^1.7.3":
   "integrity" "sha512-jnIZWqOc9TGclOozgX9v/RWGFCgJAyW/yvmauexgRZhWknUXoA4b2i8tj7vfwE0WTvNRuA5JpXID98rfJeSG7Q=="
   "resolved" "https://registry.npmjs.org/@supabase/storage-js/-/storage-js-1.7.3.tgz"
   "version" "1.7.3"

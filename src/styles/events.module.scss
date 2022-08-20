@@ -1,11 +1,16 @@
 @use 'variables';
 
+.main-page {
+    background-color: rgb(20, 20, 20);
+}
+
 .main-title {
     margin: 20px auto;
 }
 
 .subtitle {
-    margin: 20px;
+    margin: 0 auto;
+    padding: 10px;
     font-size: 2.2em;
 }
 
@@ -13,4 +18,74 @@
     display: flex;
     overflow-x: scroll;
     width: 100%;
+}
+
+.events-container-subtitle {
+    margin: 20px;
+    font-size: 2.2em;
+}
+
+.events-section {
+    min-height: 100vh;
+}
+
+.selected-event {
+    filter: invert(40%);
+    -webkit-filter: invert(20%);
+}
+
+// Event Info Popup
+
+.event-info-section {
+    padding: 20px;
+
+    background-color: black;
+    color: white;
+    height: 300px;
+
+    transition: height 0.4s;
+}
+
+.close-button-wrapper {
+    position: absolute;
+    left: calc(100% - 35px);
+
+    cursor: pointer;
+}
+
+.close-button {
+    width: 20px;
+}
+
+.event-title {
+    margin: 0;
+    font-size: 2.0em;
+}
+
+
+
+// Info Section
+
+.info {
+    margin: 0 auto;
+    padding: 25px;
+
+    width: 95%;
+    max-width: 800px;
+    display: block;
+}
+
+.info-paragraph {
+    padding: 10px;
+
+    margin: 0 auto;
+    display: block;
+
+    color: white;
+}
+
+.hidden {
+    height: 0px;
+
+    transition: height 0.4s;
 }

@@ -12,11 +12,13 @@ function Event(props) {
     if (event == null) { return }
 
     return (
-        <div className={ [styles.eventContainer].join(' ') }>
+        <div className={ [styles.eventContainer, (event.image == null ? styles.eventContainerBackground : '')].join(' ') }>
             { event.image != null &&
-                <img className={ [styles.eventImage].join(' ') } src={ `../images/${event.image}` }/>
+                <img className={ [styles.eventImage].join(' ') } src={ `/images/${event.image}` }/>
             }
-            <h2 className={ [styles.eventTitle].join(' ') }>{event.name ?? ""}</h2>
+            { event.image == null &&
+                <h2 className={ [styles.eventTitle].join(' ') }>{event.name ?? ""}</h2> 
+            }
         </div>
     )
 }
