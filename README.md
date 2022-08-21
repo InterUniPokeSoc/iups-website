@@ -9,7 +9,7 @@ This code, including all its content are protected by copyright. Any unauthorise
 Contribution is only open to members of the I-UPS with prior approval from a Social Media Officer of Comté. Please ask in the Discord for more information. Contributors must have a reasonable level of experience with HTML, CSS, JavaScript and React. All contributions will have to go through pull requests and will only be approved if of appropriate standard.
 
 ## Branches
-- ```Main``` is for production only and will trigger a Netlify build when any pushes are made.
+- ```Main``` is for production only and will trigger a Cloudflare Pages build when any pushes are made.
 - ```Develop``` is for the develop environment where new features and fixes are combined to be made ready for release.
 
 Additional Branches:
