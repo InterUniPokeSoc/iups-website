@@ -21,7 +21,7 @@ async function getNumberOfSocieties() {
     .select('id')
 
   if (societies == null && societies.length < 1) {
-    return null
+    throw noSocietiesError
   }
 
   return societies.length

@@ -67,7 +67,7 @@ export default function Map(props) {
             <Marker position={[society.latitude, society.longitude]}
                     icon={icon}>
               <Popup>
-                {society.name}
+                <p className={ mapStyles.popupSocietyName }>{society.name}</p>
               </Popup>
             </Marker>
           )}

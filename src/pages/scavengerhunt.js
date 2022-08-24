@@ -158,7 +158,7 @@ function ScavengerHuntPage() {
 
     <Layout>
       <main className="page-content">
-        <h1 className={["shiny-title", styles.scavengerHuntTitle].join(' ')}>Scavenger Hunt Alpha</h1>
+        <h1 className={["shiny-title", styles.scavengerHuntTitle].join(' ')}>Scavenger Hunt</h1>
 
         {/* Loading Indicator */}
         { isLoading &&
