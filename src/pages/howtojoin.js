@@ -23,34 +23,44 @@ function HowToJoinPage() {
         <section className="page-section">
           <CircleImageTitle src={ TitleImg }>How to Join</CircleImageTitle>
 
+          <h2 className="shiny-title medium-title">How to Join</h2>
+          <p>You can join I-UPS completely free by being a member of an affiliated Pokémon Society and joining our 
+            Discord server.
+          </p>
+
+          <h2 className="shiny-title medium-title">Why Join?</h2>
+          <p>You'll gain access to our Discord server, our events and an amazing community. Members from 
+            around the country are involved from a range of different Pokémon societies.
+          </p>
+
           <h2 className="shiny-title medium-title">Society Requirements</h2>
           <ul>
-            <li>You must be a dedicated Pokémon society, not a general gaming society. 'Pokémon and Nintendo' hybrid societies are accepted.</li>
+            <li>You ideally be a dedicated Pokémon society, not a general gaming society. 'Pokémon and Nintendo' hybrid societies are accepted.</li>
             <li>You should ideally be associated with a Students' Union where possible.</li>
             <li>Your members should primarily be students and/or alumni.</li>
           </ul>
 
-          <h2 className="htj-title">Individual Member Requirements</h2>
+          <h2 className="shiny-title medium-title">Individual Member Requirements</h2>
           <ul>
-            <li>You must be a member of a Pokémon Society that is associated with the I-UPS.</li>
-            <li>You must be over 18 - to ensure everyone stays safe.</li>
+            <li>You must be a member or past member of a Pokémon Society that is currently associated with the I-UPS.</li>
+            <li>Some Student Unions accept public members, if you are a member of the society, you are welcome.</li>
           </ul>
 
-          <h2 className="htj-title">FAQ</h2>
+          <h2 className="shiny-title medium-title">FAQ</h2>
           <h3>Can I join I-UPS if I am a member of a general gaming or E-Sports society?</h3>
-          <a>No, you must be a member of a dedicated Pokémon Society. Our aim is to bring together Pokémon Societies and to help run collaborative events. We are not focused on e-sports or general gaming.</a>
+          <a>In exceptional circumstances, you ideally need to be a member of a dedicated Pokémon Society. Our aim is to bring 
+            together Pokémon Societies and to help run collaborative events. We are not focused on e-sports or general gaming.</a>
 
           <h3>Can I join I-UPS if I am not a current student?</h3>
-          <a>This depends on whether your local university Pokémon Society accepts non-student members. This will often depend on their 
-            Students’ Union’s rules. Recent Alumni are welcome to join, so long as they were a member of their respective Universities 
-            Pokémon Society.</a>
+          <a>You can join I-UPS as an alumni, so long as you were or are a member of an affiliated Pokémon Society.</a>
 
           <h3>I’m a Masters/PhD student, my previous university had a Pokémon Society but my current one does not. Can I join?</h3>
-          <a>Yes, so long as your previous universities Pokémon Society accepts you as an alumni/affiliate member. We would, 
-            however, strongly encourage you to set up a Pokémon Society at your current university.</a>
+          <a>Yes, of course. We would, however, strongly encourage you to set up a Pokémon Society at your current university.</a>
 
           <h3>I’m a sixth-form/college student, Can I join?</h3>
-          <a>If you are over 18, your nearest University Pokémon Society may accept you as a member.</a>
+          <a>Your local Pokémon Society may accept non-student members, in these circumstances you can join I-UPS. Please bare in mind that 
+            most server members are over 18.
+          </a>
         </section>
 
       </main>

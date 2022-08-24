@@ -81,7 +81,7 @@ function EventsPage() {
             <section className={ selectedRecurringEvent == null ? styles.hidden : styles.eventInfoSection }>
               { selectedRecurringEvent != null &&
                 <a className={ styles.closeButtonWrapper } onClick={ () => { setSelectedRecurringEvent(null) } }>
-                  <img className={ styles.closeButton } src={ CloseIcon } />
+                  <img className={ styles.closeButton } src={ CloseIcon } alt="Close button for selected event." />
                 </a>
               }
 
@@ -120,7 +120,7 @@ function EventsPage() {
             <section className={ selectedEvent == null ? styles.hidden : styles.eventInfoSection }>
               { selectedEvent != null &&
                 <a className={ styles.closeButtonWrapper } onClick={ () => { setSelectedEvent(null) } }>
-                  <img className={ styles.closeButton } src={ CloseIcon } />
+                  <img className={ styles.closeButton } src={ CloseIcon } alt="Close button for selected event." />
                 </a>
               }
 

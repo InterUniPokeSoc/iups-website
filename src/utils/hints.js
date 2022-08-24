@@ -10,27 +10,17 @@ const winnerError = new Error("no winners were found")
  */
 async function getHuntID() {
 
-  // TODO: This could cause bugs, requires fixing.
   // Get ID for the newest Hunt available
-  const { data: newestHuntID, error: errorInfoRequest1 } = await supabase
-    .from('hunts')
-    .select('id', { count: 'exact' })
-
-  if (newestHuntID == null || newestHuntID[0] == null) {
-    throw noHuntError
-  }
-
-  // Ensure the latest Hunt is available
-  const { data: checkAvailability, error: errorInfoRequest2 } = await supabase
+  const { data: newestHunt, error: error } = await supabase
     .from('hunts')
     .select('*')
     .eq('is_available', true)
 
-  if (checkAvailability.length < 1) {
+  if (newestHunt == null || newestHunt.length < 1 || newestHunt[0].id == null) {
     throw noHuntError
   }
 
-  return newestHuntID
+  return newestHunt[0].id
 }
 
 /**
@@ -79,8 +69,7 @@ async function getHints() {
 
   return getHuntID()
   .then((newestHuntID) => {
-    const id = newestHuntID[0].id
-    return getHintDataFor(id)
+    return getHintDataFor(newestHuntID)
   })
   .then((hintsData) => {
     if (hintsData != null && hintsData.length < 0) {
@@ -102,8 +91,7 @@ async function getHints() {
 async function getWinners() {
   return getHuntID()
   .then((newestHuntID) => {
-    const id = newestHuntID[0].id
-    return doesHuntHaveWinnerWith(id)
+    return doesHuntHaveWinnerWith(newestHuntID)
   })
   .then((doesHaveWinner) => {
     return doesHaveWinner
@@ -120,8 +108,7 @@ async function getWinners() {
  async function inputNewWinner(discordID) {
   return getHuntID()
   .then((newestHuntID) => {
-    const id = newestHuntID[0].id
-    addWinnerToDatabase(id, discordID)
+    addWinnerToDatabase(newestHuntID, discordID.sanatize())
   })
   .catch((e) => {
     console.log(e)
