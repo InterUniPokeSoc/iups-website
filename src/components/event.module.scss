@@ -3,6 +3,9 @@
 $container-width: 400px;
 $container-height: 250px;
 
+$mobile-container-width: 250px;
+$mobile-container-height: 156px;
+
 .event-container {
     margin: 20px;
 
@@ -18,12 +21,14 @@ $container-height: 250px;
     align-items: center;
     flex-shrink: 0;
 
-    // filter: drop-shadow(5px 5px 5px rgba(10, 10, 10, 0.2));
-    // -webkit-filter: drop-shadow(5px 5px 5px rgba(10, 10, 10, 0.2));
-
     cursor: pointer;
 
     transition: transform 0.3s;
+
+    @media only screen and (max-width: variables.$standard-mobile-max-width) {
+        height: $mobile-container-height;
+        width: $mobile-container-width;
+    }
 }
 
 .event-container:hover {
@@ -41,6 +46,10 @@ $container-height: 250px;
 .event-title {
     color: white;
     font-size: 1.8em;
+
+    @media only screen and (max-width: variables.$standard-mobile-max-width) {
+        font-size: 1.2em;
+    }
 }
 
 .event-image {

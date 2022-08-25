@@ -108,7 +108,7 @@ async function getWinners() {
  async function inputNewWinner(discordID) {
   return getHuntID()
   .then((newestHuntID) => {
-    addWinnerToDatabase(newestHuntID, discordID.sanatize())
+    addWinnerToDatabase(newestHuntID, discordID)
   })
   .catch((e) => {
     console.log(e)
