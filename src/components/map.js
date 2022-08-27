@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react'
-import Helmet from 'react-helmet'
 import { MapContainer, TileLayer, Marker, Popup, useMap, useLeafletContext } from 'react-leaflet'
 import * as mapStyles from './map.module.scss'
 import '../styles/leaflet.css'
