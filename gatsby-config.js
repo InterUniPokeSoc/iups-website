@@ -3,7 +3,6 @@ require("dotenv").config({
 })
 
 module.exports = {
-  pathPrefix: "/iups-website",
   siteMetadata: {
     title: "I-UPS",
   },
