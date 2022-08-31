@@ -93,6 +93,6 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         env: 
-          <GATSBY_PUBLIC_SUPABASE_ANON_KEY>: <secrets.GATSBY_PUBLIC_SUPABASE_ANON_KEY>
+          GATSBY_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.GATSBY_PUBLIC_SUPABASE_ANON_KEY }}
         id: deployment
         uses: actions/deploy-pages@v1
