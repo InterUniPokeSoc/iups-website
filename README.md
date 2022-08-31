@@ -20,6 +20,10 @@ Additional branches MUST begin with either of the two above prefixes, any branch
 
 Please use underscores to seperate longer branch names so that they are easier to read.
 
+## Deployment
+Deployment is auto triggered by pushes to the ```Main``` branch.
+
+
 ## Pre-requisites
 - NPM.
 - Node.js.
