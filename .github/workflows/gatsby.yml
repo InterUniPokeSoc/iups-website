@@ -76,6 +76,7 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Gatsby
         env:
+          GATSBY_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.GATSBY_PUBLIC_SUPABASE_ANON_KEY }}
           PREFIX_PATHS: 'true'
         run: ${{ steps.detect-package-manager.outputs.manager }} run build
       - name: Upload artifact
@@ -92,7 +93,7 @@ jobs:
     needs: build
     steps:
       - name: Deploy to GitHub Pages
-        with:
-          GATSBY_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.GATSBY_PUBLIC_SUPABASE_ANON_KEY }}
         id: deployment
         uses: actions/deploy-pages@v1
+        env:
+          GATSBY_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.GATSBY_PUBLIC_SUPABASE_ANON_KEY }}
