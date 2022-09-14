@@ -4,7 +4,6 @@ import {Helmet} from "react-helmet";
 import Layout from '../components/layout';
 import TitleBanner from '../components/titleBanner';
 import '../styles/general.scss';
-import '../styles/howtojoin.scss';
 
 
 function ContactPage() {
@@ -19,7 +18,7 @@ function ContactPage() {
 
       <main className="page-content">
         <section className="page-section">
-          <h1 className="huge-title">Contact</h1>
+          <h1 className="huge-title shiny-title">Contact</h1>
         </section>
 
       </main>

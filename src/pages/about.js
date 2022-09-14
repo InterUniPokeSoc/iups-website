@@ -9,11 +9,11 @@ import Loader from '../components/loader';
 import CircleImageTitle from '../components/circleImageTitle';
 
 // Styles Imports
-import '../styles/general.scss';
+// import '../styles/general.scss';
 import * as aboutStyles from '../styles/about.module.scss';
 
 // Image Imports
-import TitleImg from '../images/pokemon/harold-wide.jpg'
+import TitleImg from '../images/pokemon/harold.jpg'
 import CommunityIcon from '../images/icons/group-icon.svg'
 import EventsIcon from '../images/icons/schedule-calendar-icon.svg'
 import DiscordIcon from '../images/social-media-icons/discord/icon_clyde_white_RGB.svg'
