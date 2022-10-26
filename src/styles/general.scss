@@ -2,6 +2,9 @@
 
 * {
     font-family: variables.$main-font;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 body {
@@ -53,5 +56,9 @@ body {
     margin-bottom: 40px;
     padding: 30px;
     max-width: 1000px;
-  }
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
   
