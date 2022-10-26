@@ -64,12 +64,13 @@ export default function Map(props) {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           { societyList.map( society => 
-            <Marker position={[society.latitude, society.longitude]}
-                    icon={icon}>
-              <Popup>
-                <p className={ mapStyles.popupSocietyName }>{society.name}</p>
-              </Popup>
-            </Marker>
+            society.latitude != null && society.longitude != null && society.name != null && 
+              <Marker position={[society.latitude, society.longitude]}
+                      icon={icon}>
+                <Popup>
+                  <p className={ mapStyles.popupSocietyName }>{society.name}</p>
+                </Popup>
+              </Marker>
           )}
 
           <MapAdjustments selectedSociety={selectedSociety} defaultMapConfig={initialState}/>
