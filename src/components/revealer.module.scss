@@ -1,0 +1,43 @@
+@use '../styles/variables';
+
+.revealer {
+
+    margin: 30px auto;
+
+    padding: 15px 0px;
+
+    text-align: center;
+
+    width: 95%;
+    max-width: 800px;
+
+    background: variables.$darker-gradient;
+
+    color: white;
+
+    cursor: pointer;
+}
+
+.revealer-title {
+    margin: 0;
+    padding: 0;
+
+    user-select: none;
+
+    font-size: 2.2em;
+
+    font-weight: bold;
+}
+
+.child-content {
+    transition: height 0.2s ease-in;
+}
+
+.hide {
+    height: 0;
+    overflow: hidden;
+}
+
+.show {
+    height: 100%;
+}

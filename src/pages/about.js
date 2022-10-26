@@ -7,6 +7,7 @@ import { getNumberOfSocieties } from "../utils/societies"
 // Components Imports
 import Loader from '../components/loader';
 import CircleImageTitle from '../components/circleImageTitle';
+import Revealer from '../components/revealer';
 
 // Styles Imports
 // import '../styles/general.scss';
@@ -95,34 +96,50 @@ function AboutPage() {
             Wales, and N. Ireland. If you're wanting to set a PokéSoc up, give us a shout!
             </p>
 
-            <h1 className="shiny-title center-margins medium-title">History</h1>
-            <h1 className="shiny-title center-margins small-title">PokéSoc Beginnings</h1>
-            <p className={aboutStyles.paragraph}>The UK's oldest known Pokémon Society began in Hull in 2010, followed shortly by York and 
-            Sheffield in 2012. These early societies were dedicated to growing their membership along with running socials and tournaments. Early 
-            signs of alliances were formed with Sheffield running a 24-hour event involving Leeds, but this was a mere prelude compared to 
-            what followed.
-            </p>
-            <h1 className="shiny-title center-margins small-title">Sussex's Grand Idea</h1>
-            <p className={aboutStyles.paragraph}>Rob, a Sussex committee member started the chain of events by joining the York PokéSoc server, it 
-            was from there that the I-UPS Discord server was first created. Durham was next to join which laid the foundations for the initial leadership
-            Triad consisting of Hanny, Georgina and Dom.
-            </p>
-            <h1 className="shiny-title center-margins small-title">The Discord Server</h1>
-            <p className={aboutStyles.paragraph}>As more and more societies were in correspondance, it was apparent that a server merely for committees was
-            limiting the potential of I-UPS' outreach; so, the server opened to all I-UPS society members in 2021.
-            </p>
-            <h1 className="shiny-title center-margins small-title">Comté is Formed</h1>
-            <p className={aboutStyles.paragraph}>The initial leadership of I-UPS consisted of the triad of Hanny, Dom and Georgina, with I-UPS already 
-            having dozens of societies involved, it was clear that a governing body was needed to manage I-UPS. A group of members applied, were chosen 
-            and quickly got to work at making I-UPS the amazing place it is now.
-            </p>
-            <h1 className="shiny-title center-margins small-title">The First Draft League</h1>
-            <p className={aboutStyles.paragraph}>I-UPS now needed to run its first event, as Hanny had run draft leagues for Durham before this became the
-            obvious choice. Many societies signed up, battled hard and eventually a winner was crowned. That winner was MewCL (UCL).
-            </p>
+            <Revealer title="History">
+              <h1 className="shiny-title center-margins small-title">PokéSoc Beginnings</h1>
+              <p className={aboutStyles.paragraph}>The UK's oldest known Pokémon Society began in Hull in 2010, followed shortly by York and Sheffield 
+              in 2012. These early societies were dedicated to growing their membership along with running socials and tournaments. Early signs of 
+              alliances were formed with Sheffield running a 24-hour event involving Leeds, and the historic Roses bout between York and Lancaster, 
+              but this was a mere prelude compared to what followed.
+              </p>
+              <h1 className="shiny-title center-margins small-title">Sussex's Grand Idea</h1>
+              <p className={aboutStyles.paragraph}>In 2021, IUPS all started with Sussex Pokésoc. We all know how hard Covid was, and university societies 
+              were hit hard too. From the struggles it brought, Sussex gained a mission. They wanted to find other Pokésocs around the UK, all in an effort 
+              to build an online community which supports fellow committees. Then-Treasurer Rob joined York’s Discord server, and the first connection was 
+              made. A brand new server was created, and in came Durham, rounding out the three unis which laid the foundations for our initial leadership 
+              structure. UCL, Bristol, UEA, and a whole host of Pokésocs from around the UK stormed in as time went on, before everything started to 
+              become… a bit real.
+              </p>
+              <h1 className="shiny-title center-margins small-title">The Discord Server</h1>
+              <p className={aboutStyles.paragraph}>As more and more societies were in correspondance, it was apparent that a server merely for committees was
+              limiting the potential of I-UPS' outreach; so, the server opened to all I-UPS society members in 2021.
+              </p>
 
-            <h2 className="shiny-title center-margins medium-title">Further Information</h2>
-            <p className={aboutStyles.paragraph}>Pokémon and All Respective Names and Designs are Trademark & &copy; of Nintendo 1996-2022.</p>
+              <h1 className="shiny-title center-margins small-title">Comté is Formed</h1>
+              <p className={aboutStyles.paragraph}>With over a dozen fellow Pokésoc committees roaming the tall grass together in this new environment, we 
+              needed to have a Champion to lead us. Don’t worry, we weren’t so crude as to actually name ourselves after the Elite 4… An initial group of fourteen 
+              committee members from nine different societies was formed, and quickly got to work, moulding I-UPS further towards what can be found today. Why 
+              “Comté” though? Well, “Committee Committee” was a bit too long, so we shortened it to “Comtee”, but that was too close to our dear friend Combee! We 
+              didn’t want Combee to feel sad, so we added some flair with an accent - Comté!
+              </p>
+
+              <h1 className="shiny-title center-margins small-title">The Official I-UPS Discord Server</h1>
+              <p className={aboutStyles.paragraph}>With our Comté in place, and with over a dozen societies now involved and invested in our new community, it was 
+              time to take things public. Our doors opened to our societies’ members in late March 2021 with a (now defunct) Pixelmon server leading the festivities. 
+              Keeping everything public has enabled us to connect with so many more people than we thought possible. We now have over 30 Pokésoc families under our 
+              umbrella, and we cherish each and every one.
+              </p>
+
+              <h1 className="shiny-title center-margins small-title">The I-UPS Summer Draft League</h1>
+              <p className={aboutStyles.paragraph}>Our flagship event, consisting of a Team Tour format, open to all members of IUPS, had its first rendition in the 
+              summer of 2021. 15 teams from 12 societies participated. Everyone battled hard, and a winner was eventually crowned: MewCL (UCL). We now host this 
+              annually, with more societies and teams joining every year!
+              </p>
+
+              <h2 className="shiny-title center-margins medium-title">Further Information</h2>
+              <p className={aboutStyles.paragraph}>Pokémon and All Respective Names and Designs are Trademark & &copy; of Nintendo 1996-2022.</p>
+            </Revealer>
           </section>
 
         </main>
