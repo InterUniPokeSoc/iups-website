@@ -7,7 +7,7 @@ import '../styles/general.scss';
 import * as styles from '../styles/howtojoin.module.scss';
 
 // Image Imports
-import TitleImg from '../images/backgrounds/londongang.jpg'
+import TitleImg from '../images/pokemon/harold.jpg'
 
 function HowToJoinPage() {
 
