@@ -8,6 +8,7 @@ import { getNumberOfSocieties } from "../utils/societies"
 import Loader from '../components/loader';
 import CircleImageTitle from '../components/circleImageTitle';
 import Revealer from '../components/revealer';
+import Comte from '../components/comte';
 
 // Styles Imports
 // import '../styles/general.scss';
@@ -89,12 +90,99 @@ function AboutPage() {
                 <a className={aboutStyles.iconText}>Discord Server</a>
               </div>
             </section>
+            
+            <Revealer title="Comté">
+              <Comte name="Dom" title="Speaker" 
+              description="Hiya, I'm Dom, and I'm somewhat in charge of this here endeavour. 
+              My track record of being a past UoY committee member of 3 years, and my love 
+              of Happiny and Chimecho push me forth towards the promised land of plentiful 
+              thriving Pokésocs around the UK and beyond! If I'm not busy working, you'll 
+              find me on Showdown Randbats or polishing my Pokémon TTRPG rules." />
 
-            <h1 className="shiny-title center-margins medium-title">The Comté</h1>
-            <p className={aboutStyles.paragraph}>The Inter-University Pokémon Society is a conglomerate of over 30 UK university societies, 
-            joined together to collaborate on all things Pokémon. We look to support and help form Pokémon Societies across England, Scotland, 
-            Wales, and N. Ireland. If you're wanting to set a PokéSoc up, give us a shout!
-            </p>
+              <Comte name="Hanny" title="Document Manager" 
+                description="I'm currently an ALT in Japan, which will almost certainly 
+                explain why I'm around at odd hours of the day at any given time. I mostly 
+                manage the documentation behind the scenes for IUPS where needed, since the 
+                timezone does make it difficult to do other things. But I'm always doing my 
+                best! My favourite Pokemon are Mimikyu and Yamper, of which I have proven my 
+                love for by getting 7 plushies of the former and currently 5 of the latter. 
+                This will not be stopping anytime soon." />
+
+              <Comte name="James" title="Treasurer" 
+                description="Hi I'm RedRouge1,
+                I am the treasurer for Comté so it is my responsibility to provide advice 
+                in regards to any financial matters that arise. My favourite Pokémon is 
+                Snom, so it can usually be found as discord icon. At York I am currently 
+                the president of the University of York's Pokésoc and can be found around 
+                I-UPS helping to put on events such as the Summer Team Tour." />
+
+              <Comte name="Dimitri" title="Events Officer" 
+                description="My favourite Pokémon are Piplup, Furret and Lurantis and my 
+                favourite game is SoulSilver." />
+
+              <Comte name="Rob" title="Diciplinary Officer" 
+                description="Hi all, I’m Rob I went to Sussex and studied biochemistry. 
+                My favourite Pokémon are Ninetales and Lapras. I am the bonk sec, feel 
+                free to Message me about any concerns you might have." />
+
+              <Comte name="Philip - The Sinnohman" title="Social Secretary" 
+                description="I'm the Social Secretary of I-UPS, responsible for organising 
+                the more casual events you'll see happening, such as movie nights, Pokémon Go 
+                events, and gameshows. I also run the recurring I-UPS All Stars Polls event, 
+                which you can find out more about on our Events page.
+
+                I was a committee member and Treasurer of York's PokéSoc during 2019-20. Our 
+                committee was responsible for revising the society's event schedule to include 
+                more events for less competitive-oriented players, such as PokéSoc: The Chase 
+                (starring yours truly as the Chaser) and Skribbl.io Pokémon Edition.
+                
+                My favourite Pokémon are Ninjask and Feraligatr, and my favourite main series 
+                game is HeartGold (Gen 4 best gen). I'm also a huge fan of Mystery Dungeon 
+                and Pokémon Go." />
+
+              <Comte name="Flora (they/she)" title="Accessibility and Inclusivity Officer" 
+                description="Hello! I'm IUPS's Accessibility and Inclusivity Officer, and 
+                the President of St Andrews Pokémon Society. I'm around to make sure 
+                everyone in the server feels safe, happy, and accomodated for and I'm 
+                happy to say that the server is such a wonderful and friendly space that 
+                my work is pretty light, but of course please do feel free to get in touch 
+                if you're having a difficulty or there's something you'd like to see 
+                improved to make your experience at IUPS better. When it comes to PokéSoc 
+                events in St Andrews, I'm a big fan of running and participating in draft 
+                leagues but like to see a bit of everything, albeit with personal 
+                preference for the main series games and a casual interest in the TCG. 
+                My favourite Pokémon include Torterra, Dracovish, the whole Porygon family, 
+                and various others and I can often be found rambling about why these 
+                Pokemon in particular are amazing." />
+
+              <Comte name="Loren - Lolo" title="Univserity Liason" 
+                description="Hello! I am the Founder and current Vice President of KCL 
+                Pokémon Society (2022/2023). After founding the society in 2020, I've 
+                come to appreciate every part of the Pokémon franchise. My dedication 
+                for Pokémon GO is strong and you will always catch me on the hunt for 
+                the newest shiny in game! As University Liaison for I-UPS, I hope to 
+                help universities establish their Pokémon Societies to a high standard 
+                with events for everyone to enjoy Pokémon to the fullest whilst making 
+                friends along the way. Looking forward to meeting you! " />
+
+              <Comte name="Ruohan - Ro" title="Social Media Secretary (Scary Terry)" 
+                description="I am the social media secretary, which means I run I-UPS's 
+                Instagram account! My other experience includes being the co-founder and 
+                president of UCL Pokémon Society, and as of 2022 I'm UCL PokéSoc's Arts 
+                Officer! My favourite Pokémon are Shaymin, Eevee and Lucario and on 
+                Wednesdays I dedicate my life to the west beast (i.e. Quagsire)." />
+
+              <Comte name="Matt - Quag Stan" title="Social Media Secretary (Scary Terry) - Web" 
+                description="Hey I’m Matt, Social Media Secretary on Comté and former President 
+                of Sheffield PokéSoc. I’m mostly responsible for I-UPS’ website, along with 
+                graphic design and occasional video editing/animation. Outside of I-UPS, 
+                I work as a mobile engineer building iOS and Android applications in the 
+                rail industry. In terms of Pokémon, I’m a fan of the games 
+                (particularly Legends Arceus and PMD), the anime and soundtracks; it’s not 
+                exactly a secret that my favourite Pokémon are Zygarde Core and Quag. Other 
+                than Pokémon I’m a strong fan of Zelda and Mario as well as a keen 
+                Piano/Violin player." />
+            </Revealer>
 
             <Revealer title="History">
               <h1 className="shiny-title center-margins small-title">PokéSoc Beginnings</h1>
@@ -136,10 +224,10 @@ function AboutPage() {
               summer of 2021. 15 teams from 12 societies participated. Everyone battled hard, and a winner was eventually crowned: MewCL (UCL). We now host this 
               annually, with more societies and teams joining every year!
               </p>
-
-              <h2 className="shiny-title center-margins medium-title">Further Information</h2>
-              <p className={aboutStyles.paragraph}>Pokémon and All Respective Names and Designs are Trademark & &copy; of Nintendo 1996-2022.</p>
             </Revealer>
+
+            <h2 className="shiny-title center-margins medium-title">Further Information</h2>
+              <p className={aboutStyles.paragraph}>Pokémon and All Respective Names and Designs are Trademark & &copy; of Nintendo 1996-2022.</p>
           </section>
 
         </main>

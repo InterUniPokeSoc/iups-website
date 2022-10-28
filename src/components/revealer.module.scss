@@ -4,6 +4,13 @@
 
     margin: 30px auto;
 
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 30px;
+
     padding: 15px 0px;
 
     text-align: center;
@@ -14,6 +21,8 @@
     background: variables.$darker-gradient;
 
     color: white;
+
+    border-radius: 20px;
 
     cursor: pointer;
 }
@@ -29,10 +38,6 @@
     font-weight: bold;
 }
 
-.child-content {
-    transition: height 0.2s ease-in;
-}
-
 .hide {
     height: 0;
     overflow: hidden;
@@ -40,4 +45,16 @@
 
 .show {
     height: 100%;
+
+    transition: height 0.5s;
+}
+
+.icon {
+    font-size: 1.6em;
+
+    transition: transform 0.5s;
+}
+
+.icon-up {
+    transform: rotate(180deg);
 }
