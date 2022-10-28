@@ -155,6 +155,17 @@ function AboutPage() {
                 and various others and I can often be found rambling about why these 
                 Pokemon in particular are amazing." />
 
+              <Comte name="Matty - Deathvolg" title="Meeting Secretary" 
+                description="As meeting secretary, I make sure that notes and minutes are 
+                properly organised and written up and that if something that was discussed 
+                needs doing, people are made aware of it. I am also the current Secretary of 
+                Keele Pokémon society which had only been formed in the past year.
+
+                My first pokemon game was Pokemon Y but my favorite Pokémon generation is 
+                probably 4, with most of my favorite Pokémon coming from the 5th and 7th 
+                generation. I'm also quite active in Pokémon GO and I have a decent sized 
+                card collection." />
+
               <Comte name="Loren - Lolo" title="Univserity Liason" 
                 description="Hello! I am the Founder and current Vice President of KCL 
                 Pokémon Society (2022/2023). After founding the society in 2020, I've 
@@ -163,7 +174,7 @@ function AboutPage() {
                 the newest shiny in game! As University Liaison for I-UPS, I hope to 
                 help universities establish their Pokémon Societies to a high standard 
                 with events for everyone to enjoy Pokémon to the fullest whilst making 
-                friends along the way. Looking forward to meeting you! " />
+                friends along the way. Looking forward to meeting you!" />
 
               <Comte name="Ruohan - Ro" title="Social Media Secretary (Scary Terry)" 
                 description="I am the social media secretary, which means I run I-UPS's 
