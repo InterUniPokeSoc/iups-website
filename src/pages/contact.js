@@ -48,7 +48,7 @@ function ContactPage() {
           </p>
 
           <p className={styles.description}>
-            We do not respond to advertisement/sponsorship requests, or any messages that breach the rules of I-UPS.
+            Any messages that breach the rules of I-UPS will not be responded to.
           </p>
         </section>
 
