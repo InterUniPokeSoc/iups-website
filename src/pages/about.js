@@ -120,7 +120,7 @@ function AboutPage() {
                 description="My favourite Pokémon are Piplup, Furret and Lurantis and my 
                 favourite game is SoulSilver." />
 
-              <Comte name="Rob" title="Diciplinary Officer" 
+              <Comte name="Rob" title="Disciplinary Officer" 
                 description="Hi all, I’m Rob I went to Sussex and studied biochemistry. 
                 My favourite Pokémon are Ninetales and Lapras. I am the bonk sec, feel 
                 free to Message me about any concerns you might have." />
