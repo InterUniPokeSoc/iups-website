@@ -34,7 +34,7 @@ function ContactPage() {
 
           <a className={styles.contactContainer} href="https://www.instagram.com/inter.uni.pokemon/">
             <img src={InstaIcon} className={ [styles.contactImageIcon].join(' ') } />
-            <p className={styles.contactText}>@Inter.Uni.Pokemon</p>
+            <p className={styles.contactText}>@inter.uni.pokemon</p>
           </a>
 
           <a className={styles.contactContainer} href="https://discord.gg/52YutzNUGg">
