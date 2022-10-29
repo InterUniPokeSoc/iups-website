@@ -117,8 +117,17 @@ function AboutPage() {
                 I-UPS helping to put on events such as the Summer Team Tour." />
 
               <Comte name="Dimitri" title="Events Officer" 
-                description="My favourite Pokémon are Piplup, Furret and Lurantis and my 
-                favourite game is SoulSilver." />
+                description="Hey everyone! I'm Dimitri, the Events Manager of IUPS. That 
+                means it's my responsibility to coordinate the larger scale IUPS events - 
+                so if you have an idea for something, let me know!
+
+                I recently graduated with an MSci in Maths and Modern Languages from UCL 
+                but, more importantly, I co-founded the UCL Pokémon Society and still 
+                help out wherever I can, despite not being an official committee member 
+                anymore.
+                
+                My favourite Pokémon are Piplup, Furret and Lurantis and my favourite 
+                game is SoulSilver." />
 
               <Comte name="Rob" title="Disciplinary Officer" 
                 description="Hi all, I’m Rob I went to Sussex and studied biochemistry. 
