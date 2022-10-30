@@ -27,11 +27,16 @@
     -webkit-text-fill-color: transparent;
 }
 
-.title {
+.title, .pronouns {
     margin: 5px;
 
     font-size: 1.2em;
     font-weight: bold;
+}
+
+.pronouns {
+    font-size: 1.0em;
+    color: rgb(140, 140, 140);
 }
 
 .description {

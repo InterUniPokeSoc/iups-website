@@ -92,14 +92,14 @@ function AboutPage() {
             </section>
             
             <Revealer title="Comté">
-              <Comte name="Dom" title="Speaker" 
+              <Comte name="Dom" title="Speaker" pronouns="(He/Him)"
               description="Hiya, I'm Dom, and I'm somewhat in charge of this here endeavour. 
               My track record of being a past UoY committee member of 3 years, and my love 
               of Happiny and Chimecho push me forth towards the promised land of plentiful 
               thriving Pokésocs around the UK and beyond! If I'm not busy working, you'll 
               find me on Showdown Randbats or polishing my Pokémon TTRPG rules." />
 
-              <Comte name="Hanny" title="Document Manager" 
+              <Comte name="Hanny" title="Document Manager" pronouns="(She/Her)"
                 description="I'm currently an ALT in Japan, which will almost certainly 
                 explain why I'm around at odd hours of the day at any given time. I mostly 
                 manage the documentation behind the scenes for IUPS where needed, since the 
@@ -108,15 +108,16 @@ function AboutPage() {
                 love for by getting 7 plushies of the former and currently 5 of the latter. 
                 This will not be stopping anytime soon." />
 
-              <Comte name="James" title="Treasurer" 
-                description="Hi I'm RedRouge1,
-                I am the treasurer for Comté so it is my responsibility to provide advice 
-                in regards to any financial matters that arise. My favourite Pokémon is 
-                Snom, so it can usually be found as discord icon. At York I am currently 
-                the president of the University of York's Pokésoc and can be found around 
-                I-UPS helping to put on events such as the Summer Team Tour." />
+              <Comte name="Lolo" title="Univserity Liason" pronouns="(She/Her)"
+                description="Hello! I am the Founder and current Vice President of KCL Pokémon 
+                Society (2022/2023). After founding the society in 2020, I've come to appreciate 
+                every part of the Pokémon franchise. My dedication for Pokémon Go is strong and 
+                you will always catch me on the hunt for the newest shiny in the game! As 
+                University Liaison for I-UPS, I hope to help universities establish their Pokémon 
+                Societies to a high standard with events for everyone to enjoy Pokémon to the 
+                fullest whilst making friends along the way. Looking forward to meeting you!" />
 
-              <Comte name="Dimitri" title="Events Officer" 
+              <Comte name="Dimitri" title="Events Officer" pronouns="(He/Him)"
                 description="Hey everyone! I'm Dimitri, the Events Manager of IUPS. That 
                 means it's my responsibility to coordinate the larger scale IUPS events - 
                 so if you have an idea for something, let me know!
@@ -129,70 +130,35 @@ function AboutPage() {
                 My favourite Pokémon are Piplup, Furret and Lurantis and my favourite 
                 game is SoulSilver." />
 
-              <Comte name="Rob" title="Disciplinary Officer" 
-                description="Hi all, I’m Rob I went to Sussex and studied biochemistry. 
-                My favourite Pokémon are Ninetales and Lapras. I am the bonk sec, feel 
-                free to Message me about any concerns you might have." />
+              <Comte name="James" title="Treasurer" pronouns="(He/Him)"
+                description="Hi I'm James. I am the Treasurer for Comté so it is my 
+                responsibility to provide advice in regards to any financial matters 
+                that arise. My favourite Pokémon is Snom, so it can usually be found as 
+                my Discord icon. I am currently the president of the University of York's 
+                Pokésoc, and can be found around I-UPS helping to put on events such as 
+                the Summer Team Tour." />
 
-              <Comte name="Philip - The Sinnohman" title="Social Secretary" 
+              <Comte name="Philip" title="Social Secretary" pronouns="(He/Him)" 
                 description="I'm the Social Secretary of I-UPS, responsible for organising 
-                the more casual events you'll see happening, such as movie nights, Pokémon Go 
-                events, and gameshows. I also run the recurring I-UPS All Stars Polls event, 
-                which you can find out more about on our Events page.
+                the more casual events you'll see happening, Pokémon Go events and our 
+                recurring I-UPS All Stars Polls event, which you can find out more about 
+                on our Events page. I was a committee member and Treasurer of York's PokéSoc 
+                during 2019-20. Our committee was responsible for revising the society's event 
+                schedule to include more events for less competitive-oriented players, such as 
+                PokéSoc: The Chase (starring yours truly as the Chaser) and Skribbl.io Pokémon 
+                Edition. My favourite Pokémon are Ninjask and Feraligatr, and my favourite main 
+                series game is HeartGold (Gen 4 best gen). I'm also a huge fan of Mystery 
+                Dungeon and Pokémon Go." />
 
-                I was a committee member and Treasurer of York's PokéSoc during 2019-20. Our 
-                committee was responsible for revising the society's event schedule to include 
-                more events for less competitive-oriented players, such as PokéSoc: The Chase 
-                (starring yours truly as the Chaser) and Skribbl.io Pokémon Edition.
-                
-                My favourite Pokémon are Ninjask and Feraligatr, and my favourite main series 
-                game is HeartGold (Gen 4 best gen). I'm also a huge fan of Mystery Dungeon 
-                and Pokémon Go." />
+              <Comte name="Ro" title="Social Media Secretary (Scary Terry)" pronouns="(She/Her)"
+                description="I am the Social Media Secretary, which means I run I-UPS's Instagram 
+                account! My other experience includes being the co-founder and president of UCL 
+                Pokémon Society, and as of 2022 I'm UCL PokéSoc's Arts Officer! My favourite 
+                Pokémon are Shaymin, Eevee and Lucario and on Wednesdays I dedicate my life to 
+                the west beast (i.e. Quagsire)." />
 
-              <Comte name="Flora (they/she)" title="Accessibility and Inclusivity Officer" 
-                description="Hello! I'm IUPS's Accessibility and Inclusivity Officer, and 
-                the President of St Andrews Pokémon Society. I'm around to make sure 
-                everyone in the server feels safe, happy, and accomodated for and I'm 
-                happy to say that the server is such a wonderful and friendly space that 
-                my work is pretty light, but of course please do feel free to get in touch 
-                if you're having a difficulty or there's something you'd like to see 
-                improved to make your experience at IUPS better. When it comes to PokéSoc 
-                events in St Andrews, I'm a big fan of running and participating in draft 
-                leagues but like to see a bit of everything, albeit with personal 
-                preference for the main series games and a casual interest in the TCG. 
-                My favourite Pokémon include Torterra, Dracovish, the whole Porygon family, 
-                and various others and I can often be found rambling about why these 
-                Pokemon in particular are amazing." />
-
-              <Comte name="Matty - Deathvolg" title="Meeting Secretary" 
-                description="As meeting secretary, I make sure that notes and minutes are 
-                properly organised and written up and that if something that was discussed 
-                needs doing, people are made aware of it. I am also the current Secretary of 
-                Keele Pokémon society which had only been formed in the past year.
-
-                My first pokemon game was Pokemon Y but my favorite Pokémon generation is 
-                probably 4, with most of my favorite Pokémon coming from the 5th and 7th 
-                generation. I'm also quite active in Pokémon GO and I have a decent sized 
-                card collection." />
-
-              <Comte name="Loren - Lolo" title="Univserity Liason" 
-                description="Hello! I am the Founder and current Vice President of KCL 
-                Pokémon Society (2022/2023). After founding the society in 2020, I've 
-                come to appreciate every part of the Pokémon franchise. My dedication 
-                for Pokémon GO is strong and you will always catch me on the hunt for 
-                the newest shiny in game! As University Liaison for I-UPS, I hope to 
-                help universities establish their Pokémon Societies to a high standard 
-                with events for everyone to enjoy Pokémon to the fullest whilst making 
-                friends along the way. Looking forward to meeting you!" />
-
-              <Comte name="Ruohan - Ro" title="Social Media Secretary (Scary Terry)" 
-                description="I am the social media secretary, which means I run I-UPS's 
-                Instagram account! My other experience includes being the co-founder and 
-                president of UCL Pokémon Society, and as of 2022 I'm UCL PokéSoc's Arts 
-                Officer! My favourite Pokémon are Shaymin, Eevee and Lucario and on 
-                Wednesdays I dedicate my life to the west beast (i.e. Quagsire)." />
-
-              <Comte name="Matt - Quag Stan" title="Social Media Secretary (Scary Terry) - Web" 
+              <Comte name="Matt" title="Social Media Secretary (Scary Terry) - Web"
+                pronouns="(He/Him)"  
                 description="Hey I’m Matt, Social Media Secretary on Comté and former President 
                 of Sheffield PokéSoc. I’m mostly responsible for I-UPS’ website, along with 
                 graphic design and occasional video editing/animation. Outside of I-UPS, 
@@ -202,47 +168,82 @@ function AboutPage() {
                 exactly a secret that my favourite Pokémon are Zygarde Core and Quag. Other 
                 than Pokémon I’m a strong fan of Zelda and Mario as well as a keen 
                 Piano/Violin player." />
+
+              <Comte name="Flora" title="Accessibility and Inclusivity Officer"
+                pronouns="(They/She)"  
+                description="Hello! I'm IUPS's Accessibility and Inclusivity Officer, and 
+                the President of St Andrews Pokémon Society. I'm around to make sure 
+                everyone in the server feels safe, happy, and accommodated for and I'm 
+                happy to say that the server is such a wonderful and friendly space 
+                that my work is pretty light, but of course please do feel free to get 
+                in touch if you're having a difficulty or there's something you'd like 
+                to see improved to make your experience at IUPS better. When it comes to 
+                PokéSoc events in St Andrews, I'm a big fan of running and participating 
+                in draft leagues but like to see a bit of everything, albeit with personal 
+                preference for the main series games and a casual interest in the TCG. My 
+                favourite Pokémon include Torterra, Dracovish, the whole Porygon family, 
+                and various others and I can often be found rambling about why these 
+                Pokémon in particular are amazing." />
+
+              <Comte name="Rob" title="Disciplinary Officer" pronouns="(He/Him)" 
+                description="Hi all, I’m Rob. I went to Sussex and studied Biochemistry. 
+                My favourite Pokémon are Ninetales and Lapras. I make sure our environment 
+                is kept positive and everyone is comfortable in our project. Feel free to 
+                message me about any concerns you might have." />
+
+              <Comte name="Matty" title="Meeting Secretary" pronouns="(He/Him)"  
+                description="Hi I’m Matty and as Meeting Secretary, I make sure that notes 
+                and minutes are properly organised and written up and that if something that
+                 was discussed needs doing, people are made aware of it. My first Pokémon game 
+                 was Pokemon Y but my favourite Pokémon generation is probably 4, with most of 
+                 my favourite Pokémon coming from the 5th and 7th generation. I'm also quite 
+                 active in Pokémon Go and I have a decent sized card collection." />
             </Revealer>
 
             <Revealer title="History">
               <h1 className="shiny-title-wrappable center-margins small-title">PokéSoc Beginnings</h1>
-              <p className={aboutStyles.paragraph}>The UK's oldest known Pokémon Society began in Hull in 2010, followed shortly by York and Sheffield 
-              in 2012. These early societies were dedicated to growing their membership along with running socials and tournaments. Early signs of 
-              alliances were formed with Sheffield running a 24-hour event involving Leeds, and the historic Roses bout between York and Lancaster, 
-              but this was a mere prelude compared to what followed.
+              <p className={aboutStyles.paragraph}>The UK's oldest known Pokémon Society began in Hull in 2010, followed shortly by 
+              York and Sheffield in 2012. These early societies were dedicated to growing their membership along with running socials 
+              and tournaments. Early signs of alliances were formed with Sheffield running a 24-hour event involving Leeds, and the 
+              historic Roses bout between York and Lancaster, but this was a mere prelude to what followed.
               </p>
               <h1 className="shiny-title-wrappable center-margins small-title">Sussex's Grand Idea</h1>
-              <p className={aboutStyles.paragraph}>In 2021, IUPS all started with Sussex Pokésoc. We all know how hard Covid was, and university societies 
-              were hit hard too. From the struggles it brought, Sussex gained a mission. They wanted to find other Pokésocs around the UK, all in an effort 
-              to build an online community which supports fellow committees. Then-Treasurer Rob joined York’s Discord server, and the first connection was 
-              made. A brand new server was created, and in came Durham, rounding out the three unis which laid the foundations for our initial leadership 
-              structure. UCL, Bristol, UEA, and a whole host of Pokésocs from around the UK stormed in as time went on, before everything started to 
-              become… a bit real.
+              <p className={aboutStyles.paragraph}>In January 2021, I-UPS all started with Sussex Pokésoc. We all know how hard Covid 
+              was, and university societies were hit hard too. From the struggles it brought, Sussex gained a mission. They wanted to 
+              find other Pokésocs around the UK, all in an effort to build an online community which supports fellow committees. 
+              Then-Treasurer Rob joined York’s Discord server and the first connection was made. A brand new server was created, 
+              and in came Durham, rounding out the three unis which laid the foundations for our initial leadership structure. 
+              UCL, Bristol, UEA, and a whole host of Pokésocs from around the UK stormed in as time went on, before everything started 
+              to become… a bit real.
               </p>
+
+              <h1 className="shiny-title-wrappable center-margins small-title">Comté is Formed</h1>
+              <p className={aboutStyles.paragraph}>With over a dozen fellow Pokésoc committees roaming the tall grass together in this 
+              new environment, we needed to have a Champion to lead us. Don’t worry, we weren’t so crude as to actually name ourselves 
+              after the Elite 4…
+              An initial group of fourteen committee members from nine different societies was formed, and quickly got to work, moulding 
+              I-UPS further towards what can be found today. Why “Comté” though? Well, “Committee Committee” was a bit too long, so we 
+              shortened it to “Comtee”, but that was too close to our dear friend Combee! We didn’t want Combee to feel sad, so we added 
+              some flair with an accent - Comté!
+
+              </p>
+
               <h1 className="shiny-title-wrappable center-margins small-title">The Discord Server</h1>
               <p className={aboutStyles.paragraph}>As more and more societies were in correspondance, it was apparent that a server merely for committees was
               limiting the potential of I-UPS' outreach; so, the server opened to all I-UPS society members in 2021.
               </p>
 
-              <h1 className="shiny-title-wrappable center-margins small-title">Comté is Formed</h1>
-              <p className={aboutStyles.paragraph}>With over a dozen fellow Pokésoc committees roaming the tall grass together in this new environment, we 
-              needed to have a Champion to lead us. Don’t worry, we weren’t so crude as to actually name ourselves after the Elite 4… An initial group of fourteen 
-              committee members from nine different societies was formed, and quickly got to work, moulding I-UPS further towards what can be found today. Why 
-              “Comté” though? Well, “Committee Committee” was a bit too long, so we shortened it to “Comtee”, but that was too close to our dear friend Combee! We 
-              didn’t want Combee to feel sad, so we added some flair with an accent - Comté!
-              </p>
-
               <h1 className="shiny-title-wrappable center-margins small-title">The Official I-UPS Discord Server</h1>
-              <p className={aboutStyles.paragraph}>With our Comté in place, and with over a dozen societies now involved and invested in our new community, it was 
-              time to take things public. Our doors opened to our societies’ members in late March 2021 with a (now defunct) Pixelmon server leading the festivities. 
-              Keeping everything public has enabled us to connect with so many more people than we thought possible. We now have over 30 Pokésoc families under our 
-              umbrella, and we cherish each and every one.
+              <p className={aboutStyles.paragraph}>With our Comté in place, and with over a dozen societies now involved and invested in our new community, 
+              it was time to take things public. Our doors opened to our societies’ members in late March 2021 with a Pixelmon server leading the festivities, 
+              until it closed its doors in January 2022. Keeping everything public has enabled us to connect with so many more people than we thought possible. 
+              We now have over 30 Pokésoc families under our umbrella, and we cherish each and every one.
               </p>
 
               <h1 className="shiny-title-wrappable center-margins small-title">The I-UPS Summer Draft League</h1>
-              <p className={aboutStyles.paragraph}>Our flagship event, consisting of a Team Tour format, open to all members of IUPS, had its first rendition in the 
-              summer of 2021. 15 teams from 12 societies participated. Everyone battled hard, and a winner was eventually crowned: MewCL (UCL). We now host this 
-              annually, with more societies and teams joining every year!
+              <p className={aboutStyles.paragraph}>Our flagship event, consisting of a Team Tour format, open to all members of IUPS, had its first rendition 
+              in the summer of 2021. 15 teams from 12 societies participated. Everyone battled hard, and a winner was eventually crowned: MewCL (UCL). We now 
+              host this annually, with more societies and teams joining every year!
               </p>
             </Revealer>
 

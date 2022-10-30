@@ -10,6 +10,7 @@ function Comte(props) {
   return (
     <div className={ styles.comteContainer }>
         <p className={ styles.name }>{ props?.name || "" }</p>
+        <p className={ styles.pronouns }>{ props?.pronouns || "" }</p>
         <p className={ styles.title }>{ props?.title || "" }</p>
         <p className={ styles.description }>{ props?.description || "" }</p>
     </div>

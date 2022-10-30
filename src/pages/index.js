@@ -61,10 +61,10 @@ function IndexPage() {
               <div className={ styles.info }>
                 <h1 className={ [styles.mainAreaTitle, "medium-title", "shiny-title"].join(' ') }>A Nationwide Group of Pokémon Societies</h1>
                 <p>
-                The Inter-University Pokémon Society is a union of { noOfSocieties ?? "more than 30" } societies joined together to collaborate on all things Pokémon.
+                The Inter-University Pokémon Society is a conglomerate of { noOfSocieties ?? "over 30" } University Societies joined together to collaborate on all things Pokémon.
                 </p>
                 <p>
-                Our primary goal to unite and help form Pokémon societies across the UK and Ireland, if you're looking to set a PokéSoc up, we can help you out!
+                Our primary goal to unite and help form Pokémon societies across the UK and Ireland. If you're looking to set a PokéSoc up, we can help you out!
                 </p>
               </div>
               <div id={ styles.homeLogoWrapper }>
@@ -77,13 +77,13 @@ function IndexPage() {
             <section className={ styles.indexDoubleSection }>
               <div id={ styles.discordSection }>
                 <img id={ styles.discordLogo } src={ DiscordIcon } alt="Discord logo."/>
-                <p id={ styles.discordDesc }>Feel free to join if you are a member of a Pokémon Society.</p>
+                <p id={ styles.discordDesc }>If you’re a member of a Pokésoc, jump into our home server!</p>
                 <RoundButton text="Join Our Discord" link="https://discord.gg/52YutzNUGg" dark={true} className={ styles.discordButton }/>
               </div>
               
               <div id={ styles.instaSection }>
                 <img id={ styles.instaLogo } src={ InstaIcon } alt="Instagram logo."/>
-                <p id={ styles.instaDesc }>Our many photos of Pokémon related things.</p>
+                <p id={ styles.instaDesc }>See what’s going on in the world of Pokésocs!</p>
                 <RoundButton text="View our Instagram" link="https://www.instagram.com/inter.uni.pokemon/" dark={true} className={ styles.instaButton }/>
               </div>
             </section>
