@@ -57,9 +57,9 @@ function AboutPage() {
             <CircleImageTitle src={ TitleImg }>About Us</CircleImageTitle>
 
             <h1 className="shiny-title center-margins medium-title">What is the I-UPS?</h1>
-            <p className={aboutStyles.paragraph}>The Inter-University Pokémon Society is a conglomerate of { noOfSocieties ?? "over 30" } UK university societies, 
+            <p className={aboutStyles.paragraph}>The Inter-University Pokémon Society is a conglomerate of { noOfSocieties ?? "over 30" } UK University Societies, 
             joined together to collaborate on all things Pokémon. We look to support and help form Pokémon Societies across England, Scotland, 
-            Wales, and N. Ireland. If you're wanting to set a PokéSoc up, give us a shout!
+            Wales, N. Ireland and Ireland. If you're wanting to set a PokéSoc up, give us a shout!
             </p>
 
             <section className={aboutStyles.iconsContainer}>
