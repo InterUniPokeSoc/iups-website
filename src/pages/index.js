@@ -46,6 +46,7 @@ function IndexPage() {
   return (
     <>
       <Helmet>
+        <meta name="google-site-verification" content="u62RpLCYYWFyMUuRshI4C2ur543jvWoO2hUdbRzVkTY" />
         <title>Inter-Uni PokéSoc</title>
       </Helmet>
 
