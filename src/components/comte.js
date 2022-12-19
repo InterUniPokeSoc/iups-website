@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import React from 'react';
 
 import * as styles from './comte.module.scss';
 
 function Comte(props) {
 
+  const member = props.member
+
   return (
     <div className={ styles.comteContainer }>
-        <p className={ styles.name }>{ props?.name || "" }</p>
-        <p className={ styles.pronouns }>{ props?.pronouns || "" }</p>
-        <p className={ styles.title }>{ props?.title || "" }</p>
-        <p className={ styles.description }>{ props?.description || "" }</p>
+        <p className={ styles.name }>{ member?.name || "" }</p>
+        <p className={ styles.pronouns }>{ member?.pronouns || "" }</p>
+        <p className={ styles.title }>{ member?.role || "" }</p>
+        <p className={ styles.description }>{ member?.description || "" }</p>
     </div>
   )
 }
