@@ -9,6 +9,8 @@ async function getAllEvents() {
     .eq('display', true)
     .order('start_date', { ascending: true })
 
+  console.log(events)
+
   if (events == null || events.length < 1) {
     throw noEventsError
   }
