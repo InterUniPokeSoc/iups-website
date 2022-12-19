@@ -92,21 +92,14 @@ function AboutPage() {
             </section>
             
             <Revealer title="Comté">
-              <Comte name="Dom" title="Speaker" pronouns="(He/Him)"
-              description="Hiya, I'm Dom, and I'm somewhat in charge of this here endeavour. 
-              My track record of being a past UoY committee member of 3 years, and my love 
-              of Happiny and Chimecho push me forth towards the promised land of plentiful 
-              thriving Pokésocs around the UK and beyond! If I'm not busy working, you'll 
-              find me on Showdown Randbats or polishing my Pokémon TTRPG rules." />
-
-              <Comte name="Hanny" title="Document Manager" pronouns="(She/Her)"
-                description="I'm currently an ALT in Japan, which will almost certainly 
-                explain why I'm around at odd hours of the day at any given time. I mostly 
-                manage the documentation behind the scenes for IUPS where needed, since the 
-                timezone does make it difficult to do other things. But I'm always doing my 
-                best! My favourite Pokemon are Mimikyu and Yamper, of which I have proven my 
-                love for by getting 7 plushies of the former and currently 5 of the latter. 
-                This will not be stopping anytime soon." />
+              <Comte name="James" title="Chair" pronouns="(He/Him)"
+                description="Hi I'm James. I'm the current Chair for Comté, it is my 
+                responsibility to ensure the smooth running of I-UPS as a whole by working 
+                with the rest of Comté. My favourite Pokémon is Snom, so it can usually be 
+                found as my Discord icon. I am currently the president of the University of 
+                York's Pokésoc, and can be found around I-UPS helping to put on events such 
+                as the Summer Team Tour and Unite. I hope everyone has a great time within 
+                I-UPS and look forward to meeting people during our events." />
 
               <Comte name="Lolo" title="Univserity Liason" pronouns="(She/Her)"
                 description="Hello! I am the Founder and current Vice President of KCL Pokémon 
@@ -129,14 +122,6 @@ function AboutPage() {
                 
                 My favourite Pokémon are Piplup, Furret and Lurantis and my favourite 
                 game is SoulSilver." />
-
-              <Comte name="James" title="Treasurer" pronouns="(He/Him)"
-                description="Hi I'm James. I am the Treasurer for Comté so it is my 
-                responsibility to provide advice in regards to any financial matters 
-                that arise. My favourite Pokémon is Snom, so it can usually be found as 
-                my Discord icon. I am currently the president of the University of York's 
-                Pokésoc, and can be found around I-UPS helping to put on events such as 
-                the Summer Team Tour." />
 
               <Comte name="Philip" title="Social Secretary" pronouns="(He/Him)" 
                 description="I'm the Social Secretary of I-UPS, responsible for organising 
@@ -198,6 +183,22 @@ function AboutPage() {
                  was Pokemon Y but my favourite Pokémon generation is probably 4, with most of 
                  my favourite Pokémon coming from the 5th and 7th generation. I'm also quite 
                  active in Pokémon Go and I have a decent sized card collection." />
+
+              <Comte name="Dom" title="General Comté" pronouns="(He/Him)"
+                description="Hiya, I'm Dom. My track record of being a past UoY committee 
+                member of 3 years, and my love of Happiny and Chimecho push me forth towards 
+                the promised land of plentiful thriving Pokésocs around the UK and beyond! 
+                If I'm not busy working, you'll find me on Showdown Randbats or polishing 
+                my Pokémon TTRPG rules." />
+
+              <Comte name="Hanny" title="General Comté" pronouns="(She/Her)"
+                description="I'm currently an ALT in Japan, which will almost certainly 
+                explain why I'm around at odd hours of the day at any given time. I mostly 
+                manage the documentation behind the scenes for IUPS where needed, since the 
+                timezone does make it difficult to do other things. But I'm always doing my 
+                best! My favourite Pokemon are Mimikyu and Yamper, of which I have proven my 
+                love for by getting 7 plushies of the former and currently 5 of the latter. 
+                This will not be stopping anytime soon." />
             </Revealer>
 
             <Revealer title="History">
