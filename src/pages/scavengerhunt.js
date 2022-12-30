@@ -1,7 +1,11 @@
 import React, { useEffect, useState, useRef, useInsertionEffect } from 'react'
 import {Helmet} from "react-helmet";
 import Layout from '../components/layout';
+
 import HCaptcha from "@hcaptcha/react-hcaptcha"
+
+import { Box, Stack, LinearProgress, Typography, TextField, Button } from '@mui/material';
+
 import '../styles/general.scss';
 import * as styles from '../styles/scavengerHunt.module.scss';
 
@@ -171,25 +175,39 @@ function ScavengerHuntPage() {
             <section id={styles.hintWrapper}>
               {/* Indicator of Questions */}
               <section id={ styles.indicatorWrapper }>
-                {hints.map((element, index) => {
-                  return <div className={
-                    [(index == currentHintNo ? styles.currentIndicator : ""),
-                    (index < currentHintNo ? styles.completedIndicator : ""),
-                    styles.indicator
-                    ].join(' ')
-                  }></div>
-                })}
+                <Box sx={{ width: '100%' }}>
+                  <LinearProgress variant="determinate" value={(currentHintNo/hints.length)*100} />
+                </Box>
               </section>
 
               {/* Hint UI */}
               { currentHintNo < hints.length &&
-                <>
-                  <h2 id={styles.hintTitle} className="medium-title">Hint { currentHintNo + 1 }</h2>
-                  <p id={styles.hintText}>{ hints[currentHintNo].hint }</p>
-                  <input id={styles.hintInput} className={ answerIncorrect ? styles.error : styles.noError } value={ userAnswer } onInput={ e => setUserAnswer(e.target.value) }></input>
-                  <a id={styles.hintButton} onClick={questionResponse}>Check Answer</a>
-                  <p id={styles.updateMessage}>{ message }</p>
-                </>
+                <Stack spacing={2}>
+                  <Typography variant="h4" component="h4">
+                    Hint { currentHintNo + 1 }
+                  </Typography>
+                  <Typography variant="p" component="p">
+                    { hints[currentHintNo].hint }
+                  </Typography>
+
+                  <TextField 
+                  id={styles.answerField}
+                  error={answerIncorrect}
+                  label="Answer"
+                  variant="outlined"
+                  value={ userAnswer }
+                  helperText={ message ?? "" }
+                  onInput={ e => setUserAnswer(e.target.value) }
+                  />
+
+                  <Button
+                  id={styles.answerButton}
+                  variant="contained"
+                  size="large"
+                  onClick={questionResponse}>
+                    Check Answer
+                  </Button>
+                </Stack>
               }
 
               {/* On Hunt Completion UI */}
