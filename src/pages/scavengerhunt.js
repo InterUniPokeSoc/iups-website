@@ -4,7 +4,7 @@ import Layout from '../components/layout';
 
 import HCaptcha from "@hcaptcha/react-hcaptcha"
 
-import { Box, Stack, LinearProgress, Typography, TextField, Button } from '@mui/material';
+import { Box, Stack, LinearProgress, Typography, TextField, Button, Alert, CircularProgress } from '@mui/material';
 
 import '../styles/general.scss';
 import * as styles from '../styles/scavengerHunt.module.scss';
@@ -166,7 +166,9 @@ function ScavengerHuntPage() {
 
         {/* Loading Indicator */}
         { isLoading &&
-          <div className={styles.loader}><Loader /></div>
+          <div className={styles.loader}>
+            <CircularProgress color="inherit" />
+          </div>
         }
 
         <div id={styles.centeredContent}>
@@ -262,9 +264,9 @@ function ScavengerHuntPage() {
         
         {/* Display Error Message */}
         <section className="page-section">
-          <p id="error-message" className={ styles.errorMessage }>
-            { errorMessage != null ? errorMessage : "" }
-          </p>
+          <Box sx={{ width: '100%', maxWidth: '600px', margin: 'auto' }}>
+            <Alert severity="error">{ errorMessage ?? "" }</Alert>
+          </Box>
         </section>
 
       </main>
